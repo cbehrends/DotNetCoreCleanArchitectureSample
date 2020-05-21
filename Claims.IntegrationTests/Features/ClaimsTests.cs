@@ -5,7 +5,6 @@ using Claims.Application.Features.Claims.Commands;
 using Claims.Application.Features.Claims.Queries;
 using Claims.Domain.Entities;
 using FluentAssertions;
-using Moq;
 using NUnit.Framework;
 
 namespace Claims.IntegrationTests.Features
