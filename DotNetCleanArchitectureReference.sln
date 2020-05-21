@@ -10,6 +10,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Claims.UnitTests", "Claims.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Claims.Domain", "Claims.Domain\Claims.Domain.csproj", "{AE367857-3C28-4D7C-AD55-FA4498D8F5E5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Claims.IntegrationTests", "Claims.IntegrationTests\Claims.IntegrationTests.csproj", "{9711F09C-F5A5-4BBB-8F22-B68037BA2A3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Claims.Infrastructure", "Claims.Infrastructure\Claims.Infrastructure.csproj", "{8B5235E5-56D9-4550-9AED-49FCD3409D63}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,8 +36,17 @@ Global
 		{AE367857-3C28-4D7C-AD55-FA4498D8F5E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE367857-3C28-4D7C-AD55-FA4498D8F5E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE367857-3C28-4D7C-AD55-FA4498D8F5E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9711F09C-F5A5-4BBB-8F22-B68037BA2A3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9711F09C-F5A5-4BBB-8F22-B68037BA2A3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9711F09C-F5A5-4BBB-8F22-B68037BA2A3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9711F09C-F5A5-4BBB-8F22-B68037BA2A3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B5235E5-56D9-4550-9AED-49FCD3409D63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B5235E5-56D9-4550-9AED-49FCD3409D63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B5235E5-56D9-4550-9AED-49FCD3409D63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B5235E5-56D9-4550-9AED-49FCD3409D63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B315D296-87E1-4A5A-8476-E3B965E6DCB7} = {534A2313-4FD7-4222-81C5-F13F9CBE5BF5}
+		{9711F09C-F5A5-4BBB-8F22-B68037BA2A3D} = {534A2313-4FD7-4222-81C5-F13F9CBE5BF5}
 	EndGlobalSection
 EndGlobal

@@ -5,7 +5,7 @@ namespace Claims.Domain.Entities
 {
     public class Claim
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public List<Service> ServicesRendered { get; set; }
     }

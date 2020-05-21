@@ -1,13 +1,11 @@
-
-
 using Claims.Domain.Entities;
 using FluentValidation;
 
-namespace Claims.Application.Features.Claims
+namespace Claims.Application.Features.Claims.Commands
 {
-    public class ClaimsValidator: AbstractValidator<Claim>
+    public class NewClaimValidator: AbstractValidator<NewClaim.Command>
     {
-        public ClaimsValidator()
+        public NewClaimValidator()
         {
             RuleFor(claim => claim.FirstName).NotEmpty();
             RuleFor(claim => claim.FirstName).MaximumLength(50);

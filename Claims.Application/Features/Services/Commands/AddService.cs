@@ -8,16 +8,16 @@ namespace Claims.Application.Features.Services.Commands
 {
     public static class AddService
     {
-        public class Command: IRequest<Guid>
+        public class Command: IRequest<int>
         {
             public string Description { get; set; }
         }
         
-        public class Handler: IRequestHandler<AddClaim.Command, Guid>
+        public class Handler: IRequestHandler<Command, int>
         {
-            public Task<Guid> Handle(AddClaim.Command request, CancellationToken cancellationToken)
+            public Task<int> Handle(Command request, CancellationToken cancellationToken)
             {
-                return Task.FromResult(Guid.NewGuid());
+                return Task.FromResult(-1);
             }
         }
     }

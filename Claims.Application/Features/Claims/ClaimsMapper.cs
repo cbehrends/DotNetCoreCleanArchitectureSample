@@ -8,8 +8,8 @@ namespace Claims.Application.Features.Claims
     {
         public ClaimsMapper()
         {
-            CreateMap<Claim, AddClaim.Command>();
-            CreateMap<AddClaim.Command, Claim>()
+            CreateMap<Claim, NewClaim.Command>();
+            CreateMap<NewClaim.Command, Claim>()
                 .ForMember(claim => claim.Id, opt => opt.Ignore());
             
         }

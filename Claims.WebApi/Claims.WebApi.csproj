@@ -7,6 +7,12 @@
     <ItemGroup>
       <ProjectReference Include="..\Claims.Application\Claims.Application.csproj" />
       <ProjectReference Include="..\Claims.Domain\Claims.Domain.csproj" />
+      <ProjectReference Include="..\Claims.Infrastructure\Claims.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="FluentValidation.AspNetCore" Version="8.6.2" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.4" />
     </ItemGroup>
 
 

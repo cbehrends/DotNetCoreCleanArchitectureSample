@@ -8,29 +8,29 @@ using MediatR;
 
 namespace Claims.Application.Features.Claims.Commands
 {
-    public static class AddClaim
+    public static class NewClaim
     {
-        public class Command: IRequest<Guid>
+        public class Command : IRequest<int>
         {
-            public string FirstName { get; set; }
+            public string FirstName { get; set; } 
             public List<Service> ServicesRendered { get; set; }
         }
 
-        public class Handler : IRequestHandler<Command, Guid>
+        public class Handler : IRequestHandler<Command, int>
         {
-            private IApplicationDbContext _context;
+            private readonly IApplicationDbContext _context;
 
             public Handler(IApplicationDbContext context)
             {
                 _context = context ?? throw new NullReferenceException("AddClaim Handler requires a non null IApplicationDbContext");
             }
-
-            public async Task<Guid> Handle(Command request, CancellationToken cancellationToken)
+            
+            public async Task<int> Handle(Command request, CancellationToken cancellationToken)
             {
                 var newClaim = new Claim
                 {
                     FirstName = request.FirstName,
-                    ServicesRendered = request.ServicesRendered
+                    // ServicesRendered = request.ServicesRendered
                 };
 
                 _context.Claims.Add(newClaim);
