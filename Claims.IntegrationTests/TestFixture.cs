@@ -130,15 +130,14 @@ namespace Claims.IntegrationTests
 
             return await context.FindAsync<TEntity>(id);
         }
-        
+
         public static async Task<TEntity> FindAsync<TEntity>(Guid id)
             where TEntity : class
         {
             using var scope = _scopeFactory.CreateScope();
 
             var context = scope.ServiceProvider.GetService<ClaimsDbContext>();
-            var foo = context.Find<TEntity>(id);
-            
+
             return await context.FindAsync<TEntity>(id);
         }
 

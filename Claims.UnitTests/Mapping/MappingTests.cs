@@ -35,8 +35,8 @@ namespace Claims.UnitTests.Mapping
         [Test]
         [TestCase(typeof(Claim), typeof(NewClaim.Command))]
         [TestCase(typeof(NewClaim.Command), typeof(Claim))]
-        [TestCase(typeof(Service), typeof(AddService.Command))]
-        [TestCase(typeof(AddService.Command), typeof(Service))]
+        [TestCase(typeof(Service), typeof(NewService.Command))]
+        [TestCase(typeof(NewService.Command), typeof(Service))]
         public void Should_Map_Commands_To_Entity(Type source, Type destination)
         {
             var instance = Activator.CreateInstance(source);

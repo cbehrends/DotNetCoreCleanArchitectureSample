@@ -8,8 +8,8 @@ namespace Claims.Application.Features.Services
     {
         public ServiceMapper()
         {
-            CreateMap<Service, AddService.Command>();
-            CreateMap<AddService.Command, Service>()
+            CreateMap<Service, NewService.Command>();
+            CreateMap<NewService.Command, Service>()
                 .ForMember(service => service.Id, opt => opt.Ignore());
         }
     }

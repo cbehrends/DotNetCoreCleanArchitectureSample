@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Claims.Application.Exceptions;
 using Claims.Application.Interfaces;
 using Claims.Domain.Entities;
 using MediatR;
@@ -26,10 +27,17 @@ namespace Claims.Application.Features.Claims.Queries
             }
             public async Task<List<Claim>> Handle(Query request, CancellationToken cancellationToken)
             {
-                return await _context
+                var retVal = await _context
                     .Claims
                     .AsNoTracking()
                     .ToListAsync(cancellationToken);
+
+                if (retVal.Count == 0)
+                {
+                    throw new NotFoundException("No Claims found");
+                }
+
+                return retVal;
             }
         }
     }
