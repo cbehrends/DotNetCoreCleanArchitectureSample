@@ -37,6 +37,12 @@ namespace Claims.WebApi
             services.AddAutoMapper(typeof(Startup), typeof(Application.InjectDependencies));
 
             services.AddTransient<ICurrentUserService, MockCurrentUserService>();
+            
+            services.AddOpenApiDocument(configure =>
+            {
+                configure.Title = "Sample Appp API";
+                
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +60,9 @@ namespace Claims.WebApi
                 .AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader());
+            
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
 
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
