@@ -32,11 +32,7 @@ namespace Claims.WebApi
                     {
                         await context.Database.MigrateAsync();
                     }                   
-
-                    // var userManager = services.GetRequiredService<UserManager<AppUser>>();
-
-                    // await ApplicationDbContextSeed.SeedDefaultUserAsync(userManager);
-                    // await ApplicationDbContextSeed.SeedSampleDataAsync(context);
+                    
                 }
                 catch (Exception ex)
                 {

@@ -1,4 +1,4 @@
-using Claims.Application.Interfaces;
+using Claims.Application.Core.Interfaces;
 using Claims.Infrastructure.Data;
 using Claims.Infrastructure.Identity;
 using Microsoft.AspNetCore.Authentication;

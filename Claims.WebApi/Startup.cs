@@ -1,5 +1,7 @@
+using System.Reflection;
+using AutoMapper;
 using Claims.Application;
-using Claims.Application.Interfaces;
+using Claims.Application.Core.Interfaces;
 using Claims.Infrastructure;
 using Claims.WebApi.Services;
 using Microsoft.AspNetCore.Builder;
@@ -7,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
 
 namespace Claims.WebApi
 {
@@ -22,13 +25,17 @@ namespace Claims.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers()
+                .AddNewtonsoftJson(options =>
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+
             services.AddClaimsApplication();
             services.AddClaimsInfrastructure(Configuration);
 
             services.AddScoped<ICurrentUserService, CurrentUserService>();
             services.AddHttpContextAccessor();
             
+            services.AddAutoMapper(typeof(Startup), typeof(Claims.Application.InjectDependencies));
             
         }
 

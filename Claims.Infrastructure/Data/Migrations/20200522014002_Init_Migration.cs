@@ -2,7 +2,7 @@
 
 namespace Claims.Infrastructure.Data.Migrations
 {
-    public partial class Inital_Migration : Migration
+    public partial class Init_Migration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -25,33 +25,60 @@ namespace Claims.Infrastructure.Data.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Description = table.Column<string>(maxLength: 50, nullable: false),
-                    ClaimId = table.Column<int>(nullable: true)
+                    Description = table.Column<string>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Services", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RenderedServices",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ClaimId = table.Column<int>(nullable: false),
+                    ServiceId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RenderedServices", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Services_Claims_ClaimId",
+                        name: "FK_RenderedServices_Claims_ClaimId",
                         column: x => x.ClaimId,
                         principalTable: "Claims",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RenderedServices_Services_ServiceId",
+                        column: x => x.ServiceId,
+                        principalTable: "Services",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Services_ClaimId",
-                table: "Services",
+                name: "IX_RenderedServices_ClaimId",
+                table: "RenderedServices",
                 column: "ClaimId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RenderedServices_ServiceId",
+                table: "RenderedServices",
+                column: "ServiceId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Services");
+                name: "RenderedServices");
 
             migrationBuilder.DropTable(
                 name: "Claims");
+
+            migrationBuilder.DropTable(
+                name: "Services");
         }
     }
 }

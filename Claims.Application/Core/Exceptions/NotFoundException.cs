@@ -1,6 +1,6 @@
 using System;
 
-namespace Claims.Application.Exceptions
+namespace Claims.Application.Core.Exceptions
 {
     public class NotFoundException : Exception
     {

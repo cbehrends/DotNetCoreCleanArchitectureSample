@@ -1,8 +1,8 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Claims.Application.Behaviours;
-using Claims.Application.Interfaces;
+using Claims.Application.Core.Behaviours;
+using Claims.Application.Core.Interfaces;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;

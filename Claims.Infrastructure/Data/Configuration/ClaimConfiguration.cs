@@ -15,7 +15,11 @@ namespace Claims.Infrastructure.Data.Configuration
                 .Property(claim => claim.FirstName)
                 .IsRequired()
                 .HasMaxLength(50);
-            
+
+            builder.HasMany(claim => claim.ServicesRendered)
+                .WithOne(service => service.Claim)
+                .OnDelete(DeleteBehavior.Cascade);
+
         }
     }
 }

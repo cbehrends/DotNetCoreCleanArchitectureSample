@@ -1,6 +1,6 @@
 using System.Linq;
 using System.Threading.Tasks;
-using Claims.Application.Interfaces;
+using Claims.Application.Core.Interfaces;
 using Claims.Application.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

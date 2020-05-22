@@ -1,5 +1,5 @@
 ﻿using System.Security.Claims;
-using Claims.Application.Interfaces;
+using Claims.Application.Core.Interfaces;
 using Microsoft.AspNetCore.Http;
 
 namespace Claims.WebApi.Services

@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Claims.Application.Exceptions;
+using Claims.Application.Core.Exceptions;
 using Claims.Application.Features.Claims.Commands;
+using Claims.Application.Features.Claims.Model;
 using Claims.Application.Features.Claims.Queries;
+using Claims.Application.Features.Services.Commands;
 using Claims.Domain.Entities;
 using FluentAssertions;
 using NUnit.Framework;
@@ -24,19 +26,24 @@ namespace Claims.IntegrationTests.Features
         [Test]
         public async Task Should_Add_Claim_When_Valid()
         {
-         
+
             var command = new NewClaim.Command
             {
                 FirstName = "Corey",
-                ServicesRendered = new List<Service>()
+                ServicesRendered = new List<AddRenderedServiceDto>()
             };
             
-            command.ServicesRendered.Add(new Service{Description = "FOO"});
+            var newServiceCmd = new NewService.Command
+            {
+                Description = "Test"
+            };
+
+            var serviceId = await SendAsync(newServiceCmd);
+
+            command.ServicesRendered.Add(new AddRenderedServiceDto{ServiceId = serviceId});
             
-            var claimId = await SendAsync(command);
-            
-            var newClaim = await SendAsync(new GetClaim.Query{Id = claimId});
-            
+            var newClaim = await SendAsync(command);
+
             newClaim.FirstName.Should().Be("Corey");
             newClaim.ServicesRendered.Should().NotBeNullOrEmpty();
             
@@ -51,9 +58,9 @@ namespace Claims.IntegrationTests.Features
                 FirstName = "Corey"
             };
             
-            var claimId = await SendAsync(command);
+            var newClaim = await SendAsync(command);
        
-            var claim = await SendAsync(new GetClaim.Query{Id = claimId});
+            var claim = await SendAsync(new GetClaim.Query{Id = newClaim.Id});
 
             claim.Should().NotBeNull();
             claim.FirstName.Should().Be("Corey");
@@ -94,6 +101,36 @@ namespace Claims.IntegrationTests.Features
 
             FluentActions.Invoking(() =>
                 SendAsync(query)).Should().Throw<NotFoundException>();
+        }
+        
+        [Test]
+        public async Task Should_Delete_Claim_If_Exists()
+        {
+            var command = new NewClaim.Command
+            {
+                FirstName = "Corey"
+            };
+            
+            var newClaim = await SendAsync(command);
+            
+            var deleteClaim = new DeleteClaim.Command{Id = newClaim.Id};
+
+            await SendAsync(deleteClaim);
+
+            var retVal = await FindAsync<Claim>(newClaim.Id);
+
+            retVal.Should().BeNull();
+
+        }
+        
+        [Test]
+        public async Task Should_Throw_Not_Found_On_Delete_Claim_Does_Not_Exist()
+        {
+            var deleteClaim = new DeleteClaim.Command{Id = -9999};
+
+            FluentActions.Invoking(() =>
+                SendAsync(deleteClaim)).Should().Throw<NotFoundException>();
+
         }
         
     }

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Claims.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Claims.Application.Interfaces
+namespace Claims.Application.Core.Interfaces
 {
     public interface IApplicationDbContext
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using FluentValidation.Results;
 
-namespace Claims.Application.Exceptions
+namespace Claims.Application.Core.Exceptions
 {
     public class ValidationException : Exception
     {

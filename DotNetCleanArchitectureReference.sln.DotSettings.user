@@ -1,11 +1,9 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d7ce2976_002Db630_002D4104_002D9bfc_002Dd5d564d048ad/@EntryIndexedValue">&lt;SessionState ContinuousTestingIsOn="False" ContinuousTestingMode="0" FrameworkVersion="{x:Null}" IsLocked="False" Name="All tests from MappingTests.cs" PlatformMonoPreference="{x:Null}" PlatformType="{x:Null}" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"&gt;
   &lt;Or&gt;
-    &lt;ProjectFile&gt;B315D296-87E1-4A5A-8476-E3B965E6DCB7/d:Mapping/f:MappingTests.cs&lt;/ProjectFile&gt;
-    &lt;TestAncestor&gt;
-      &lt;TestId&gt;NUnit3x::9711F09C-F5A5-4BBB-8F22-B68037BA2A3D::.NETCoreApp,Version=v3.1::Claims.IntegrationTests.Features.ClaimsTests&lt;/TestId&gt;
-      &lt;TestId&gt;NUnit3x::9711F09C-F5A5-4BBB-8F22-B68037BA2A3D::.NETCoreApp,Version=v3.1::Claims.IntegrationTests.Features.ServicesTests&lt;/TestId&gt;
-      &lt;TestId&gt;NUnit3x::B315D296-87E1-4A5A-8476-E3B965E6DCB7::.NETCoreApp,Version=v3.1::Claims.UnitTests.Behaviors.LoggingTests&lt;/TestId&gt;
-    &lt;/TestAncestor&gt;
+    &lt;Not&gt;
+      &lt;Project Location="/Users/coreybehrends/Projects/DotNetCleanArchitectureReference/Claims.IntegrationTests" Presentation="&amp;lt;Tests&amp;gt;\&amp;lt;Claims.IntegrationTests&amp;gt;" /&gt;
+    &lt;/Not&gt;
+    &lt;Project Location="/Users/coreybehrends/Projects/DotNetCleanArchitectureReference/Claims.IntegrationTests" Presentation="&amp;lt;Tests&amp;gt;\&amp;lt;Claims.IntegrationTests&amp;gt;" /&gt;
   &lt;/Or&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

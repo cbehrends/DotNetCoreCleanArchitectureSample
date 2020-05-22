@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using Claims.Application.Exceptions;
+using Claims.Application.Core.Exceptions;
 using Claims.Application.Features.Services.Commands;
 using Claims.Domain.Entities;
 using FluentAssertions;

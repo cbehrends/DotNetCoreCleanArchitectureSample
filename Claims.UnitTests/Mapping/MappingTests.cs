@@ -5,6 +5,7 @@ using Claims.Application.Features.Claims.Commands;
 using Claims.Application.Features.Services;
 using Claims.Application.Features.Services.Commands;
 using Claims.Domain.Entities;
+using Claims.WebApi.ViewModels;
 using NUnit.Framework;
 
 
@@ -20,7 +21,8 @@ namespace Claims.UnitTests.Mapping
             _configuration = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile<ClaimsMapper>();
-                cfg.AddProfile<ServiceMapper>();
+                cfg.AddProfile<ServicesMapper>();
+                cfg.AddProfile<ClaimViewModelMapper>();
             });
 
             _mapper = _configuration.CreateMapper();
@@ -38,6 +40,16 @@ namespace Claims.UnitTests.Mapping
         [TestCase(typeof(Service), typeof(NewService.Command))]
         [TestCase(typeof(NewService.Command), typeof(Service))]
         public void Should_Map_Commands_To_Entity(Type source, Type destination)
+        {
+            var instance = Activator.CreateInstance(source);
+
+            _mapper.Map(instance, source, destination);
+        }
+        
+        [Test]
+        [TestCase(typeof(Claim), typeof(ClaimViewModel))]
+        [TestCase(typeof(RenderedServiceViewModel), typeof(RenderedService))]
+        public void Should_Map_Entity_To_ViewModels(Type source, Type destination)
         {
             var instance = Activator.CreateInstance(source);
 

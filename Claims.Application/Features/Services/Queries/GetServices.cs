@@ -8,33 +8,33 @@ using Claims.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Claims.Application.Features.Claims.Queries
+namespace Claims.Application.Features.Services.Queries
 {
-    public static class GetClaims
+    public static class GetServices
     {
-        public class Query: IRequest<List<Claim>>
+        public class Query: IRequest<List<Service>>
         {
             
         }
 
-        public class Handler : IRequestHandler<Query, List<Claim>>
+        public class Handler : IRequestHandler<Query, List<Service>>
         {
             private readonly IApplicationDbContext _context;
 
             public Handler(IApplicationDbContext context)
             {
-                _context = context ?? throw new NullReferenceException("GetClaims Handler requires a non null IApplicationDbContext");
+                _context = context ?? throw new NullReferenceException("GetServices Handler requires a non null IApplicationDbContext");
             }
-            public async Task<List<Claim>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<List<Service>> Handle(Query request, CancellationToken cancellationToken)
             {
                 var retVal = await _context
-                    .Claims
+                    .Services
                     .AsNoTracking()
                     .ToListAsync(cancellationToken);
 
                 if (retVal.Count == 0)
                 {
-                    throw new NotFoundException("No Claims found");
+                    throw new NotFoundException("No Services found");
                 }
 
                 return retVal;

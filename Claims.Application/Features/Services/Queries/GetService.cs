@@ -7,9 +7,9 @@ using Claims.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Claims.Application.Features.Claims.Queries
+namespace Claims.Application.Features.Services.Queries
 {
-    public static class GetClaim
+    public static class GetService
     {
         public class Query : IRequest<Claim>
         {
@@ -29,7 +29,6 @@ namespace Claims.Application.Features.Claims.Queries
                 var retVal = await _context
                     .Claims
                     .Include(claim => claim.ServicesRendered)
-                    .ThenInclude(sr => sr.Service)
                     .SingleOrDefaultAsync(claim => claim.Id == request.Id, cancellationToken);
 
                 if (retVal == null)

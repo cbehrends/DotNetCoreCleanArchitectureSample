@@ -1,6 +1,6 @@
 using System.Reflection;
 using AutoMapper;
-using Claims.Application.Behaviours;
+using Claims.Application.Core.Behaviours;
 using Claims.Application.Features.Claims;
 using FluentValidation;
 using MediatR;
@@ -13,7 +13,7 @@ namespace Claims.Application
         public static IServiceCollection AddClaimsApplication(this IServiceCollection services)
         {
           
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            // services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));

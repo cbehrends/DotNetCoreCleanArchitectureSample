@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Claims.Application.Models;
 
-namespace Claims.Application.Interfaces
+namespace Claims.Application.Core.Interfaces
 {
     public interface IIdentityService
     {

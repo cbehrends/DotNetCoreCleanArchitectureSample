@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Claims.Application.Interfaces;
+using Claims.Application.Core.Interfaces;
 using Claims.Infrastructure.Data;
 using Claims.Infrastructure.Identity;
 using Claims.WebApi;
@@ -31,7 +31,7 @@ namespace Claims.IntegrationTests
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", true, true)
+                .AddJsonFile("appsettings.json", false, true)
                 .AddEnvironmentVariables();
 
             _configuration = builder.Build();
@@ -41,7 +41,7 @@ namespace Claims.IntegrationTests
             var services = new ServiceCollection();
 
             services.AddSingleton(Mock.Of<IWebHostEnvironment>(w =>
-                w.EnvironmentName == "Development" &&
+                w.EnvironmentName == "Test" &&
                 w.ApplicationName == "Claims.WebApi"));
 
             services.AddLogging();
@@ -54,6 +54,7 @@ namespace Claims.IntegrationTests
                 d.ServiceType == typeof(ICurrentUserService));
 
             services.Remove(currentUserServiceDescriptor);
+            
 
             // Register testing version
             services.AddTransient(provider =>

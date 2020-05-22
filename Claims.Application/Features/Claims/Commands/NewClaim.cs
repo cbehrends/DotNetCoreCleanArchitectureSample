@@ -3,21 +3,23 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using Claims.Application.Interfaces;
+using Claims.Application.Core.Interfaces;
+using Claims.Application.Features.Claims.Model;
 using Claims.Domain.Entities;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Claims.Application.Features.Claims.Commands
 {
     public static class NewClaim
     {
-        public class Command : IRequest<int>
+        public class Command : IRequest<Claim>
         {
             public string FirstName { get; set; } 
-            public List<Service> ServicesRendered { get; set; }
+            public List<AddRenderedServiceDto> ServicesRendered { get; set; }
         }
 
-        public class Handler : IRequestHandler<Command, int>
+        public class Handler : IRequestHandler<Command, Claim>
         {
             private readonly IApplicationDbContext _context;
             private readonly IMapper _mapper;
@@ -27,13 +29,17 @@ namespace Claims.Application.Features.Claims.Commands
                 _mapper = mapper ?? throw new NullReferenceException("NewClaim Handler requires a non null IMapper");
             }
             
-            public async Task<int> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<Claim> Handle(Command request, CancellationToken cancellationToken)
             {
                 var newClaim = _mapper.Map<Claim>(request);
 
                 _context.Claims.Add(newClaim);
                 await _context.SaveChangesAsync(cancellationToken);
-                return newClaim.Id;
+                return await _context
+                    .Claims
+                    .Include(c => c.ServicesRendered)
+                    .ThenInclude(sr => sr.Service)
+                    .SingleAsync(c => c.Id == newClaim.Id, cancellationToken: cancellationToken);
             }
         }
     }

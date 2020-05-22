@@ -7,6 +7,6 @@ namespace Claims.Domain.Entities
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
-        public List<Service> ServicesRendered { get; set; }
+        public List<RenderedService> ServicesRendered { get; set; }
     }
 }

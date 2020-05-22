@@ -2,9 +2,9 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using Claims.Application.Core.Interfaces;
 using Claims.Application.Features.Claims.Commands;
 using Claims.Application.Features.Claims.Queries;
-using Claims.Application.Interfaces;
 using Claims.Domain.Entities;
 using MediatR;
 

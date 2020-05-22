@@ -1,11 +1,11 @@
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
-using Claims.Application.Interfaces;
+using Claims.Application.Core.Interfaces;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace Claims.Application.Behaviours
+namespace Claims.Application.Core.Behaviours
 {
     public class PerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
