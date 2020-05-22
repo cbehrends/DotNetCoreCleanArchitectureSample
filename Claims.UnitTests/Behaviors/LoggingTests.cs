@@ -25,7 +25,7 @@ namespace Claims.UnitTests.Behaviors
             await sut.Process(mockReq, CancellationToken.None);
 
             _loggingMock.VerifyLogging(
-                "Request: MockRequest corey Placeholder Name Claims.UnitTests.Behaviors.MockRequest",
+                "Request: MockRequest corey corey Claims.UnitTests.Behaviors.MockRequest",
                 LogLevel.Information);
         }
 

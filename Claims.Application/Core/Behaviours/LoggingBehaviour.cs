@@ -21,7 +21,7 @@ namespace Claims.Application.Core.Behaviours
         {
             var requestName = typeof(TRequest).Name;
             var userId = _currentUserService.UserId ?? string.Empty;
-            var userName = "Placeholder Name"; // This would come from your Auth layer which I have not implemented here
+            var userName = _currentUserService.UserId;
 
 
             _logger.LogInformation($"Request: {requestName} {userId} {userName} {request}");

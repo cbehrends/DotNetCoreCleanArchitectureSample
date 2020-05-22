@@ -1,6 +1,8 @@
 using AutoMapper;
 using Claims.Application;
+using Claims.Application.Core.Interfaces;
 using Claims.Infrastructure;
+using Claims.WebApi.Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -33,6 +35,8 @@ namespace Claims.WebApi
             services.AddClaimsInfrastructure(Configuration);
             
             services.AddAutoMapper(typeof(Startup), typeof(Application.InjectDependencies));
+
+            services.AddTransient<ICurrentUserService, MockCurrentUserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
