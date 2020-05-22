@@ -29,6 +29,8 @@ namespace Claims.Application.Features.Claims.Queries
             {
                 var retVal = await _context
                     .Claims
+                    .Include(c => c.ServicesRendered)
+                    .ThenInclude(sr => sr.Service)
                     .AsNoTracking()
                     .ToListAsync(cancellationToken);
 

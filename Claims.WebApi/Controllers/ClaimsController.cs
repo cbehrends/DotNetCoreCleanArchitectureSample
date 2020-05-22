@@ -36,7 +36,8 @@ namespace Claims.WebApi.Controllers
         {
             try
             {
-                return Ok(await _mediator.Send(new GetClaims.Query()));
+                var claims = await _mediator.Send(new GetClaims.Query());
+                return Ok(_mapper.Map<List<ClaimViewModel>>(claims));
             }
             catch (NotFoundException e)
             {
