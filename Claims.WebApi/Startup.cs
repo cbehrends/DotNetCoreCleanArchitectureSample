@@ -1,8 +1,6 @@
 using AutoMapper;
 using Claims.Application;
-using Claims.Application.Core.Interfaces;
 using Claims.Infrastructure;
-using Claims.WebApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,16 +23,15 @@ namespace Claims.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
+            
             services.AddControllers()
                 .AddNewtonsoftJson(options =>
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 
             services.AddClaimsApplication();
+            
             services.AddClaimsInfrastructure(Configuration);
-
-            services.AddScoped<ICurrentUserService, CurrentUserService>();
-            services.AddHttpContextAccessor();
-
+            
             services.AddAutoMapper(typeof(Startup), typeof(Application.InjectDependencies));
         }
 
