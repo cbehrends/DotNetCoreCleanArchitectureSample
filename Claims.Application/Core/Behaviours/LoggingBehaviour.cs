@@ -8,10 +8,10 @@ namespace Claims.Application.Core.Behaviours
 {
     public class LoggingBehaviour<TRequest> : IRequestPreProcessor<TRequest>
     {
-        private readonly ILogger _logger;
+        private readonly ILogger<TRequest> _logger;
         private readonly ICurrentUserService _currentUserService;
 
-        public LoggingBehaviour(ILogger logger, ICurrentUserService currentUserService)
+        public LoggingBehaviour(ILogger<TRequest> logger, ICurrentUserService currentUserService)
         {
             _logger = logger;
             _currentUserService = currentUserService;

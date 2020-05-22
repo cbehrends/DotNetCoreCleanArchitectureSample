@@ -70,9 +70,7 @@ namespace Claims.WebApi.Controllers
         {
             var newClaim = await _mediator.Send(newClaimCommand);
 
-            return CreatedAtAction(nameof(GetById),
-                new {id = newClaim.Id},
-                _mapper.Map<ClaimViewModel>(newClaim));
+            return CreatedAtAction(nameof(GetById),new {id = newClaim.Id},_mapper.Map<ClaimViewModel>(newClaim));
         }
 
         [HttpDelete("{id}")]
