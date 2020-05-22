@@ -1,3 +1,4 @@
+using System;
 using AutoMapper;
 using Claims.Application;
 using Claims.Application.Core.Interfaces;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 
 namespace Claims.WebApi
@@ -38,10 +40,16 @@ namespace Claims.WebApi
 
             services.AddTransient<ICurrentUserService, MockCurrentUserService>();
             
-            services.AddOpenApiDocument(configure =>
+            services.AddSwaggerGen(c =>
             {
-                configure.Title = "Sample Appp API";
-                
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Web API", Version = "v1" });
+                c.CustomSchemaIds(type =>
+                {
+                    if (!type.FullName.EndsWith("+Command") && !type.FullName.EndsWith("+Query")) return type.Name;
+                    var parentTypeName = type.FullName.Substring(type.FullName.LastIndexOf(".", StringComparison.Ordinal) + 1);
+                    return parentTypeName.Replace("+Command", "Command").Replace("+Query", "Query");
+
+                });
             });
         }
 
@@ -61,9 +69,15 @@ namespace Claims.WebApi
                 .AllowAnyMethod()
                 .AllowAnyHeader());
             
-            app.UseOpenApi();
-            app.UseSwaggerUi3();
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
 
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
