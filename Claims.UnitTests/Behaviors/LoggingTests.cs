@@ -44,6 +44,21 @@ namespace Claims.UnitTests.Behaviors
 
             _loggingMock.VerifyLogging(LogLevel.Warning);
         }
+        
+        [Test]
+        public async Task Should_Not_Log_A_Warning_For_Fast_Requests()
+        {
+            var mockReq = new MockRequest();
+            _currentUserServiceMock.Setup(cus => cus.UserId).Returns("corey");
+
+            var sut = new PerformanceBehaviour<MockRequest, bool>(_loggingMock.Object, _currentUserServiceMock.Object);
+            await sut.Handle(mockReq, CancellationToken.None, async () =>
+            {
+                return true;
+            });
+
+            _loggingMock.VerifyLogging(LogLevel.Warning, Times.Never());
+        }
 
         [Test]
         public async Task Should_Log_A_Exception_For_UnhandledException()
