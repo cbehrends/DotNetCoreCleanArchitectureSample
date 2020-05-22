@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
 
-namespace Claims.IntegrationTests.WebApi
+namespace Claims.UnitTests.WebApi
 {
     public class Services
     {
