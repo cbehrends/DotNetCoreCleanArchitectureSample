@@ -54,8 +54,18 @@ namespace Claims.IntegrationTests.Features
         {
             var command = new NewClaim.Command
             {
-                FirstName = "Corey"
+                FirstName = "Corey",
+                ServicesRendered = new List<AddRenderedServiceDto>()
             };
+
+            var newServiceCmd = new NewService.Command
+            {
+                Description = "Test"
+            };
+
+            var service = await SendAsync(newServiceCmd);
+
+            command.ServicesRendered.Add(new AddRenderedServiceDto {ServiceId = service.Id});
 
             var newClaim = await SendAsync(command);
 
@@ -70,8 +80,18 @@ namespace Claims.IntegrationTests.Features
         {
             var command = new NewClaim.Command
             {
-                FirstName = "Corey"
+                FirstName = "Corey",
+                ServicesRendered = new List<AddRenderedServiceDto>()
             };
+
+            var newServiceCmd = new NewService.Command
+            {
+                Description = "Test"
+            };
+
+            var service = await SendAsync(newServiceCmd);
+
+            command.ServicesRendered.Add(new AddRenderedServiceDto {ServiceId = service.Id});
 
             //Add 2 claims
             await SendAsync(command);
@@ -106,8 +126,18 @@ namespace Claims.IntegrationTests.Features
         {
             var command = new NewClaim.Command
             {
-                FirstName = "Corey"
+                FirstName = "Corey",
+                ServicesRendered = new List<AddRenderedServiceDto>()
             };
+
+            var newServiceCmd = new NewService.Command
+            {
+                Description = "Test"
+            };
+
+            var service = await SendAsync(newServiceCmd);
+
+            command.ServicesRendered.Add(new AddRenderedServiceDto {ServiceId = service.Id});
 
             var newClaim = await SendAsync(command);
 

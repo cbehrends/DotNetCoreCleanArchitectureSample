@@ -106,6 +106,25 @@ namespace Claims.UnitTests.WebApi
         }
         
         [Test]
+        public async Task ClaimsController_Post_Calls_CreateClaim_Command_And_Returns_BadRequest_On_ValidationException()
+        {
+            var mockMediator = new Mock<IMediator>();
+            var mockLogger = new Mock<ILogger<ClaimsController>>();
+            var mockMapper = new Mock<IMapper>();
+
+            mockMediator.Setup(mock => mock.Send(It.IsAny<NewClaim.Command>(), It.IsAny<CancellationToken>()))
+                .ThrowsAsync(new ValidationException());
+            
+            mockMapper.Setup(mapper => mapper.Map<ClaimViewModel>(It.IsAny<Claim>())).Returns(new ClaimViewModel());
+            
+            var sut = new ClaimsController(mockMediator.Object, mockLogger.Object, mockMapper.Object);
+            var result = await sut.Post(new NewClaim.Command());
+            mockMediator.Verify(mock => mock.Send(It.IsAny<NewClaim.Command>(), It.IsAny<CancellationToken>()));
+            Assert.IsInstanceOf<BadRequestObjectResult>(result);
+            
+        }
+        
+        [Test]
         public async Task ClaimsController_Delete_Calls_DeleteClaim_Command_And_Returns_NoContent()
         {
             var mockMediator = new Mock<IMediator>();

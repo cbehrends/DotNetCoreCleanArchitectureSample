@@ -1,7 +1,9 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Claims.Application.Core.Exceptions;
+using Claims.Application.Features.Services.Commands;
 using Claims.Application.Features.Services.Queries;
+using Claims.Domain.Entities;
 using Claims.WebApi.Controllers;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -72,6 +74,24 @@ namespace Claims.UnitTests.WebApi
             var result = await sut.Get(1);
             mockMediator.Verify(mock => mock.Send(It.IsAny<GetService.Query>(), It.IsAny<CancellationToken>()));
             Assert.IsInstanceOf<OkObjectResult>(result);
+            
+        }
+        
+        [Test]
+        public async Task ClaimsController_Post_Calls_CreateClaim_Command_And_Returns_CreatedAtActionResult()
+        {
+            var mockMediator = new Mock<IMediator>();
+            var mockLogger = new Mock<ILogger<ServicesController>>();
+  
+
+            mockMediator.Setup(mock => mock.Send(It.IsAny<NewService.Command>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(new Service {Id = 1});
+            
+            
+            var sut = new ServicesController(mockMediator.Object, mockLogger.Object);
+            var result = await sut.Post(new NewService.Command());
+            mockMediator.Verify(mock => mock.Send(It.IsAny<NewService.Command>(), It.IsAny<CancellationToken>()));
+            Assert.IsInstanceOf<CreatedAtActionResult>(result);
             
         }
     }

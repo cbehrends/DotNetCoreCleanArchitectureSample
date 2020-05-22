@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Claims.Application.Core.Exceptions;
+using Claims.Application.Features.Services.Commands;
 using Claims.Application.Features.Services.Queries;
 using Claims.Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -55,6 +57,16 @@ namespace Claims.WebApi.Controllers
                 _logger.LogError(e.Message, e);
                 return NotFound(e.Message);
             }
+        }
+
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Post(NewService.Command command)
+        {
+            var newService = await _mediator.Send(command);
+
+            return CreatedAtAction(nameof(Get),new {id = newService.Id},newService);
         }
     }
 }

@@ -68,9 +68,17 @@ namespace Claims.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Post(NewClaim.Command newClaimCommand)
         {
-            var newClaim = await _mediator.Send(newClaimCommand);
+            try
+            {
+                var newClaim = await _mediator.Send(newClaimCommand);
 
-            return CreatedAtAction(nameof(GetById),new {id = newClaim.Id},_mapper.Map<ClaimViewModel>(newClaim));
+                return CreatedAtAction(nameof(GetById),new {id = newClaim.Id},_mapper.Map<ClaimViewModel>(newClaim));
+            }
+            catch (ValidationException e)
+            {
+                return BadRequest(e.Errors);
+            }
+           
         }
 
         [HttpDelete("{id}")]
