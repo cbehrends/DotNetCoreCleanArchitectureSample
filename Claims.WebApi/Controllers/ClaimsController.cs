@@ -7,7 +7,6 @@ using Claims.Application.Features.Claims.Commands;
 using Claims.Application.Features.Claims.Queries;
 using Claims.Domain.Entities;
 using Claims.WebApi.ViewModels;
-using IdentityModel;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,20 +16,21 @@ namespace Claims.WebApi.Controllers
 {
     [ApiController]
     [Route("claims")]
-    public class ClaimsController: ControllerBase
+    public class ClaimsController : ControllerBase
     {
         private readonly IMediator _mediator;
         private readonly ILogger<ClaimsController> _logger;
         private readonly IMapper _mapper;
+
         public ClaimsController(IMediator mediator, ILogger<ClaimsController> logger, IMapper mapper)
-        {   
+        {
             _mediator = mediator ?? throw new NullReferenceException(nameof(IMediator));
             _logger = logger ?? throw new NullReferenceException(nameof(ILogger<ClaimsController>));
             _mapper = mapper ?? throw new NullReferenceException(nameof(IMapper));
         }
-        
+
         [HttpGet]
-        [ProducesResponseType(type: typeof(List<Claim>), 200)]
+        [ProducesResponseType(typeof(List<Claim>), 200)]
         [ProducesResponseType(404)]
         public async Task<IActionResult> Get()
         {
@@ -45,9 +45,9 @@ namespace Claims.WebApi.Controllers
                 return NotFound(e.Message);
             }
         }
-        
+
         [HttpGet("{id}", Name = "GetById")]
-        [ProducesResponseType(type: typeof(Claim), 200)]
+        [ProducesResponseType(typeof(Claim), 200)]
         [ProducesResponseType(404)]
         public async Task<IActionResult> GetById(int id)
         {
@@ -69,9 +69,9 @@ namespace Claims.WebApi.Controllers
         public async Task<IActionResult> Post(NewClaim.Command newClaimCommand)
         {
             var newClaim = await _mediator.Send(newClaimCommand);
-            
+
             return CreatedAtAction(nameof(GetById),
-                new { id = newClaim.Id}, 
+                new {id = newClaim.Id},
                 _mapper.Map<ClaimViewModel>(newClaim));
         }
 

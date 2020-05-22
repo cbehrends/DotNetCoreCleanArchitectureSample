@@ -1,13 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Claims.Infrastructure.Data;
-using Claims.Infrastructure.Identity;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -28,11 +23,7 @@ namespace Claims.WebApi
                 {
                     var context = services.GetRequiredService<ClaimsDbContext>();
 
-                    if (context.Database.IsSqlServer())
-                    {
-                        await context.Database.MigrateAsync();
-                    }                   
-                    
+                    if (context.Database.IsSqlServer()) await context.Database.MigrateAsync();
                 }
                 catch (Exception ex)
                 {
@@ -47,8 +38,10 @@ namespace Claims.WebApi
             await host.RunAsync();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
+        public static IHostBuilder CreateHostBuilder(string[] args)
+        {
+            return Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
+        }
     }
 }

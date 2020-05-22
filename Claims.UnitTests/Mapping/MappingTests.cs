@@ -33,7 +33,7 @@ namespace Claims.UnitTests.Mapping
         {
             _configuration.AssertConfigurationIsValid();
         }
-        
+
         [Test]
         [TestCase(typeof(Claim), typeof(NewClaim.Command))]
         [TestCase(typeof(NewClaim.Command), typeof(Claim))]
@@ -45,7 +45,7 @@ namespace Claims.UnitTests.Mapping
 
             _mapper.Map(instance, source, destination);
         }
-        
+
         [Test]
         [TestCase(typeof(Claim), typeof(ClaimViewModel))]
         [TestCase(typeof(RenderedServiceViewModel), typeof(RenderedService))]

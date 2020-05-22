@@ -8,6 +8,7 @@ namespace Claims.Application.Core.Interfaces
     public interface IApplicationDbContext
     {
         DbSet<Claim> Claims { get; set; }
+        DbSet<RenderedService> RenderedServices { get; set; }
 
         DbSet<Service> Services { get; set; }
 

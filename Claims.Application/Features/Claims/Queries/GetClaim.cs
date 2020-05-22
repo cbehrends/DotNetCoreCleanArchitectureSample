@@ -22,8 +22,10 @@ namespace Claims.Application.Features.Claims.Queries
 
             public Handler(IApplicationDbContext context)
             {
-                _context = context ?? throw new NullReferenceException("GetClaim Handler requires a non null IApplicationDbContext");
+                _context = context ?? throw new NullReferenceException(
+                    "GetClaim Handler requires a non null IApplicationDbContext");
             }
+
             public async Task<Claim> Handle(Query request, CancellationToken cancellationToken)
             {
                 var retVal = await _context
@@ -32,13 +34,9 @@ namespace Claims.Application.Features.Claims.Queries
                     .ThenInclude(sr => sr.Service)
                     .SingleOrDefaultAsync(claim => claim.Id == request.Id, cancellationToken);
 
-                if (retVal == null)
-                {
-                    throw new NotFoundException("Claim", request.Id);
-                }
-                
-                return retVal;
+                if (retVal == null) throw new NotFoundException("Claim", request.Id);
 
+                return retVal;
             }
         }
     }

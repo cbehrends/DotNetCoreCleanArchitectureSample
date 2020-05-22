@@ -1,4 +1,3 @@
-using System.Reflection;
 using AutoMapper;
 using Claims.Application;
 using Claims.Application.Core.Interfaces;
@@ -35,20 +34,14 @@ namespace Claims.WebApi
 
             services.AddScoped<ICurrentUserService, CurrentUserService>();
             services.AddHttpContextAccessor();
-            
-            services.AddAutoMapper(typeof(Startup), typeof(Claims.Application.InjectDependencies));
-            
-            
-            
+
+            services.AddAutoMapper(typeof(Startup), typeof(Application.InjectDependencies));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
             app.UseHttpsRedirection();
 

@@ -12,9 +12,8 @@ namespace Claims.Application.Features.Claims.Queries
 {
     public static class GetClaims
     {
-        public class Query: IRequest<List<Claim>>
+        public class Query : IRequest<List<Claim>>
         {
-            
         }
 
         public class Handler : IRequestHandler<Query, List<Claim>>
@@ -23,8 +22,10 @@ namespace Claims.Application.Features.Claims.Queries
 
             public Handler(IApplicationDbContext context)
             {
-                _context = context ?? throw new NullReferenceException("GetClaims Handler requires a non null IApplicationDbContext");
+                _context = context ?? throw new NullReferenceException(
+                    "GetClaims Handler requires a non null IApplicationDbContext");
             }
+
             public async Task<List<Claim>> Handle(Query request, CancellationToken cancellationToken)
             {
                 var retVal = await _context
@@ -34,10 +35,7 @@ namespace Claims.Application.Features.Claims.Queries
                     .AsNoTracking()
                     .ToListAsync(cancellationToken);
 
-                if (retVal.Count == 0)
-                {
-                    throw new NotFoundException("No Claims found");
-                }
+                if (retVal.Count == 0) throw new NotFoundException("No Claims found");
 
                 return retVal;
             }

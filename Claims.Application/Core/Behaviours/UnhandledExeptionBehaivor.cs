@@ -15,7 +15,8 @@ namespace Claims.Application.Core.Behaviours
             _logger = logger;
         }
 
-        public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
+        public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken,
+            RequestHandlerDelegate<TResponse> next)
         {
             try
             {
@@ -25,7 +26,8 @@ namespace Claims.Application.Core.Behaviours
             {
                 var requestName = typeof(TRequest).Name;
 
-                _logger.LogError(ex, "Request: Unhandled Exception for Request {Name} {@Request}", requestName, request);
+                _logger.LogError(ex, "Request: Unhandled Exception for Request {Name} {@Request}", requestName,
+                    request);
 
                 throw;
             }

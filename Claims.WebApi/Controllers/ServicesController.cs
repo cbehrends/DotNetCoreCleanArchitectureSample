@@ -12,18 +12,21 @@ namespace Claims.WebApi.Controllers
 {
     [ApiController]
     [Route("services")]
-    public class ServicesController: ControllerBase
+    public class ServicesController : ControllerBase
     {
         private readonly IMediator _mediator;
         private readonly ILogger<ServicesController> _logger;
+
         public ServicesController(IMediator mediator, ILogger<ServicesController> logger)
-        {   
-            _mediator = mediator ?? throw new NullReferenceException("Services Controller requires a non-null IMediator");
-            _logger = logger ?? throw new NullReferenceException("Services Controller requires a non-null ILogger<ServicesController>");
+        {
+            _mediator = mediator ??
+                        throw new NullReferenceException("Services Controller requires a non-null IMediator");
+            _logger = logger ?? throw new NullReferenceException(
+                "Services Controller requires a non-null ILogger<ServicesController>");
         }
-        
+
         [HttpGet]
-        [ProducesResponseType(type: typeof(List<Service>), 200)]
+        [ProducesResponseType(typeof(List<Service>), 200)]
         [ProducesResponseType(404)]
         public async Task<IActionResult> Get()
         {
@@ -37,15 +40,15 @@ namespace Claims.WebApi.Controllers
                 return NotFound(e.Message);
             }
         }
-        
+
         [HttpGet("{id}")]
-        [ProducesResponseType(type: typeof(Service), 200)]
+        [ProducesResponseType(typeof(Service), 200)]
         [ProducesResponseType(404)]
         public async Task<IActionResult> Get(int id)
         {
             try
             {
-                return Ok(await _mediator.Send(new GetService.Query{Id = id}));
+                return Ok(await _mediator.Send(new GetService.Query {Id = id}));
             }
             catch (NotFoundException e)
             {

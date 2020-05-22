@@ -1,9 +1,8 @@
-using Claims.Domain.Entities;
 using FluentValidation;
 
 namespace Claims.Application.Features.Claims.Commands
 {
-    public class NewClaimValidator: AbstractValidator<NewClaim.Command>
+    public class NewClaimValidator : AbstractValidator<NewClaim.Command>
     {
         public NewClaimValidator()
         {

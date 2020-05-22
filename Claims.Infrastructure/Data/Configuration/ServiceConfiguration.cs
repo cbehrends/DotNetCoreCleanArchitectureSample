@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Claims.Infrastructure.Data.Configuration
 {
-    public class ServiceConfiguration: IEntityTypeConfiguration<Service>
+    public class ServiceConfiguration : IEntityTypeConfiguration<Service>
     {
         public void Configure(EntityTypeBuilder<Service> builder)
         {

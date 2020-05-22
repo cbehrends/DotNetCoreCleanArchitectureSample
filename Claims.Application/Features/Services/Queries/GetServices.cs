@@ -12,9 +12,8 @@ namespace Claims.Application.Features.Services.Queries
 {
     public static class GetServices
     {
-        public class Query: IRequest<List<Service>>
+        public class Query : IRequest<List<Service>>
         {
-            
         }
 
         public class Handler : IRequestHandler<Query, List<Service>>
@@ -23,8 +22,10 @@ namespace Claims.Application.Features.Services.Queries
 
             public Handler(IApplicationDbContext context)
             {
-                _context = context ?? throw new NullReferenceException("GetServices Handler requires a non null IApplicationDbContext");
+                _context = context ?? throw new NullReferenceException(
+                    "GetServices Handler requires a non null IApplicationDbContext");
             }
+
             public async Task<List<Service>> Handle(Query request, CancellationToken cancellationToken)
             {
                 var retVal = await _context
@@ -32,10 +33,7 @@ namespace Claims.Application.Features.Services.Queries
                     .AsNoTracking()
                     .ToListAsync(cancellationToken);
 
-                if (retVal.Count == 0)
-                {
-                    throw new NotFoundException("No Services found");
-                }
+                if (retVal.Count == 0) throw new NotFoundException("No Services found");
 
                 return retVal;
             }

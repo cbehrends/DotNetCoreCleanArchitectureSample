@@ -6,9 +6,9 @@ using Claims.Application.Core.Interfaces;
 using Claims.Domain.Entities;
 using MediatR;
 
-namespace Claims.Application.Features.Claims.Commands
+namespace Claims.Application.Features.Services.Commands
 {
-    public static class DeleteClaim
+    public static class DeleteService
     {
         public class Command : IRequest
         {
@@ -21,22 +21,21 @@ namespace Claims.Application.Features.Claims.Commands
 
             public Handler(IApplicationDbContext context)
             {
-                _context = context ?? throw new NullReferenceException(
-                    "DeleteClaim Handler requires a non null IApplicationDbContext");
+                _context = context ?? throw new NullReferenceException(nameof(IApplicationDbContext));
             }
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                var claim = new Claim {Id = request.Id};
+                var svc = new Service {Id = request.Id};
 
-                _context.Claims.Remove(claim);
+                _context.Services.Remove(svc);
                 try
                 {
                     await _context.SaveChangesAsync(cancellationToken);
                 }
                 catch (Exception)
                 {
-                    throw new NotFoundException($"Claim Id {request.Id} not found");
+                    throw new NotFoundException($"Service {request.Id} not found or is linked to one or more claims");
                 }
 
                 return Unit.Value;

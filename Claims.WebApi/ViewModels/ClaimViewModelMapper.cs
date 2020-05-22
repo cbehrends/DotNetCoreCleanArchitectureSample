@@ -3,7 +3,7 @@ using Claims.Domain.Entities;
 
 namespace Claims.WebApi.ViewModels
 {
-    public class ClaimViewModelMapper: Profile
+    public class ClaimViewModelMapper : Profile
     {
         public ClaimViewModelMapper()
         {
@@ -14,6 +14,5 @@ namespace Claims.WebApi.ViewModels
                 .ForMember(d => d.Description, opt => opt.MapFrom(s => s.Service.Description))
                 .ReverseMap();
         }
-        
     }
 }

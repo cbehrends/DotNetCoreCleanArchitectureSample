@@ -11,33 +11,30 @@ namespace Claims.Application.Features.Services.Queries
 {
     public static class GetService
     {
-        public class Query : IRequest<Claim>
+        public class Query : IRequest<Service>
         {
             public int Id { get; set; }
         }
 
-        public class Handler : IRequestHandler<Query, Claim>
+        public class Handler : IRequestHandler<Query, Service>
         {
             private readonly IApplicationDbContext _context;
 
             public Handler(IApplicationDbContext context)
             {
-                _context = context ?? throw new NullReferenceException("GetClaim Handler requires a non null IApplicationDbContext");
+                _context = context ?? throw new NullReferenceException(
+                    "GetClaim Handler requires a non null IApplicationDbContext");
             }
-            public async Task<Claim> Handle(Query request, CancellationToken cancellationToken)
+
+            public async Task<Service> Handle(Query request, CancellationToken cancellationToken)
             {
                 var retVal = await _context
-                    .Claims
-                    .Include(claim => claim.ServicesRendered)
-                    .SingleOrDefaultAsync(claim => claim.Id == request.Id, cancellationToken);
+                    .Services
+                    .SingleOrDefaultAsync(service => service.Id == request.Id, cancellationToken);
 
-                if (retVal == null)
-                {
-                    throw new NotFoundException("Claim", request.Id);
-                }
-                
+                if (retVal == null) throw new NotFoundException("Service", request.Id);
+
                 return retVal;
-
             }
         }
     }

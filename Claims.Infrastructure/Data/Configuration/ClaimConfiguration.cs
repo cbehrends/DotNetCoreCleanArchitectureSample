@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Claims.Infrastructure.Data.Configuration
 {
-    public class ClaimConfiguration: IEntityTypeConfiguration<Claim>
+    public class ClaimConfiguration : IEntityTypeConfiguration<Claim>
     {
         public void Configure(EntityTypeBuilder<Claim> builder)
         {
@@ -19,7 +19,6 @@ namespace Claims.Infrastructure.Data.Configuration
             builder.HasMany(claim => claim.ServicesRendered)
                 .WithOne(service => service.Claim)
                 .OnDelete(DeleteBehavior.Cascade);
-
         }
     }
 }

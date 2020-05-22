@@ -10,25 +10,19 @@ namespace Claims.Application.Core.Behaviours
     {
         private readonly ILogger _logger;
         private readonly ICurrentUserService _currentUserService;
-        private readonly IIdentityService _identityService;
 
-        public LoggingBehaviour(ILogger<TRequest> logger, ICurrentUserService currentUserService, IIdentityService identityService)
+        public LoggingBehaviour(ILogger logger, ICurrentUserService currentUserService)
         {
             _logger = logger;
             _currentUserService = currentUserService;
-            _identityService = identityService;
         }
 
         public async Task Process(TRequest request, CancellationToken cancellationToken)
         {
             var requestName = typeof(TRequest).Name;
             var userId = _currentUserService.UserId ?? string.Empty;
-            var userName = string.Empty;
+            var userName = "Placeholder Name"; // This would come from your Auth layer which I have not implemented here
 
-            if (!string.IsNullOrEmpty(userId))
-            {
-                userName = await _identityService.GetUserNameAsync(userId);
-            }
 
             _logger.LogInformation($"Request: {requestName} {userId} {userName} {request}");
         }

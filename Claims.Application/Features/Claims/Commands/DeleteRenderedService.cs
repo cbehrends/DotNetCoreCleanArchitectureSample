@@ -8,7 +8,7 @@ using MediatR;
 
 namespace Claims.Application.Features.Claims.Commands
 {
-    public static class DeleteClaim
+    public static class DeleteRenderedService
     {
         public class Command : IRequest
         {
@@ -21,22 +21,21 @@ namespace Claims.Application.Features.Claims.Commands
 
             public Handler(IApplicationDbContext context)
             {
-                _context = context ?? throw new NullReferenceException(
-                    "DeleteClaim Handler requires a non null IApplicationDbContext");
+                _context = context ?? throw new NullReferenceException(nameof(IApplicationDbContext));
             }
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                var claim = new Claim {Id = request.Id};
+                var renderedSvcToDelete = new RenderedService {Id = request.Id};
 
-                _context.Claims.Remove(claim);
+                _context.RenderedServices.Remove(renderedSvcToDelete);
                 try
                 {
                     await _context.SaveChangesAsync(cancellationToken);
                 }
                 catch (Exception)
                 {
-                    throw new NotFoundException($"Claim Id {request.Id} not found");
+                    throw new NotFoundException($"RenderedService Id {request.Id} not found");
                 }
 
                 return Unit.Value;
