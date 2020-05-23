@@ -3,14 +3,16 @@ using Claims.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Claims.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ClaimsDbContext))]
-    partial class ClaimsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200523153712_Unique_Constraint_To_Service_Description")]
+    partial class Unique_Constraint_To_Service_Description
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
