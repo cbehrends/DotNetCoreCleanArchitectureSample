@@ -94,5 +94,37 @@ namespace Claims.UnitTests.WebApi
             Assert.IsInstanceOf<CreatedAtActionResult>(result);
             
         }
+        
+        [Test]
+        public async Task ServicesController_Delete_Calls_DeleteService_Command_And_Returns_NoContent()
+        {
+            var mockMediator = new Mock<IMediator>();
+            var mockLogger = new Mock<ILogger<ServicesController>>();
+
+            mockMediator.Setup(mock => mock.Send(It.IsAny<DeleteService.Command>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(Unit.Value);
+
+            var sut = new ServicesController(mockMediator.Object, mockLogger.Object);
+            var result = await sut.Delete(1);
+            mockMediator.Verify(mock => mock.Send(It.IsAny<DeleteService.Command>(), It.IsAny<CancellationToken>()));
+            Assert.IsInstanceOf<NoContentResult>(result);
+            
+        }
+        
+        [Test]
+        public async Task ServicesController_Delete_Calls_DeleteService_Command_And_Returns_BadRequest_On_EntityInUseException()
+        {
+            var mockMediator = new Mock<IMediator>();
+            var mockLogger = new Mock<ILogger<ServicesController>>();
+
+            mockMediator.Setup(mock => mock.Send(It.IsAny<DeleteService.Command>(), It.IsAny<CancellationToken>()))
+                .Throws<EntityInUseException>();
+
+            var sut = new ServicesController(mockMediator.Object, mockLogger.Object);
+            var result = await sut.Delete(1);
+            mockMediator.Verify(mock => mock.Send(It.IsAny<DeleteService.Command>(), It.IsAny<CancellationToken>()));
+            Assert.IsInstanceOf<BadRequestObjectResult>(result);
+            
+        }
     }
 }

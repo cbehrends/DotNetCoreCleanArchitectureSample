@@ -1,10 +1,12 @@
 using System;
+using System.Data.Common;
 using System.Threading;
 using System.Threading.Tasks;
 using Claims.Application.Core.Exceptions;
 using Claims.Application.Core.Interfaces;
 using Claims.Domain.Entities;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Claims.Application.Features.Services.Commands
 {
@@ -26,16 +28,31 @@ namespace Claims.Application.Features.Services.Commands
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                var svc = new Service {Id = request.Id};
+   
+                var svcToDelete =
+                    await _context
+                        .Services
+                        .AsNoTracking()
+                        .SingleOrDefaultAsync(svc => svc.Id == request.Id, cancellationToken);
+                
+                if (svcToDelete == null)
+                {
+                    throw new NotFoundException($"Service {request.Id} not found");
+                }
+                
+                _context.Services.Remove(svcToDelete);
 
-                _context.Services.Remove(svc);
                 try
                 {
                     await _context.SaveChangesAsync(cancellationToken);
                 }
-                catch (Exception)
+                catch (DbUpdateConcurrencyException)
                 {
-                    throw new NotFoundException($"Service {request.Id} not found or is linked to one or more claims");
+                    throw new EntityInUseException($"{svcToDelete.Description} is linked to one or more claims and cannot be removed");
+                }
+                catch (DbUpdateException)
+                {
+                    throw new EntityInUseException($"{svcToDelete.Description} is linked to one or more claims and cannot be removed");
                 }
 
                 return Unit.Value;

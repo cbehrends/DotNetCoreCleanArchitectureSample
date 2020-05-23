@@ -123,7 +123,7 @@ namespace Claims.IntegrationTests.Features
         }
 
         [Test]
-        public async Task Should_Throw_Not_Found_On_Delete_If_Service_Linked_To_Claim()
+        public async Task Should_Throw_EntityInUseException_On_Delete_If_Service_Linked_To_Claim()
         {
             var command = new NewService.Command
             {
@@ -145,7 +145,7 @@ namespace Claims.IntegrationTests.Features
             var deleteService = new DeleteService.Command {Id = svc.Id};
 
             FluentActions.Invoking(() =>
-                SendAsync(deleteService)).Should().Throw<NotFoundException>();
+                SendAsync(deleteService)).Should().Throw<EntityInUseException>();
         }
     }
 }

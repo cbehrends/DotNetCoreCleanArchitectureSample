@@ -46,7 +46,7 @@ namespace Claims.WebApi.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(Service), 200)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> Get([FromRoute] int id)
         {
             try
             {
@@ -62,11 +62,33 @@ namespace Claims.WebApi.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Post(NewService.Command command)
+        public async Task<IActionResult> Post([FromBody] NewService.Command command)
         {
             var newService = await _mediator.Send(command);
 
             return CreatedAtAction(nameof(Get),new {id = newService.Id},newService);
+        }
+        
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Delete([FromRoute] int id)
+        {
+            try
+            {
+                await _mediator.Send(new DeleteService.Command {Id = id});
+            }
+            catch (EntityInUseException inUseException)
+            {
+                return BadRequest(inUseException.Message);
+            }
+            catch (Exception e)
+            {
+                return NotFound();
+            }
+
+            return NoContent();
         }
     }
 }
