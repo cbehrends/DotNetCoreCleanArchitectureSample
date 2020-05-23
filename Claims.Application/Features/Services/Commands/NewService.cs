@@ -2,9 +2,11 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using Claims.Application.Core.Exceptions;
 using Claims.Application.Core.Interfaces;
 using Claims.Domain.Entities;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Claims.Application.Features.Services.Commands
 {
@@ -31,8 +33,16 @@ namespace Claims.Application.Features.Services.Commands
             {
                 var newService = _mapper.Map<Service>(request);
                 _context.Services.Add(newService);
-                await _context.SaveChangesAsync(cancellationToken);
-                return newService;
+                try
+                {
+                    await _context.SaveChangesAsync(cancellationToken);
+                    return newService;
+                }
+                catch (DbUpdateException)
+                {
+                    throw new EntityExistsException(newService.Description);
+                }
+               
             }
         }
     }

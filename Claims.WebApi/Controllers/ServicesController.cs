@@ -64,9 +64,17 @@ namespace Claims.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Post([FromBody] NewService.Command command)
         {
-            var newService = await _mediator.Send(command);
+            try
+            {
+                var newService = await _mediator.Send(command);
 
-            return CreatedAtAction(nameof(Get),new {id = newService.Id},newService);
+                return CreatedAtAction(nameof(Get),new {id = newService.Id},newService);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+            
         }
         
         [HttpDelete("{id}")]

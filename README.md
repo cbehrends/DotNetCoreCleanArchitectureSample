@@ -1,7 +1,5 @@
 # Clean Architecture Style
 
-
-
 # Docker Support
 
 To build the container
