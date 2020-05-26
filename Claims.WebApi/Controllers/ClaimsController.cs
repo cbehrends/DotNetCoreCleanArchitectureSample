@@ -80,6 +80,24 @@ namespace Claims.WebApi.Controllers
             }
            
         }
+        
+        [HttpPut]
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Put([FromBody] UpdateClaim.Command newClaimCommand)
+        {
+            try
+            {
+                var newClaim = await _mediator.Send(newClaimCommand);
+
+                return Ok(newClaim);
+            }
+            catch (ValidationException e)
+            {
+                return BadRequest(e.Errors);
+            }
+           
+        }
 
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

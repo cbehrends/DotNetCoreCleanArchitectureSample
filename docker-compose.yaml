@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+    web:
+        build: .
+        ports:
+            - "5000:80"
+        depends_on:
+            - sqldata
+        environment:
+            - ConnectionString=Data Source=sqldata;Initial Catalog=Claims;Integrated Security=False;Encrypt=False;User ID=sa;Password=P@ssW0rdTr1ckz
+
+    sqldata:
+        image: "mcr.microsoft.com/mssql/server"
+        environment:
+            SA_PASSWORD: "P@ssW0rdTr1ckz"
+            ACCEPT_EULA: "Y"
+        ports:
+        - "1433:1433"   

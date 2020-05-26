@@ -12,8 +12,7 @@ namespace Claims.Infrastructure
             IConfiguration configuration)
         {
             services.AddDbContext<ClaimsDbContext>(options =>
-                options.UseSqlServer(
-                    configuration.GetConnectionString("DefaultConnection"),
+                options.UseSqlServer(configuration["ConnectionString"],
                     b => b.MigrationsAssembly(typeof(ClaimsDbContext).Assembly.FullName)));
 
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ClaimsDbContext>());
