@@ -2,17 +2,21 @@
 
 # Docker Support
 
-To build the container
+To build the docker env
 
-`docker build -t <my_container_name> .`
+`docker-compose build`
 
-To run the container in your local Docker instance
+This builds all of the projects and packages them into a docker container.  
+It also setups up SQL Server and sets the env var for the connection string
 
-`docker run -p 8080:80 <my_container_name>`
+To run the service in docker along with SQL
 
-This will setup the container to listen on port 8080, you may adjust as needed.
+`docker-compose up`
 
-Once the container is running, navigate to `http://localhost:8080`
+This will setup the container to listen on port 5000
+
+When docker-compose has started teh services `http://localhost:5000/swagger` and you should see the Swagger UI
+
 
 # Database Migrations
 
