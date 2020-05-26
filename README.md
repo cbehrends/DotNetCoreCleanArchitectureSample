@@ -15,7 +15,7 @@ To run the service in docker along with SQL
 
 This will setup the container to listen on port 5000
 
-When docker-compose has started teh services `http://localhost:5000/swagger` and you should see the Swagger UI
+When docker-compose has started the services `http://localhost:5000/swagger` and you should see the Swagger UI
 
 
 # Database Migrations
