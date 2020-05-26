@@ -31,7 +31,7 @@ namespace Claims.IntegrationTests.Features
             var command = new NewClaim.Command
             {
                 FirstName = "Corey",
-                ServicesRendered = new List<AddRenderedServiceDto>()
+                ServicesRendered = new List<RenderedServiceDto>()
             };
 
             var newServiceCmd = new NewService.Command
@@ -41,7 +41,7 @@ namespace Claims.IntegrationTests.Features
 
             var service = await SendAsync(newServiceCmd);
 
-            command.ServicesRendered.Add(new AddRenderedServiceDto {ServiceId = service.Id});
+            command.ServicesRendered.Add(new RenderedServiceDto {ServiceId = service.Id});
 
             var newClaim = await SendAsync(command);
 
@@ -55,7 +55,7 @@ namespace Claims.IntegrationTests.Features
             var command = new NewClaim.Command
             {
                 FirstName = "Corey",
-                ServicesRendered = new List<AddRenderedServiceDto>()
+                ServicesRendered = new List<RenderedServiceDto>()
             };
 
             var newServiceCmd = new NewService.Command
@@ -65,7 +65,7 @@ namespace Claims.IntegrationTests.Features
 
             var service = await SendAsync(newServiceCmd);
 
-            command.ServicesRendered.Add(new AddRenderedServiceDto {ServiceId = service.Id});
+            command.ServicesRendered.Add(new RenderedServiceDto {ServiceId = service.Id});
 
             var newClaim = await SendAsync(command);
 
@@ -81,7 +81,7 @@ namespace Claims.IntegrationTests.Features
             var command = new NewClaim.Command
             {
                 FirstName = "Corey",
-                ServicesRendered = new List<AddRenderedServiceDto>()
+                ServicesRendered = new List<RenderedServiceDto>()
             };
 
             var newServiceCmd = new NewService.Command
@@ -91,7 +91,7 @@ namespace Claims.IntegrationTests.Features
 
             var service = await SendAsync(newServiceCmd);
 
-            command.ServicesRendered.Add(new AddRenderedServiceDto {ServiceId = service.Id});
+            command.ServicesRendered.Add(new RenderedServiceDto {ServiceId = service.Id});
 
             //Add 2 claims
             await SendAsync(command);
@@ -127,7 +127,7 @@ namespace Claims.IntegrationTests.Features
             var command = new NewClaim.Command
             {
                 FirstName = "Corey",
-                ServicesRendered = new List<AddRenderedServiceDto>()
+                ServicesRendered = new List<RenderedServiceDto>()
             };
 
             var newServiceCmd = new NewService.Command
@@ -137,7 +137,7 @@ namespace Claims.IntegrationTests.Features
 
             var service = await SendAsync(newServiceCmd);
 
-            command.ServicesRendered.Add(new AddRenderedServiceDto {ServiceId = service.Id});
+            command.ServicesRendered.Add(new RenderedServiceDto {ServiceId = service.Id});
 
             var newClaim = await SendAsync(command);
 
@@ -165,7 +165,7 @@ namespace Claims.IntegrationTests.Features
             var command = new NewClaim.Command
             {
                 FirstName = "Corey",
-                ServicesRendered = new List<AddRenderedServiceDto>()
+                ServicesRendered = new List<RenderedServiceDto>()
             };
 
             var newServiceCmd = new NewService.Command
@@ -175,8 +175,8 @@ namespace Claims.IntegrationTests.Features
 
             var service = await SendAsync(newServiceCmd);
 
-            command.ServicesRendered.Add(new AddRenderedServiceDto {ServiceId = service.Id});
-            command.ServicesRendered.Add(new AddRenderedServiceDto {ServiceId = service.Id});
+            command.ServicesRendered.Add(new RenderedServiceDto {ServiceId = service.Id});
+            command.ServicesRendered.Add(new RenderedServiceDto {ServiceId = service.Id});
 
             var newClaim = await SendAsync(command);
 
@@ -200,7 +200,7 @@ namespace Claims.IntegrationTests.Features
             var command = new NewClaim.Command
             {
                 FirstName = "Corey",
-                ServicesRendered = new List<AddRenderedServiceDto>()
+                ServicesRendered = new List<RenderedServiceDto>()
             };
 
             var newServiceCmd = new NewService.Command
@@ -210,7 +210,7 @@ namespace Claims.IntegrationTests.Features
 
             var service = await SendAsync(newServiceCmd);
 
-            command.ServicesRendered.Add(new AddRenderedServiceDto {ServiceId = service.Id});
+            command.ServicesRendered.Add(new RenderedServiceDto {ServiceId = service.Id});
 
             var delRendSvcCmd = new DeleteRenderedService.Command {Id = -99999};
 

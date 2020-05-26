@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Claims.Application.Core.Exceptions;
 using Claims.Application.Features.Claims.Commands;
+using Claims.Application.Features.Claims.Model;
 using Claims.Application.Features.Claims.Queries;
 using Claims.Domain.Entities;
 using Claims.WebApi.ViewModels;
@@ -30,14 +31,13 @@ namespace Claims.WebApi.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(List<Claim>), 200)]
+        [ProducesResponseType(typeof(List<ClaimsReadOnlyDto>), 200)]
         [ProducesResponseType(404)]
         public async Task<IActionResult> Get()
         {
             try
             {
-                var claims = await _mediator.Send(new GetClaims.Query());
-                return Ok(_mapper.Map<List<ClaimViewModel>>(claims));
+                return Ok(await _mediator.Send(new GetClaims.Query()));
             }
             catch (NotFoundException e)
             {
@@ -90,7 +90,7 @@ namespace Claims.WebApi.Controllers
             {
                 var newClaim = await _mediator.Send(newClaimCommand);
 
-                return Ok(newClaim);
+                return Ok(_mapper.Map<ClaimViewModel>(newClaim));
             }
             catch (ValidationException e)
             {

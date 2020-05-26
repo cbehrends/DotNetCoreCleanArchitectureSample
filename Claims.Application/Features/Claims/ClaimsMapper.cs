@@ -13,9 +13,9 @@ namespace Claims.Application.Features.Claims
             CreateMap<NewClaim.Command, Claim>()
                 .ForMember(claim => claim.Id, opt => opt.Ignore());
 
-            CreateMap<RenderedService, AddRenderedServiceDto>()
+            CreateMap<RenderedService, RenderedServiceDto>()
                 .ForMember(d => d.ServiceId, opt => opt.MapFrom(s => s.ServiceId))
-                // .ForMember(d => d.ClaimId, opt => opt.MapFrom(s => s.ClaimId))
+                .ForMember(d => d.ClaimId, opt => opt.MapFrom(s => s.ClaimId))
                 .ReverseMap();
         }
     }

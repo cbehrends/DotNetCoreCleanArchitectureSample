@@ -1,8 +1,11 @@
+using System.Reflection.Emit;
+
 namespace Claims.Application.Features.Claims.Model
 {
-    public class AddRenderedServiceDto
+    public class RenderedServiceDto
     {
-        // public int ClaimId { get; set; }
+        public int Id { get; set; }
+        public int ClaimId { get; set; }
         public int ServiceId { get; set; }
     }
 }

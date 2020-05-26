@@ -91,7 +91,7 @@ namespace Claims.IntegrationTests
             try
             {
                 _currentUserId = null;
-                await _checkpoint.Reset(_configuration.GetConnectionString("DefaultConnection"));
+                await _checkpoint.Reset(_configuration["ConnectionString"]);
             }
             catch (Exception)
             {
