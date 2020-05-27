@@ -12,9 +12,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Payments.Infrastructure;
 using Payments.Infrastructure.Messaging;
 
-namespace Payments.Api
+namespace Payments.WebApi
 {
     public class Startup
     {
@@ -29,6 +30,7 @@ namespace Payments.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddPaymentsInfrastructure(Configuration);
             services.AddHealthChecks();
             
             

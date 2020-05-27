@@ -2,8 +2,6 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Claims.Infrastructure.Data;
-using Claims.WebApi;
 using Common.ApplicationCore.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
@@ -12,9 +10,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using NUnit.Framework;
+using Payments.Infrastructure.Data;
+using Payments.WebApi;
 using Respawn;
 
-namespace Claims.IntegrationTests
+namespace Payments.IntegrationTests
 {
     [SetUpFixture]
     public class TestFixture
@@ -40,7 +40,7 @@ namespace Claims.IntegrationTests
 
             services.AddSingleton(Mock.Of<IWebHostEnvironment>(w =>
                 w.EnvironmentName == "Test" &&
-                w.ApplicationName == "Claims.WebApi"));
+                w.ApplicationName == "Payments.WebApi"));
 
             services.AddLogging();
 
@@ -72,7 +72,7 @@ namespace Claims.IntegrationTests
         {
             using var scope = _scopeFactory.CreateScope();
 
-            var context = scope.ServiceProvider.GetService<ClaimsDbContext>();
+            var context = scope.ServiceProvider.GetService<PaymentsDbContext>();
 
             context.Database.Migrate();
         }
@@ -104,7 +104,7 @@ namespace Claims.IntegrationTests
         {
             using var scope = _scopeFactory.CreateScope();
 
-            var context = scope.ServiceProvider.GetService<ClaimsDbContext>();
+            var context = scope.ServiceProvider.GetService<PaymentsDbContext>();
 
             return await context.FindAsync<TEntity>(id);
         }
@@ -114,7 +114,7 @@ namespace Claims.IntegrationTests
         {
             using var scope = _scopeFactory.CreateScope();
 
-            var context = scope.ServiceProvider.GetService<ClaimsDbContext>();
+            var context = scope.ServiceProvider.GetService<PaymentsDbContext>();
 
             return await context.FindAsync<TEntity>(id);
         }
@@ -124,7 +124,7 @@ namespace Claims.IntegrationTests
         {
             using var scope = _scopeFactory.CreateScope();
 
-            var context = scope.ServiceProvider.GetService<ClaimsDbContext>();
+            var context = scope.ServiceProvider.GetService<PaymentsDbContext>();
 
             context.Add(entity);
 

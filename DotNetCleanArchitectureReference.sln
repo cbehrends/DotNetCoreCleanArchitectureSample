@@ -18,7 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Claims", "Claims", "{EF1633
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Payments", "Payments", "{53344CB4-63DA-4E34-9AF3-B6A5A858D06E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payments.Api", "Payments.Api\Payments.Api.csproj", "{3D4FDD1E-68D2-4D0C-A19D-1EF05715C70B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payments.WebApi", "Payments.WebApi\Payments.WebApi.csproj", "{3D4FDD1E-68D2-4D0C-A19D-1EF05715C70B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payments.Infrastructure", "Payments.Infrastructure\Payments.Infrastructure.csproj", "{025AFBAB-8A89-48E2-B9E5-CE51168AFA74}"
 EndProject
@@ -37,6 +37,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{09988BDC-7B51-4FCF-B576-CDBEC48A4DDB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.UnitTests", "Common.UnitTests\Common.UnitTests.csproj", "{4054CA78-9470-4C60-9C6F-CB9C250DF72A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payments.IntegrationTests", "Payments.IntegrationTests\Payments.IntegrationTests.csproj", "{B53CFDFB-6FE7-4B92-A53F-5CFE44F7CAA9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -96,6 +98,10 @@ Global
 		{4054CA78-9470-4C60-9C6F-CB9C250DF72A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4054CA78-9470-4C60-9C6F-CB9C250DF72A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4054CA78-9470-4C60-9C6F-CB9C250DF72A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B53CFDFB-6FE7-4B92-A53F-5CFE44F7CAA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B53CFDFB-6FE7-4B92-A53F-5CFE44F7CAA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B53CFDFB-6FE7-4B92-A53F-5CFE44F7CAA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B53CFDFB-6FE7-4B92-A53F-5CFE44F7CAA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B315D296-87E1-4A5A-8476-E3B965E6DCB7} = {534A2313-4FD7-4222-81C5-F13F9CBE5BF5}
@@ -114,5 +120,6 @@ Global
 		{AD9BF3F4-7750-4444-AD0D-5BFDA95F21C2} = {B8778308-C727-47A4-93AD-18EA67BC91D7}
 		{09988BDC-7B51-4FCF-B576-CDBEC48A4DDB} = {B8778308-C727-47A4-93AD-18EA67BC91D7}
 		{4054CA78-9470-4C60-9C6F-CB9C250DF72A} = {09988BDC-7B51-4FCF-B576-CDBEC48A4DDB}
+		{B53CFDFB-6FE7-4B92-A53F-5CFE44F7CAA9} = {A3FC83E4-8345-44C6-87FB-D22E4E90905D}
 	EndGlobalSection
 EndGlobal

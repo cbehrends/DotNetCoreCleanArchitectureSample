@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace Payments.Api.Controllers
+namespace Payments.WebApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]

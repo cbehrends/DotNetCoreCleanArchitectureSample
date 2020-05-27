@@ -6,6 +6,11 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Common.ApplicationCore\Common.ApplicationCore.csproj" />
+      <ProjectReference Include="..\Payments.Domain\Payments.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.4" />
     </ItemGroup>
 
 </Project>

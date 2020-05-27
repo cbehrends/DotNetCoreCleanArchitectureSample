@@ -3,14 +3,16 @@ using Claims.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Claims.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ClaimsDbContext))]
-    partial class ClaimsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200527180122_Add_Payment_Data_To_Claims")]
+    partial class Add_Payment_Data_To_Claims
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Claims.Application.Core.Exceptions;
 using Claims.Application.Features.Claims.Commands;
 using Claims.Application.Features.Claims.Model;
 using Claims.Application.Features.Claims.Queries;
 using Claims.Application.Features.Services.Commands;
 using Claims.Application.Features.Services.Queries;
 using Claims.Domain.Entities;
+using Common.ApplicationCore.Exceptions;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -31,6 +31,7 @@ namespace Claims.IntegrationTests.Features
             var command = new NewClaim.Command
             {
                 FirstName = "Corey",
+                TotalAmount = 100,
                 ServicesRendered = new List<RenderedServiceDto>()
             };
 
@@ -55,6 +56,7 @@ namespace Claims.IntegrationTests.Features
             var command = new NewClaim.Command
             {
                 FirstName = "Corey",
+                TotalAmount = 100,
                 ServicesRendered = new List<RenderedServiceDto>()
             };
 

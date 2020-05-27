@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Claims.Application.Core.Exceptions;
 using Claims.Application.Features.Claims.Commands;
 using Claims.Application.Features.Claims.Model;
 using Claims.Application.Features.Services.Commands;
 using Claims.Application.Features.Services.Queries;
 using Claims.Domain.Entities;
+using Common.ApplicationCore.Exceptions;
 using FluentAssertions;
 using NUnit.Framework;
 
