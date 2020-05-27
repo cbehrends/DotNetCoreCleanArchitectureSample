@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Payments.Application;
 using Payments.Infrastructure;
 using Payments.Infrastructure.Messaging;
 
@@ -30,6 +31,7 @@ namespace Payments.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddPaymentsApplication();
             services.AddPaymentsInfrastructure(Configuration);
             services.AddHealthChecks();
             

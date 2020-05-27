@@ -1,10 +1,7 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=bc5c5664_002D0513_002D4e87_002D9b33_002D5da4a2bfccaa/@EntryIndexedValue">&lt;SessionState ContinuousTestingIsOn="False" ContinuousTestingMode="0" FrameworkVersion="{x:Null}" IsLocked="False" Name="All tests from &amp;lt;Tests&amp;gt;\&amp;lt;Claims.UnitTests&amp;gt;" PlatformMonoPreference="{x:Null}" PlatformType="{x:Null}" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e17bb7f6_002Dba65_002D4ba4_002Dab20_002Da084581a1cef/@EntryIndexedValue">&lt;SessionState ContinuousTestingIsOn="False" ContinuousTestingMode="0" FrameworkVersion="{x:Null}" IsLocked="False" Name="Session" PlatformMonoPreference="{x:Null}" PlatformType="{x:Null}" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"&gt;
   &lt;Or&gt;
+    &lt;Project Location="/Users/coreybehrends/Projects/DotNetCleanArchitectureReference/Payments.IntegrationTests" Presentation="&amp;lt;Payments&amp;gt;\&amp;lt;Tests&amp;gt;\&amp;lt;Payments.IntegrationTests&amp;gt;" /&gt;
     &lt;Project Location="/Users/coreybehrends/Projects/DotNetCleanArchitectureReference/Payments.UnitTests" Presentation="&amp;lt;Payments&amp;gt;\&amp;lt;Tests&amp;gt;\&amp;lt;Payments.UnitTests&amp;gt;" /&gt;
-    &lt;Project Location="/Users/coreybehrends/Projects/DotNetCleanArchitectureReference" Presentation="&amp;lt;Claims&amp;gt;\&amp;lt;Tests&amp;gt;" /&gt;
-    &lt;Project Location="/Users/coreybehrends/Projects/DotNetCleanArchitectureReference/Common.UnitTests" Presentation="&amp;lt;Common&amp;gt;\&amp;lt;Tests&amp;gt;\&amp;lt;Common.UnitTests&amp;gt;" /&gt;
   &lt;/Or&gt;
-&lt;/SessionState&gt;</s:String>
-	
-	</wpf:ResourceDictionary>
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
