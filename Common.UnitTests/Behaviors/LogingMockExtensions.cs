@@ -2,7 +2,7 @@ using System;
 using Microsoft.Extensions.Logging;
 using Moq;
 
-namespace Claims.UnitTests.Behaviors
+namespace Common.UnitTests.Behaviors
 {
     public static class LoggingMockExtensions
     {

@@ -1,4 +1,5 @@
-using Claims.Application.Core.Interfaces;
+
+using Common.ApplicationCore.Interfaces;
 
 namespace Claims.WebApi.Core
 {

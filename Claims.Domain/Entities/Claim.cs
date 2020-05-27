@@ -6,6 +6,8 @@ namespace Claims.Domain.Entities
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
+        public decimal TotalAmount { get; set; }
+        public decimal AmountDue { get; set; }
         public List<RenderedService> ServicesRendered { get; set; }
     }
 }

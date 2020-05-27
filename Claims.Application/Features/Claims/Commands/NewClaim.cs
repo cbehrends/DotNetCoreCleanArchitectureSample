@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using Claims.Application.Core.Interfaces;
+using Claims.Application.Core;
 using Claims.Application.Features.Claims.Model;
 using Claims.Domain.Entities;
 using MediatR;
@@ -16,6 +16,7 @@ namespace Claims.Application.Features.Claims.Commands
         public class Command : IRequest<Claim>
         {
             public string FirstName { get; set; }
+            public decimal TotalAmount { get; set; }
             public List<RenderedServiceDto> ServicesRendered { get; set; }
         }
 
@@ -31,17 +32,17 @@ namespace Claims.Application.Features.Claims.Commands
 
             public async Task<Claim> Handle(Command request, CancellationToken cancellationToken)
             {
-                
                 var newClaim = new Claim
                 {
                     FirstName = request.FirstName,
-                    ServicesRendered = new List<RenderedService>()
+                    ServicesRendered = new List<RenderedService>(),
+                    TotalAmount = request.TotalAmount,
+                    AmountDue = request.TotalAmount
                 };
 
                 foreach (var renderedServiceDto in request.ServicesRendered)
-                {
-                    newClaim.ServicesRendered.Add(new RenderedService{ServiceId = renderedServiceDto.ServiceId, Claim = newClaim});
-                }
+                    newClaim.ServicesRendered.Add(new RenderedService
+                        {ServiceId = renderedServiceDto.ServiceId, Claim = newClaim});
 
                 _context.Claims.Add(newClaim);
                 await _context.SaveChangesAsync(cancellationToken);

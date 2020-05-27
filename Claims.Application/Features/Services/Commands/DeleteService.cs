@@ -1,10 +1,8 @@
 using System;
-using System.Data.Common;
 using System.Threading;
 using System.Threading.Tasks;
-using Claims.Application.Core.Exceptions;
-using Claims.Application.Core.Interfaces;
-using Claims.Domain.Entities;
+using Claims.Application.Core;
+using Common.ApplicationCore.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,18 +26,14 @@ namespace Claims.Application.Features.Services.Commands
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-   
                 var svcToDelete =
                     await _context
                         .Services
                         .AsNoTracking()
                         .SingleOrDefaultAsync(svc => svc.Id == request.Id, cancellationToken);
-                
-                if (svcToDelete == null)
-                {
-                    throw new NotFoundException($"Service {request.Id} not found");
-                }
-                
+
+                if (svcToDelete == null) throw new NotFoundException($"Service {request.Id} not found");
+
                 _context.Services.Remove(svcToDelete);
 
                 try
@@ -48,11 +42,13 @@ namespace Claims.Application.Features.Services.Commands
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    throw new EntityInUseException($"{svcToDelete.Description} is linked to one or more claims and cannot be removed");
+                    throw new EntityInUseException(
+                        $"{svcToDelete.Description} is linked to one or more claims and cannot be removed");
                 }
                 catch (DbUpdateException)
                 {
-                    throw new EntityInUseException($"{svcToDelete.Description} is linked to one or more claims and cannot be removed");
+                    throw new EntityInUseException(
+                        $"{svcToDelete.Description} is linked to one or more claims and cannot be removed");
                 }
 
                 return Unit.Value;

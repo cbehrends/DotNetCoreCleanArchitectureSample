@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Claims.Application.Core.Exceptions;
-using Claims.Application.Core.Interfaces;
+using Claims.Application.Core;
 using Claims.Application.Features.Claims.Model;
-using Claims.Domain.Entities;
+using Common.ApplicationCore.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -33,7 +32,8 @@ namespace Claims.Application.Features.Claims.Queries
                 var retVal = await _context
                     .Claims
                     .Include(c => c.ServicesRendered)
-                    .Select(c => new ClaimsReadOnlyDto{Id = c.Id, FirstName = c.FirstName, ServicesRenderedCount = c.ServicesRendered.Count})
+                    .Select(c => new ClaimsReadOnlyDto
+                        {Id = c.Id, FirstName = c.FirstName, ServicesRenderedCount = c.ServicesRendered.Count})
                     .AsNoTracking()
                     .ToListAsync(cancellationToken);
 

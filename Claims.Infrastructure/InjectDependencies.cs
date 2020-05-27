@@ -1,4 +1,4 @@
-using Claims.Application.Core.Interfaces;
+using Claims.Application.Core;
 using Claims.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

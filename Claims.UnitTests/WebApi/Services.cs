@@ -1,10 +1,10 @@
 using System.Threading;
 using System.Threading.Tasks;
-using Claims.Application.Core.Exceptions;
 using Claims.Application.Features.Services.Commands;
 using Claims.Application.Features.Services.Queries;
 using Claims.Domain.Entities;
 using Claims.WebApi.Controllers;
+using Common.ApplicationCore.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

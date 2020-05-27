@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Claims.Application.Core.Exceptions;
 using Claims.Application.Features.Services.Commands;
 using Claims.Application.Features.Services.Queries;
 using Claims.Domain.Entities;
+using Common.ApplicationCore.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -70,9 +70,9 @@ namespace Claims.WebApi.Controllers
 
                 return CreatedAtAction(nameof(Get),new {id = newService.Id},newService);
             }
-            catch (Exception e)
+            catch (ValidationException e)
             {
-                return BadRequest(e.Message);
+                return BadRequest(e.Errors);
             }
             
         }

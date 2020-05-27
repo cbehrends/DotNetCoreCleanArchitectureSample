@@ -6,6 +6,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Claims.Domain\Claims.Domain.csproj" />
+      <ProjectReference Include="..\Common.ApplicationCore\Common.ApplicationCore.csproj" />
     </ItemGroup>
 
     <ItemGroup>
@@ -16,10 +17,6 @@
       <PackageReference Include="MediatR" Version="8.0.1" />
       <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.4" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Core" />
     </ItemGroup>
 
 </Project>

@@ -1,13 +1,13 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Claims.Application.Core.Behaviours;
-using Claims.Application.Core.Interfaces;
+using Common.ApplicationCore.Behaviours;
+using Common.ApplicationCore.Interfaces;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
 
-namespace Claims.UnitTests.Behaviors
+namespace Common.UnitTests.Behaviors
 {
     public class LoggingTests
     {
@@ -25,7 +25,7 @@ namespace Claims.UnitTests.Behaviors
             await sut.Process(mockReq, CancellationToken.None);
 
             _loggingMock.VerifyLogging(
-                "Request: MockRequest corey corey Claims.UnitTests.Behaviors.MockRequest",
+                "Request: MockRequest corey corey Common.UnitTests.Behaviors.MockRequest",
                 LogLevel.Information);
         }
 

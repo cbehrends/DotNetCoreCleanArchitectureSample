@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Claims.Application.Core.Exceptions
+namespace Common.ApplicationCore.Exceptions
 {
     public class EntityExistsException: Exception
     {

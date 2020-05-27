@@ -1,10 +1,10 @@
 using System.Threading;
 using System.Threading.Tasks;
-using Claims.Application.Core.Interfaces;
+using Common.ApplicationCore.Interfaces;
 using MediatR.Pipeline;
 using Microsoft.Extensions.Logging;
 
-namespace Claims.Application.Core.Behaviours
+namespace Common.ApplicationCore.Behaviours
 {
     public class LoggingBehaviour<TRequest> : IRequestPreProcessor<TRequest>
     {

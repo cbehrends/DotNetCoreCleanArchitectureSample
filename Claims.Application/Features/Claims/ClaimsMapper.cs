@@ -11,7 +11,8 @@ namespace Claims.Application.Features.Claims
         {
             CreateMap<Claim, NewClaim.Command>();
             CreateMap<NewClaim.Command, Claim>()
-                .ForMember(claim => claim.Id, opt => opt.Ignore());
+                .ForMember(claim => claim.Id, opt => opt.Ignore())
+                .ForMember(claim => claim.AmountDue, opt => opt.Ignore());
 
             CreateMap<RenderedService, RenderedServiceDto>()
                 .ForMember(d => d.ServiceId, opt => opt.MapFrom(s => s.ServiceId))

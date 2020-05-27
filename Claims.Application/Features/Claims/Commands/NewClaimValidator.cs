@@ -1,4 +1,3 @@
-using System.Data;
 using FluentValidation;
 
 namespace Claims.Application.Features.Claims.Commands

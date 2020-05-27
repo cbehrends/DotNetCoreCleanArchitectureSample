@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace Claims.Application.Features.Claims.Commands
 {
-    public class UpdateClaimValidator: AbstractValidator<UpdateClaim.Command>
+    public class UpdateClaimValidator : AbstractValidator<UpdateClaim.Command>
     {
         public UpdateClaimValidator()
         {

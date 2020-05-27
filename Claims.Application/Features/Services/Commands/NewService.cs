@@ -2,9 +2,9 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using Claims.Application.Core.Exceptions;
-using Claims.Application.Core.Interfaces;
+using Claims.Application.Core;
 using Claims.Domain.Entities;
+using Common.ApplicationCore.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -42,7 +42,6 @@ namespace Claims.Application.Features.Services.Commands
                 {
                     throw new EntityExistsException(newService.Description);
                 }
-               
             }
         }
     }

@@ -1,4 +1,4 @@
-namespace Claims.Application.Core.Interfaces
+namespace Common.ApplicationCore.Interfaces
 {
     public interface ICurrentUserService
     {
