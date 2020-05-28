@@ -23,7 +23,7 @@ namespace Payments.Application.Core.Messaging
 
         public async Task Consume(ConsumeContext<IClaimPaymentApproved> context)
         {
-            _logger.LogInformation($"Payment approved for claim {context.Message.ClaimId.ToString()}");
+            
             var newPayment = new Payment
             {
                 ClaimId = context.Message.ClaimId,
@@ -41,7 +41,7 @@ namespace Payments.Application.Core.Messaging
                 ClaimId = context.Message.ClaimId,
                 AmountApplied = context.Message.PaymentAmount
             };
-            
+            _logger.LogInformation($"Payment approved for claim {context.Message.ClaimId.ToString()}");
             await _publishEndpoint.Publish(claimPaid);
         }
     }

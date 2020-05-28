@@ -12,6 +12,7 @@ services:
             - rabbitmq
         environment:
             - ConnectionString=Data Source=sqldata;Initial Catalog=Claims;Integrated Security=False;Encrypt=False;User ID=sa;Password=P@ssW0rdTr1ckz
+            - RabbitConnectionString=rabbitmq://rabbitmq
     payments_api:
         build:
             context: .
@@ -22,7 +23,8 @@ services:
             - sqldata
             - rabbitmq
         environment:
-            - ConnectionString=Data Source=sqldata;Initial Catalog=Claims;Integrated Security=False;Encrypt=False;User ID=sa;Password=P@ssW0rdTr1ckz        
+            - ConnectionString=Data Source=sqldata;Initial Catalog=Payments;Integrated Security=False;Encrypt=False;User ID=sa;Password=P@ssW0rdTr1ckz
+            - RabbitConnectionString=rabbitmq://rabbitmq
     sqldata:
         image: "mcr.microsoft.com/mssql/server"
         environment:

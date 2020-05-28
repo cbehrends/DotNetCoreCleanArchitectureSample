@@ -74,6 +74,15 @@ namespace Claims.WebApi.Controllers
            
         }
         
+        [HttpPost("approve_payment/{claimId}")]
+        public async Task<IActionResult> ApprovePayment(int claimId)
+        {
+            await _mediator.Send(new ApprovePayment.Command(claimId));
+
+            return Accepted();
+
+        }
+        
         [HttpPut]
         public async Task<ActionResult<ClaimViewModel>> Put([FromBody] UpdateClaim.Command newClaimCommand)
         {

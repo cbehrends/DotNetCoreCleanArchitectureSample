@@ -58,7 +58,7 @@ namespace Payments.WebApi
                     // configure health checks for this bus instance
                     cfg.UseHealthCheck(context);
             
-                    cfg.Host("rabbitmq://localhost", hostSettings =>
+                    cfg.Host(Configuration["RabbitConnectionString"], hostSettings =>
                     {
                         hostSettings.Username("user");
                         hostSettings.Password("P@ssW0rdTr1ckz");
