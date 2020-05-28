@@ -72,6 +72,15 @@ namespace Claims.Application.Features.Claims.Commands
                     renderedService.Cost = serviceCost;
                 }
 
+                var oldTotal = updateClaim.TotalAmount;
+                var newTotal = newServiceList.Sum(svc => svc.Cost);
+
+                if (oldTotal < newTotal)
+                {
+                    updateClaim.TotalAmount = newServiceList.Sum(svc => svc.Cost);
+                    updateClaim.AmountDue += newTotal - oldTotal;
+                }
+
                 updateClaim.TotalAmount = newServiceList.Sum(svc => svc.Cost);
 
                 await _context.SaveChangesAsync(cancellationToken);
