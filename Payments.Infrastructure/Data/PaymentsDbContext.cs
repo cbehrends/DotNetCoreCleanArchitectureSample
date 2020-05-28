@@ -1,6 +1,6 @@
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-using Payments.Application.Interfaces;
+using Payments.Application.Core.Interfaces;
 using Payments.Domain.Entities;
 
 namespace Payments.Infrastructure.Data

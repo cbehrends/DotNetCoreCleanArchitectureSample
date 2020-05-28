@@ -1,0 +1,48 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Claims.Application.Core.Messaging;
+using MassTransit;
+using Microsoft.Extensions.Logging;
+using Payments.Application.Core.Interfaces;
+using Payments.Domain.Entities;
+
+namespace Payments.Application.Core.Messaging
+{
+    public class PaymentApprovedConsumer: IConsumer<IClaimPaymentApproved>
+    {
+        private readonly ILogger<PaymentApprovedConsumer> _logger;
+        private readonly IApplicationDbContext _context;
+        private readonly IPublishEndpoint _publishEndpoint;
+        public PaymentApprovedConsumer(ILogger<PaymentApprovedConsumer> logger, IApplicationDbContext context, IPublishEndpoint publishEndpoint)
+        {
+            _logger = logger ?? throw new NullReferenceException(nameof(ILogger<PaymentApprovedConsumer>));
+            _context = context ?? throw new NullReferenceException(nameof(IApplicationDbContext));
+            _publishEndpoint = publishEndpoint ?? throw new NullReferenceException(nameof(IPublishEndpoint));
+        }
+
+        public async Task Consume(ConsumeContext<IClaimPaymentApproved> context)
+        {
+            _logger.LogInformation($"Payment approved for claim {context.Message.ClaimId.ToString()}");
+            var newPayment = new Payment
+            {
+                ClaimId = context.Message.ClaimId,
+                PaymentAmount = context.Message.PaymentAmount,
+                PaymentDate = DateTimeOffset.Now
+            };
+            
+            _context.Payments.Add(newPayment);
+            
+            await _context.SaveChangesAsync(CancellationToken.None);
+            await context.RespondAsync<IMessageAccepted>(new MessageAccepted {Accepted = true});
+            
+            var claimPaid = new ClaimPaid
+            {
+                ClaimId = context.Message.ClaimId,
+                AmountApplied = context.Message.PaymentAmount
+            };
+            
+            await _publishEndpoint.Publish(claimPaid);
+        }
+    }
+}

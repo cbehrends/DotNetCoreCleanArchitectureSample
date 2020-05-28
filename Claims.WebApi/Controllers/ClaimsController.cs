@@ -10,6 +10,7 @@ using Common.ApplicationCore.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace Claims.WebApi.Controllers
 {

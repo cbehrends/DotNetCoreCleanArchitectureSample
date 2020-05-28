@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using MassTransit;
 
-namespace Claims.Infrastructure.Messaging
+namespace Claims.Application.Core.Messaging
 {
     public class MessagePublisher : IMessagePublisher
     {        
@@ -12,10 +12,11 @@ namespace Claims.Infrastructure.Messaging
         {
             _publishEndpoint = publishEndpoint;
         }
-
-        public async Task SendClaimPaymentApproved(int claimId, string approvedBy, DateTimeOffset approvedOn)
+        
+        public async Task SendClaimPaymentApproved(IClaimPaymentApproved claimPaymentApproved)
         {
-            await _publishEndpoint.Publish<IClaimPaymentApproved>(new { claimId, approvedBy, approvedOn });
+            await _publishEndpoint.Publish(claimPaymentApproved);
+            
         }
     }
 }

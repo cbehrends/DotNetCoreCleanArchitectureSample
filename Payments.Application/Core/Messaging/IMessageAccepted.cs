@@ -1,4 +1,4 @@
-namespace Claims.Infrastructure.Messaging
+namespace Claims.Application.Core.Messaging
 {
     public interface IMessageAccepted
     {

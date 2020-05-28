@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Payments.Application.Interfaces;
+using Payments.Application.Core.Interfaces;
 using Payments.Infrastructure.Data;
 
 namespace Payments.Infrastructure

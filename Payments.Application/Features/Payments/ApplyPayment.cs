@@ -2,7 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Payments.Application.Interfaces;
+using Payments.Application.Core.Interfaces;
 using Payments.Domain.Entities;
 
 namespace Payments.Application.Features.Payments

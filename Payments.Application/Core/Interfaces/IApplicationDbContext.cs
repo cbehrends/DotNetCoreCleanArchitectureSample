@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Payments.Domain.Entities;
 
-namespace Payments.Application.Interfaces
+namespace Payments.Application.Core.Interfaces
 {
     public interface IApplicationDbContext
     {

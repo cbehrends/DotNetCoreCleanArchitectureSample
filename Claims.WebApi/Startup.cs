@@ -1,9 +1,9 @@
 using System;
 using AutoMapper;
 using Claims.Application;
+using Claims.Application.Core.Messaging;
 using Claims.Infrastructure;
 using Claims.Infrastructure.Data;
-using Claims.Infrastructure.Messaging;
 using Claims.WebApi.Core;
 using Common.ApplicationCore.Interfaces;
 using GreenPipes;
@@ -63,7 +63,7 @@ namespace Claims.WebApi
 
             services.AddMassTransit(x =>
             {
-                // x.AddConsumer<OrderConsumer>();
+                x.AddConsumer<ClaimPaidConsumer>();
             
                 x.AddBus(context => Bus.Factory.CreateUsingRabbitMq(cfg =>
                 {
@@ -77,13 +77,12 @@ namespace Claims.WebApi
                         });
                             
                    
-                    // cfg.ReceiveEndpoint("submit-order", ep =>
-                    // {
-                    //     ep.PrefetchCount = 16;
-                    //     ep.UseMessageRetry(r => r.Interval(2, 100));
-                    //
-                    //     ep.ConfigureConsumer<OrderConsumer>(context);
-                    // });
+                    cfg.ReceiveEndpoint("claims-paid", ep =>
+                    {
+                        ep.UseMessageRetry(r => r.Interval(2, 100));
+                    
+                        ep.ConfigureConsumer<ClaimPaidConsumer>(context);
+                    });
                 }));
             });
             
