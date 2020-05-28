@@ -13,7 +13,7 @@ To support AQMP, I've used  [MassTransit](https://masstransit-project.com/).  Th
 
 To run the project with all required services:
 
-`docker-compose up`
+`docker-compose up -d`
 
 This will setup the Claims container to listen on port 5000 and the Payments to listen on 5004
 
