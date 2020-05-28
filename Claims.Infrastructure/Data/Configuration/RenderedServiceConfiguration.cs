@@ -17,6 +17,9 @@ namespace Claims.Infrastructure.Data.Configuration
             builder.Property(svc => svc.ServiceId)
                 .IsRequired();
 
+            builder.Property(svc => svc.Cost)
+                .HasColumnType("decimal(7,2)");
+
             builder.HasOne(svc => svc.Service)
                 .WithMany()
                 .HasForeignKey(s => s.ServiceId)

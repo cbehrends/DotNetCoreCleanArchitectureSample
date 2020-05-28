@@ -6,5 +6,6 @@ namespace Claims.WebApi.ViewModels
         public int ClaimId { get; set; }
         public int ServiceId { get; set; }
         public string Description { get; set; }
+        public decimal Cost { get; set; }
     }
 }

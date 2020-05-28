@@ -12,6 +12,7 @@ namespace Claims.WebApi.ViewModels
 
             CreateMap<RenderedService, RenderedServiceViewModel>()
                 .ForMember(d => d.Description, opt => opt.MapFrom(s => s.Service.Description))
+                .ForMember(d => d.Cost, opt => opt.MapFrom(s => s.Service.Cost))
                 .ReverseMap();
         }
     }

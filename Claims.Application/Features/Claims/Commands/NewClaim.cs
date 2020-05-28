@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using Claims.Application.Core;
 using Claims.Application.Features.Claims.Model;
 using Claims.Domain.Entities;
+using MassTransit.Initializers;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -36,13 +38,22 @@ namespace Claims.Application.Features.Claims.Commands
                 {
                     FirstName = request.FirstName,
                     ServicesRendered = new List<RenderedService>(),
-                    TotalAmount = request.TotalAmount,
-                    AmountDue = request.TotalAmount
                 };
 
                 foreach (var renderedServiceDto in request.ServicesRendered)
+                {
+                    var serviceCost = await _context.Services.SingleOrDefaultAsync(s => 
+                        s.Id == renderedServiceDto.ServiceId, cancellationToken: cancellationToken)
+                        .Select(svc =>svc.Cost);
+                    
                     newClaim.ServicesRendered.Add(new RenderedService
-                        {ServiceId = renderedServiceDto.ServiceId, Claim = newClaim});
+                        {ServiceId = renderedServiceDto.ServiceId, Claim = newClaim, Cost = serviceCost});
+                }
+
+                var newClaimTotal = newClaim.ServicesRendered.Sum(sr => sr.Cost);
+
+                newClaim.TotalAmount = newClaimTotal;
+                newClaim.AmountDue = newClaimTotal;
 
                 _context.Claims.Add(newClaim);
                 await _context.SaveChangesAsync(cancellationToken);
