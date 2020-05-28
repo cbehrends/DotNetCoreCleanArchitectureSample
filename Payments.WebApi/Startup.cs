@@ -17,6 +17,7 @@ using Payments.Application;
 using Payments.Application.Core.Messaging;
 using Payments.Infrastructure;
 
+[assembly: ApiConventionType(typeof(DefaultApiConventions))]
 namespace Payments.WebApi
 {
     public class Startup
@@ -90,6 +91,13 @@ namespace Payments.WebApi
             app.UseRouting();
 
             app.UseAuthorization();
+            
+            app.UseSwagger();
+            
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Payments API V1");
+            });
 
             app.UseEndpoints(endpoints =>
             {

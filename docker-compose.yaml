@@ -17,7 +17,7 @@ services:
             context: .
             dockerfile: Payments.WebApi.Dockerfile
         ports:
-            - "6000:81"
+            - "5004:80"
         depends_on:
             - sqldata
             - rabbitmq

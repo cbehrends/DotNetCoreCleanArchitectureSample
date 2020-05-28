@@ -26,9 +26,7 @@ namespace Payments.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(Payment), 200)]
-        [ProducesResponseType(404)]
-        public async Task<IActionResult> GetById([FromRoute] int id)
+        public async Task<ActionResult<Payment>> GetById([FromRoute] int id)
         {
             try
             {
@@ -44,7 +42,7 @@ namespace Payments.WebApi.Controllers
         }
         
         [HttpPost]
-        public async Task<IActionResult> Post(ApplyPayment.Command applyPaymentCommand)
+        public async Task<ActionResult<Payment>> Post(ApplyPayment.Command applyPaymentCommand)
         {
             var newPayment = await _mediator.Send(applyPaymentCommand);
             
