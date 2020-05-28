@@ -1,15 +1,16 @@
-using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Claims.Infrastructure.Messaging;
+using Claims.Application.Core.Messaging;
 using FluentAssertions;
 using MassTransit;
 using MassTransit.Testing;
+using MassTransit.Turnout.Contracts;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
-using Payments.Infrastructure.Messaging;
+using Payments.Application.Core.Interfaces;
+using Payments.Application.Core.Messaging;
 
 namespace Payments.UnitTests.Messaging
 {
@@ -22,11 +23,13 @@ namespace Payments.UnitTests.Messaging
         {
             
             var harness = new InMemoryTestHarness();
-            // var consumer = harness.Consumer<PaymentApprovedConsumer>();
+            var mockContext = new Mock<IApplicationDbContext>();
             var mockLogger = new Mock<ILogger<PaymentApprovedConsumer>>();
-            var consumer = harness.Consumer(() => new PaymentApprovedConsumer(mockLogger.Object));
+            var mockEndpoint = new Mock<IPublishEndpoint>();
+            var consumer = harness.Consumer(() => new PaymentApprovedConsumer(mockLogger.Object, mockContext.Object, mockEndpoint.Object));
 
             await harness.Start();
+            
             try
             {
                
@@ -39,12 +42,13 @@ namespace Payments.UnitTests.Messaging
                 Assert.That(consumer.Consumed.Select<IClaimPaymentApproved>().Any(), Is.True);
 
                 Assert.That(harness.Sent.Select<IClaimPaymentApproved>().Any(), Is.True);
+                mockContext.Verify(mc => 
+                    mc.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
             }
             finally
             {
                 await harness.Stop();
             }
-            
             
         }
     }

@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using Claims.Infrastructure.Messaging;
+using Claims.Application.Core.Messaging;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Claims.WebApi.Controllers
@@ -17,12 +17,13 @@ namespace Claims.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post()
+        public async Task<IActionResult> Post([FromBody] ClaimPaymentApproved paymentApproved )
         {
-            await _publisher.SendClaimPaymentApproved(1, "me", DateTimeOffset.Now);
-            //await Task.FromResult("");
+            await _publisher.SendClaimPaymentApproved(paymentApproved);
         
             return Accepted("Message has been sent!");
         }
+        
+        
     }
 }

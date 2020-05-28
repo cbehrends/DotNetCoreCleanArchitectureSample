@@ -13,8 +13,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Payments.Application;
+using Payments.Application.Core.Messaging;
 using Payments.Infrastructure;
-using Payments.Infrastructure.Messaging;
 
 namespace Payments.WebApi
 {
@@ -62,7 +62,6 @@ namespace Payments.WebApi
                 }));
             });
             
-            // services.AddScoped<IValuePublisher, ValuePublisher>();
             services.AddMassTransitHostedService();
         }
 

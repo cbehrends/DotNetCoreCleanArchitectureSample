@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Common.ApplicationCore.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Payments.Application.Interfaces;
+using Payments.Application.Core.Interfaces;
 using Payments.Domain.Entities;
 
 namespace Payments.Application.Features.Payments
