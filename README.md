@@ -1,5 +1,18 @@
 # Clean Architecture Style
 
+# Architecture
+
+This project is using the [Clean Archeture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) style.  I've found that this really helps enforce a SOLID and human-readable style of coding.  
+
+Using the [mediator pattern](https://en.wikipedia.org/wiki/Mediator_pattern) to implment [CQRS](https://martinfowler.com/bliki/CQRS.html) helps encapsulate the logic and enforce the [Single Responsiblty Principal](https://en.wikipedia.org/wiki/Single-responsibility_principle).
+
+To facilitate back-end communication between services, I've implmented AQMP to avoid direct access between services.  In this example, the "Claims" service tracks the total cost of the claim.  When payment of the claim is approved, an event is raised and pushed onto the queue.  The "Payments" service will then read that message and perform the payment logic.  If successful, the payment service will fire an event stating that the claim has been paid.  The claim service will then consume that message and update the Amount Due field.
+
+#ToDo
+
+1.  Add transaction support the the mediator pipeline
+
+
 # Docker Support
 
 To build the docker env
