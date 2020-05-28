@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using Payments.Application;
 using Payments.Application.Core.Messaging;
 using Payments.Infrastructure;
@@ -35,6 +36,17 @@ namespace Payments.WebApi
             services.AddPaymentsInfrastructure(Configuration);
             services.AddHealthChecks();
             
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Payments API", Version = "v1" });
+                c.CustomSchemaIds(type =>
+                {
+                    if (!type.FullName.EndsWith("+Command") && !type.FullName.EndsWith("+Query")) return type.Name;
+                    var parentTypeName = type.FullName.Substring(type.FullName.LastIndexOf(".", StringComparison.Ordinal) + 1);
+                    return parentTypeName.Replace("+Command", "Command").Replace("+Query", "Query");
+
+                });
+            });
             
             services.AddMassTransit(x =>
             {
