@@ -15,6 +15,7 @@ namespace Claims.Application.Features.Services.Commands
         public class Command : IRequest<Service>
         {
             public string Description { get; set; }
+            public decimal Cost { get; set; }
         }
 
         public class Handler : IRequestHandler<Command, Service>
