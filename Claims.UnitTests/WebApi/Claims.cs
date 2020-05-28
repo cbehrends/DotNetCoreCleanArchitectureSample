@@ -31,7 +31,7 @@ namespace Claims.UnitTests.WebApi
             var result = await sut.Get();
             
             mockMediator.Verify(mock => mock.Send(It.IsAny<GetClaims.Query>(), It.IsAny<CancellationToken>()));
-            Assert.IsInstanceOf<NotFoundObjectResult>(result);
+            Assert.IsInstanceOf<NotFoundObjectResult>(result.Result);
             
         }
         
@@ -50,7 +50,7 @@ namespace Claims.UnitTests.WebApi
             
             mockMediator.Verify(mock => mock.Send(It.IsAny<GetClaims.Query>(), It.IsAny<CancellationToken>()));
             
-            Assert.IsInstanceOf<OkObjectResult>(result);
+            Assert.IsInstanceOf<OkObjectResult>(result.Result);
             
         }
         
@@ -66,7 +66,7 @@ namespace Claims.UnitTests.WebApi
             var sut = new ClaimsController(mockMediator.Object, mockLogger.Object, mockMapper.Object);
             var result = await sut.GetById(1);
             mockMediator.Verify(mock => mock.Send(It.IsAny<GetClaim.Query>(), It.IsAny<CancellationToken>()));
-            Assert.IsInstanceOf<NotFoundObjectResult>(result);
+            Assert.IsInstanceOf<NotFoundObjectResult>(result.Result);
             
         }
         
@@ -82,7 +82,7 @@ namespace Claims.UnitTests.WebApi
             var sut = new ClaimsController(mockMediator.Object, mockLogger.Object, mockMapper.Object);
             var result = await sut.GetById(1);
             mockMediator.Verify(mock => mock.Send(It.IsAny<GetClaim.Query>(), It.IsAny<CancellationToken>()));
-            Assert.IsInstanceOf<OkObjectResult>(result);
+            Assert.IsInstanceOf<OkObjectResult>(result.Result);
             
         }
         
@@ -101,7 +101,7 @@ namespace Claims.UnitTests.WebApi
             var sut = new ClaimsController(mockMediator.Object, mockLogger.Object, mockMapper.Object);
             var result = await sut.Post(new NewClaim.Command());
             mockMediator.Verify(mock => mock.Send(It.IsAny<NewClaim.Command>(), It.IsAny<CancellationToken>()));
-            Assert.IsInstanceOf<CreatedAtActionResult>(result);
+            Assert.IsInstanceOf<CreatedAtActionResult>(result.Result);
             
         }
         
@@ -120,7 +120,7 @@ namespace Claims.UnitTests.WebApi
             var sut = new ClaimsController(mockMediator.Object, mockLogger.Object, mockMapper.Object);
             var result = await sut.Post(new NewClaim.Command());
             mockMediator.Verify(mock => mock.Send(It.IsAny<NewClaim.Command>(), It.IsAny<CancellationToken>()));
-            Assert.IsInstanceOf<BadRequestObjectResult>(result);
+            Assert.IsInstanceOf<BadRequestObjectResult>(result.Result);
             
         }
         

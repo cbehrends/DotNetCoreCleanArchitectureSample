@@ -28,9 +28,7 @@ namespace Claims.WebApi.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(List<Service>), 200)]
-        [ProducesResponseType(404)]
-        public async Task<IActionResult> Get()
+        public async Task<ActionResult<List<Service>>> Get()
         {
             try
             {
@@ -44,9 +42,7 @@ namespace Claims.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(Service), 200)]
-        [ProducesResponseType(404)]
-        public async Task<IActionResult> Get([FromRoute] int id)
+        public async Task<ActionResult<Service>> Get([FromRoute] int id)
         {
             try
             {
@@ -60,9 +56,7 @@ namespace Claims.WebApi.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Post([FromBody] NewService.Command command)
+        public async Task<ActionResult<Service>> Post([FromBody] NewService.Command command)
         {
             try
             {
@@ -78,9 +72,6 @@ namespace Claims.WebApi.Controllers
         }
         
         [HttpDelete("{id}")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             try

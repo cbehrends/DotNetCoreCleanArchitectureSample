@@ -28,7 +28,7 @@ namespace Claims.UnitTests.WebApi
             var result = await sut.Get();
             
             mockMediator.Verify(mock => mock.Send(It.IsAny<GetServices.Query>(), It.IsAny<CancellationToken>()));
-            Assert.IsInstanceOf<NotFoundObjectResult>(result);
+            Assert.IsInstanceOf<NotFoundObjectResult>(result.Result);
             
         }
         
@@ -43,7 +43,7 @@ namespace Claims.UnitTests.WebApi
             
             mockMediator.Verify(mock => mock.Send(It.IsAny<GetServices.Query>(), It.IsAny<CancellationToken>()));
             
-            Assert.IsInstanceOf<OkObjectResult>(result);
+            Assert.IsInstanceOf<OkObjectResult>(result.Result);
             
         }
         
@@ -59,7 +59,7 @@ namespace Claims.UnitTests.WebApi
             var sut = new ServicesController(mockMediator.Object, mockLogger.Object);
             var result = await sut.Get(1);
             mockMediator.Verify(mock => mock.Send(It.IsAny<GetService.Query>(), It.IsAny<CancellationToken>()));
-            Assert.IsInstanceOf<NotFoundObjectResult>(result);
+            Assert.IsInstanceOf<NotFoundObjectResult>(result.Result);
             
         }
         
@@ -73,7 +73,7 @@ namespace Claims.UnitTests.WebApi
             var sut = new ServicesController(mockMediator.Object, mockLogger.Object);
             var result = await sut.Get(1);
             mockMediator.Verify(mock => mock.Send(It.IsAny<GetService.Query>(), It.IsAny<CancellationToken>()));
-            Assert.IsInstanceOf<OkObjectResult>(result);
+            Assert.IsInstanceOf<OkObjectResult>(result.Result);
             
         }
         
@@ -91,7 +91,7 @@ namespace Claims.UnitTests.WebApi
             var sut = new ServicesController(mockMediator.Object, mockLogger.Object);
             var result = await sut.Post(new NewService.Command());
             mockMediator.Verify(mock => mock.Send(It.IsAny<NewService.Command>(), It.IsAny<CancellationToken>()));
-            Assert.IsInstanceOf<CreatedAtActionResult>(result);
+            Assert.IsInstanceOf<CreatedAtActionResult>(result.Result);
             
         }
         

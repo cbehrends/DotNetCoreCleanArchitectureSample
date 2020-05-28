@@ -3,6 +3,9 @@ using System.Threading.Tasks;
 using Claims.Infrastructure.Messaging;
 using Microsoft.AspNetCore.Mvc;
 
+
+// Only for testing, will be removed
+
 namespace Claims.WebApi.Controllers
 {
     [ApiController]

@@ -5,11 +5,9 @@ using AutoMapper;
 using Claims.Application.Features.Claims.Commands;
 using Claims.Application.Features.Claims.Model;
 using Claims.Application.Features.Claims.Queries;
-using Claims.Domain.Entities;
 using Claims.WebApi.ViewModels;
 using Common.ApplicationCore.Exceptions;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -31,9 +29,7 @@ namespace Claims.WebApi.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(List<ClaimsReadOnlyDto>), 200)]
-        [ProducesResponseType(404)]
-        public async Task<IActionResult> Get()
+        public async Task<ActionResult<List<ClaimsReadOnlyDto>>> Get()
         {
             try
             {
@@ -47,9 +43,7 @@ namespace Claims.WebApi.Controllers
         }
 
         [HttpGet("{id}", Name = "GetById")]
-        [ProducesResponseType(typeof(Claim), 200)]
-        [ProducesResponseType(404)]
-        public async Task<IActionResult> GetById([FromRoute] int id)
+        public async Task<ActionResult<ClaimViewModel>> GetById([FromRoute] int id)
         {
             try
             {
@@ -64,9 +58,7 @@ namespace Claims.WebApi.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Post([FromBody] NewClaim.Command newClaimCommand)
+        public async Task<ActionResult<ClaimViewModel>> Post([FromBody] NewClaim.Command newClaimCommand)
         {
             try
             {
@@ -82,9 +74,7 @@ namespace Claims.WebApi.Controllers
         }
         
         [HttpPut]
-        [ProducesResponseType(StatusCodes.Status202Accepted)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Put([FromBody] UpdateClaim.Command newClaimCommand)
+        public async Task<ActionResult<ClaimViewModel>> Put([FromBody] UpdateClaim.Command newClaimCommand)
         {
             try
             {
@@ -100,8 +90,6 @@ namespace Claims.WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             try
