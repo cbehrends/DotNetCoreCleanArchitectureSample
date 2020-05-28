@@ -15,6 +15,9 @@ namespace Claims.Infrastructure.Data.Configuration
                 .Property(service => service.Description)
                 .IsRequired()
                 .HasMaxLength(50);
+            
+            builder.Property(service => service.Cost)
+                .HasColumnType("decimal(7,2)");
 
             builder
                 .HasIndex(svc => svc.Description)

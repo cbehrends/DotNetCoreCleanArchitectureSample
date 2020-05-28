@@ -16,6 +16,12 @@ namespace Claims.Infrastructure.Data.Configuration
                 .IsRequired()
                 .HasMaxLength(50);
 
+            builder.Property(claim => claim.AmountDue)
+                .HasColumnType("decimal(7,2)");
+            
+            builder.Property(claim => claim.TotalAmount)
+                .HasColumnType("decimal(7,2)");
+
             builder.HasMany(claim => claim.ServicesRendered)
                 .WithOne(service => service.Claim)
                 .OnDelete(DeleteBehavior.Cascade);
