@@ -4,6 +4,7 @@ WORKDIR /app
 # copy csproj and restore as distinct layers
 #COPY *.sln .
 COPY Common.ApplicationCore/Common.ApplicationCore.csproj ./Common.ApplicationCore/
+COPY Common.Messaging/Common.Messaging.csproj ./Common.Messaging/
 COPY Payments.WebApi/*.csproj ./Payments.WebApi/
 COPY Payments.Application/*.csproj ./Payments.Application/
 COPY Payments.Domain/*.csproj ./Payments.Domain/
@@ -14,6 +15,7 @@ RUN dotnet restore Payments.WebApi/Payments.WebApi.csproj
 #
 # copy everything else and build app
 COPY Common.ApplicationCore/. ./Common.ApplicationCore/
+COPY Common.Messaging/. ./Common.Messaging/
 COPY Payments.WebApi/. ./Payments.WebApi/
 COPY Payments.Application/. ./Payments.Application/
 COPY Payments.Domain/. ./Payments.Domain/

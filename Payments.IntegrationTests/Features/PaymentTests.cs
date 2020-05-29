@@ -54,5 +54,15 @@ namespace Payments.IntegrationTests.Features
             payment.Should().NotBeNull();
             
         }
+        
+        [Test]
+        public async Task Should_Throw_NotFoundException_On_Get_Payment_By_Id()
+        {         
+            var query = new GetPaymentById.Query {Id = -9999};
+
+            FluentActions.Invoking(() =>
+                SendAsync(query)).Should().Throw<NotFoundException>();
+            
+        }
     }
 }

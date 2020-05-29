@@ -1,7 +1,8 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Claims.Application.Core.Messaging;
+using Common.Messaging;
+using Common.Messaging.Payments;
 using MassTransit;
 using Microsoft.Extensions.Logging;
 using Payments.Application.Core.Interfaces;
@@ -34,6 +35,7 @@ namespace Payments.Application.Core.Messaging
             _context.Payments.Add(newPayment);
             
             await _context.SaveChangesAsync(CancellationToken.None);
+            
             await context.RespondAsync<IMessageAccepted>(new MessageAccepted {Accepted = true});
             
             var claimPaid = new ClaimPaid

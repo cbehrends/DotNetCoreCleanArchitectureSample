@@ -7,6 +7,7 @@
     <ItemGroup>
       <ProjectReference Include="..\Claims.Domain\Claims.Domain.csproj" />
       <ProjectReference Include="..\Common.ApplicationCore\Common.ApplicationCore.csproj" />
+      <ProjectReference Include="..\Common.Messaging\Common.Messaging.csproj" />
     </ItemGroup>
 
     <ItemGroup>

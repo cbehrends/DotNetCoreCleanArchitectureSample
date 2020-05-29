@@ -63,15 +63,14 @@ namespace Payments.WebApi
                         hostSettings.Username("user");
                         hostSettings.Password("P@ssW0rdTr1ckz");
                     });
-                            
-                   
+                    
                     cfg.ReceiveEndpoint("payment-approved", ep =>
                     {
                         ep.PrefetchCount = 16;
                         ep.UseMessageRetry(r => r.Interval(2, 100));
-                    
                         ep.ConfigureConsumer<PaymentApprovedConsumer>(context);
                     });
+                    
                 }));
             });
             

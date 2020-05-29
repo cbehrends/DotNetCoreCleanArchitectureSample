@@ -6,6 +6,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Common.ApplicationCore\Common.ApplicationCore.csproj" />
+      <ProjectReference Include="..\Common.Messaging\Common.Messaging.csproj" />
       <ProjectReference Include="..\Payments.Domain\Payments.Domain.csproj" />
     </ItemGroup>
 

@@ -1,9 +1,9 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Common.Messaging.Payments;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
-using Payments.Application.Core.Messaging;
 
 namespace Claims.Application.Core.Messaging
 {

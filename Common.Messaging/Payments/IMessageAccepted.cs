@@ -1,4 +1,4 @@
-namespace Claims.Application.Core.Messaging
+namespace Common.Messaging.Payments
 {
     public interface IMessageAccepted
     {

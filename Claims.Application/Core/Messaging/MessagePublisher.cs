@@ -1,5 +1,7 @@
 using System;
 using System.Threading.Tasks;
+using Common.Messaging;
+using Common.Messaging.Payments;
 using MassTransit;
 
 namespace Claims.Application.Core.Messaging

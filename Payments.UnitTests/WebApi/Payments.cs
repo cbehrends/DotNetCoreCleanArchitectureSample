@@ -60,7 +60,7 @@ namespace Payments.UnitTests.WebApi
             var sut = new PaymentsController(_mockLogger.Object, _mockMediator.Object);
             var result = await sut.GetById(1);
             _mockMediator.Verify(mock => mock.Send(It.IsAny<GetPaymentById.Query>(), It.IsAny<CancellationToken>()));
-            Assert.IsInstanceOf<OkObjectResult>(result);
+            Assert.IsInstanceOf<OkObjectResult>(result.Result);
 
         }
         
@@ -75,7 +75,7 @@ namespace Payments.UnitTests.WebApi
             var sut = new PaymentsController(_mockLogger.Object, _mockMediator.Object);
             var result = await sut.GetById(1);
             _mockMediator.Verify(mock => mock.Send(It.IsAny<GetPaymentById.Query>(), It.IsAny<CancellationToken>()));
-            Assert.IsInstanceOf<NotFoundObjectResult>(result);
+            Assert.IsInstanceOf<NotFoundObjectResult>(result.Result);
 
         }
     }
