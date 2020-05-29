@@ -1,7 +1,7 @@
 using System;
 using AutoMapper;
 using Claims.Application;
-using Claims.Application.Core.Messaging;
+using Claims.Application.Features.Messaging;
 using Claims.Infrastructure;
 using Claims.Infrastructure.Data;
 using Claims.WebApi.Core;

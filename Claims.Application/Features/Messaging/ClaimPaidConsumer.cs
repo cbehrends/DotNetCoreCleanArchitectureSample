@@ -1,11 +1,12 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Claims.Application.Core;
 using Common.Messaging.Payments;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 
-namespace Claims.Application.Core.Messaging
+namespace Claims.Application.Features.Messaging
 {
     public class ClaimPaidConsumer: IConsumer<ClaimPaid>
     {

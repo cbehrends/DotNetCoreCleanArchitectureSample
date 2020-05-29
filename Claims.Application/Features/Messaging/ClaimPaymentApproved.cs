@@ -1,8 +1,6 @@
-using System;
-using Common.Messaging;
 using Common.Messaging.Payments;
 
-namespace Claims.Application.Core.Messaging
+namespace Claims.Application.Features.Messaging
 {
     public class ClaimPaymentApproved : IClaimPaymentApproved
     {

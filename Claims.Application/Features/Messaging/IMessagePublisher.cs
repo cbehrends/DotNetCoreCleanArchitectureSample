@@ -1,9 +1,7 @@
-using System;
 using System.Threading.Tasks;
-using Common.Messaging;
 using Common.Messaging.Payments;
 
-namespace Claims.Application.Core.Messaging
+namespace Claims.Application.Features.Messaging
 {
     public interface IMessagePublisher
     {

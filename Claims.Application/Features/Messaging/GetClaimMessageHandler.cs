@@ -1,11 +1,10 @@
 using System;
-using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
+using Claims.Application.Core;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 
-namespace Claims.Application.Core.Messaging
+namespace Claims.Application.Features.Messaging
 {
     public interface IGetClaim
     {

@@ -6,7 +6,7 @@ using System.Text.Unicode;
 using System.Threading;
 using System.Threading.Tasks;
 using Claims.Application.Core;
-using Claims.Application.Core.Messaging;
+using Claims.Application.Features.Messaging;
 using MassTransit.Initializers;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

@@ -1,14 +1,13 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Common.Messaging;
 using Common.Messaging.Payments;
 using MassTransit;
 using Microsoft.Extensions.Logging;
 using Payments.Application.Core.Interfaces;
 using Payments.Domain.Entities;
 
-namespace Payments.Application.Core.Messaging
+namespace Payments.Application.Features.Messaging
 {
     public class PaymentApprovedConsumer: IConsumer<IClaimPaymentApproved>
     {

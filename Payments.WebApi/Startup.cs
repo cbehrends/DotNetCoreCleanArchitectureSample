@@ -14,7 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Payments.Application;
-using Payments.Application.Core.Messaging;
+using Payments.Application.Features.Messaging;
 using Payments.Infrastructure;
 
 [assembly: ApiConventionType(typeof(DefaultApiConventions))]

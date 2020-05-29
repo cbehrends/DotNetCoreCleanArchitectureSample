@@ -12,7 +12,7 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
 using Payments.Application.Core.Interfaces;
-using Payments.Application.Core.Messaging;
+using Payments.Application.Features.Messaging;
 using Payments.Domain.Entities;
 
 namespace Payments.UnitTests.Messaging
