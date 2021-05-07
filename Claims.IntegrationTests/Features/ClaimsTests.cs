@@ -153,7 +153,7 @@ namespace Claims.IntegrationTests.Features
         }
 
         [Test]
-        public async Task Should_Throw_Not_Found_On_Delete_Claim_Does_Not_Exist()
+        public void Should_Throw_Not_Found_On_Delete_Claim_Does_Not_Exist()
         {
             var deleteClaim = new DeleteClaim.Command {Id = -9999};
 

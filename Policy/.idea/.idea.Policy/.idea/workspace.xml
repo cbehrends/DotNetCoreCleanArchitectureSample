@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="42fbd867-d50b-4253-8178-a652489c7ace" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../.idea/.idea.DotNetCleanArchitectureReference/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Policy/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Policy/.idea/indexLayout.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Policy/.idea/projectSettingsUpdater.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Policy/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Policy/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Rti.Common.Policy/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Rti.Common.Policy/.idea/contentModel.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Rti.Common.Policy/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Rti.Common.Policy/.idea/indexLayout.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Rti.Common.Policy/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Rti.Common.Policy/.idea/projectSettingsUpdater.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Rti.Common.Policy/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Rti.Common.Policy/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/Policy/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/Policy/v16/.suo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Policy.AspNetCore.UnitTest/Extensions/ApplicationBuilderExtensionsTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Policy.AspNetCore.UnitTest/Middleware/PolicyMiddlewareTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Policy.AspNetCore.UnitTest/Policy.AspNetCore.UnitTest.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Policy.AspNetCore.UnitTest/Providers/AuthorizationPolicyProviderTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Policy.AspNetCore.UnitTest/Providers/PermissionHandlerTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Policy.AspNetCore.UnitTest/appsettings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Policy.AspNetCore/Extensions/ApplicationBuilderExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Policy.AspNetCore/InjectDependencies.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Policy.AspNetCore/InternalAssemblyInfo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Policy.AspNetCore/Middleware/PolicyMiddleware.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Policy.AspNetCore/Policy.AspNetCore.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Policy.AspNetCore/Providers/AuthorizationPolicyProvider.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Policy.Core.UnitTests/Model/PermissionTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Policy.Core.UnitTests/Model/PolicyTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Policy.Core.UnitTests/Model/RoleTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Policy.Core.UnitTests/Policy.Core.UnitTests.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Policy.Core.UnitTests/PolicyServerRuntimeClientTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Policy.Core.UnitTests/TestUser.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Policy.Core/IPolicyRuntimeClient.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Policy.Core/Model/Permission.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Policy.Core/Model/Policy.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Policy.Core/Model/PolicyResult.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Policy.Core/Model/Role.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Policy.Core/Policy.Core.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Policy.Core/PolicyRuntimeClient.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Policy.Core/Properties.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Policy.sln" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Policy.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/.idea.DotNetCleanArchitectureReference/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/.idea.DotNetCleanArchitectureReference/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Claims.IntegrationTests/Features/ClaimsTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Claims.IntegrationTests/Features/ClaimsTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClaimsApi.Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../ClaimsApi.Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DotNetCleanArchitectureReference.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/../DotNetCleanArchitectureReference.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Payments.IntegrationTests/Features/PaymentTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Payments.IntegrationTests/Features/PaymentTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Payments.WebApi.Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../Payments.WebApi.Dockerfile" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Policy.AspNetCore/Middleware/PolicyMiddleware.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Policy.AspNetCore/Providers/AuthorizationPolicyProvider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Policy.AspNetCore/InjectDependencies.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Policy.AspNetCore/InternalAssemblyInfo.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <changedPaths>
+      <option value="$PROJECT_DIR$/Policy.Core.UnitTests/Policy.Core.UnitTests.csproj" />
+      <option value="$PROJECT_DIR$/Policy.Core/Properties.cs" />
+      <option value="$PROJECT_DIR$/Policy.AspNetCore/InternalAssemblyInfo.cs" />
+      <option value="$PROJECT_DIR$/Policy.AspNetCore/Policy.AspNetCore.csproj" />
+      <option value="$PROJECT_DIR$/Policy.AspNetCore/InjectDependencies.cs" />
+      <option value="$PROJECT_DIR$/Policy.AspNetCore/Middleware/PolicyMiddleware.cs" />
+      <option value="$PROJECT_DIR$/Policy.AspNetCore.UnitTest/Providers/PermissionHandlerTests.cs" />
+      <option value="$PROJECT_DIR$/Policy.Core.UnitTests/PolicyServerRuntimeClientTests.cs" />
+      <option value="$PROJECT_DIR$/Policy.Core/IPolicyRuntimeClient.cs" />
+      <option value="$PROJECT_DIR$/Policy.Core/Policy.Core.csproj" />
+      <option value="$PROJECT_DIR$/Policy.AspNetCore.UnitTest/Policy.AspNetCore.UnitTest.csproj" />
+      <option value="$PROJECT_DIR$/Policy.Core/Model/Policy.cs" />
+      <option value="$PROJECT_DIR$/Policy.Core.UnitTests/Model/PermissionTests.cs" />
+      <option value="$PROJECT_DIR$/Policy.Core.UnitTests/Model/RoleTests.cs" />
+      <option value="$PROJECT_DIR$/Policy.Core.UnitTests/Model/PolicyTests.cs" />
+      <option value="$PROJECT_DIR$/Policy.Core/PolicyRuntimeClient.cs" />
+      <option value="$PROJECT_DIR$/Policy.Core/Model/Role.cs" />
+      <option value="$PROJECT_DIR$/Policy.AspNetCore.UnitTest/Providers/AuthorizationPolicyProviderTests.cs" />
+      <option value="$PROJECT_DIR$/Policy.AspNetCore.UnitTest/Extensions/ApplicationBuilderExtensionsTests.cs" />
+      <option value="$PROJECT_DIR$/Policy.AspNetCore/Providers/AuthorizationPolicyProvider.cs" />
+      <option value="$PROJECT_DIR$/Policy.AspNetCore.UnitTest/Middleware/PolicyMiddlewareTests.cs" />
+    </changedPaths>
+  </component>
+  <component name="ProjectId" id="1sDFHBgu1FRtz9fsjuNVGDyEI50" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="File.Encoding" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="42fbd867-d50b-4253-8178-a652489c7ace" name="Default Changelist" comment="" />
+      <created>1620399163131</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1620399163131</updated>
+      <workItem from="1620399169315" duration="156000" />
+      <workItem from="1620399350582" duration="29000" />
+      <workItem from="1620399440521" duration="3405000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnitTestsCoverage.Settings">
+    <option name="coveragePercentColumnWidth" value="173" />
+    <option name="sortOrder" value="DESCENDING" />
+    <option name="sortedColumn" value="1" />
+    <option name="symbolColumnWidth" value="256" />
+    <coverage-tree-state>
+      <expand>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 92% 11/145" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 92% 11/145" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Policy.AspNetCore 73% 11/41" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 92% 11/145" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Policy.AspNetCore 73% 11/41" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Policy.AspNetCore 73% 11/41" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 92% 11/145" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Policy.AspNetCore 73% 11/41" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Policy.AspNetCore 73% 11/41" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Middleware 42% 11/19" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 92% 11/145" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Policy.AspNetCore 73% 11/41" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Policy.AspNetCore 73% 11/41" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Middleware 42% 11/19" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="PolicyMiddleware 42% 11/19" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 92% 11/145" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Policy.AspNetCore 73% 11/41" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Policy.AspNetCore 73% 11/41" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Middleware 42% 11/19" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="PolicyMiddleware 42% 11/19" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="InvokeAsync(HttpContext,IPolicyRuntimeClient) 27% 11/15" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 92% 11/145" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Policy.AspNetCore 73% 11/41" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Policy.AspNetCore 73% 11/41" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Middleware 42% 11/19" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="PolicyMiddleware 42% 11/19" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="InvokeAsync(HttpContext,IPolicyRuntimeClient) 27% 11/15" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="MoveNext() 27% 11/15" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+      </expand>
+      <select />
+    </coverage-tree-state>
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+</project>

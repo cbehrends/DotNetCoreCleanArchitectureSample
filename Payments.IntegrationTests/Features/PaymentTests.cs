@@ -56,7 +56,7 @@ namespace Payments.IntegrationTests.Features
         }
         
         [Test]
-        public async Task Should_Throw_NotFoundException_On_Get_Payment_By_Id()
+        public void Should_Throw_NotFoundException_On_Get_Payment_By_Id()
         {         
             var query = new GetPaymentById.Query {Id = -9999};
 
