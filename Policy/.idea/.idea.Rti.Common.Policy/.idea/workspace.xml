@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="dcf54ff4-7c78-4ec1-ab8a-479f3d9648cc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Rti.Common.Policy/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Rti.Common.Policy/.idea/indexLayout.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Rti.Common.Policy/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Rti.Common.Policy/.idea/projectSettingsUpdater.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Rti.Common.Policy/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rti.Common.Policy.AspNetCore/ApplicationBuilderExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rti.Common.Policy.AspNetCore/AuthorizationPolicyProvider.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rti.Common.Policy.AspNetCore/PolicyServerBuilder.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rti.Common.Policy.AspNetCore/PolicyServerMiddleware.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rti.Common.Policy.AspNetCore/Rti.Common.Policy.AspNetCore.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rti.Common.Policy.AspNetCore/ServiceCollectionExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rti.Common.Policy.Core.UnitTests/PermissionTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rti.Common.Policy.Core.UnitTests/PolicyTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rti.Common.Policy.Core.UnitTests/RoleTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rti.Common.Policy.Core.UnitTests/Rti.Common.Policy.Core.UnitTests.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rti.Common.Policy.Core.UnitTests/TestUser.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rti.Common.Policy.Core/IPolicyServerRuntimeClient.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rti.Common.Policy.Core/Model/Permission.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rti.Common.Policy.Core/Model/Policy.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rti.Common.Policy.Core/Model/Role.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rti.Common.Policy.Core/PolicyResult.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rti.Common.Policy.Core/PolicyServerRuntimeClient.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rti.Common.Policy.Core/Properties.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rti.Common.Policy.Core/Rti.Common.Policy.Core.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rti.Common.Policy.sln" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rti.Common.Policy.sln.DotSettings.user" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Rti.Common.Policy.Core/Class1.cs" />
+        <option value="$PROJECT_DIR$/Rti.Common.Policy.Core.UnitTests/UnitTest1.cs" />
+        <option value="$PROJECT_DIR$/Rti.Common.Policy.Core/IPolicyServerRuntimeClient.cs" />
+        <option value="$PROJECT_DIR$/Rti.Common.Policy.Core/PolicyResult.cs" />
+        <option value="$PROJECT_DIR$/Rti.Common.Policy.Core/PolicyServerRuntimeClient.cs" />
+        <option value="$PROJECT_DIR$/Rti.Common.Policy.Core/Properties.cs" />
+        <option value="$PROJECT_DIR$/Rti.Common.Policy.Core.UnitTests/PermissionTests.cs" />
+        <option value="$PROJECT_DIR$/Rti.Common.Policy.Core.UnitTests/RoleTests.cs" />
+        <option value="$PROJECT_DIR$/Rti.Common.Policy.Core/AspNetCore/ApplicationBuilderExtensions.cs" />
+        <option value="$PROJECT_DIR$/Rti.Common.Policy.Core/AspNetCore/PolicyServerBuilder.cs" />
+        <option value="$PROJECT_DIR$/Rti.Common.Policy.Core/AspNetCore/PolicyServerMiddleware.cs" />
+        <option value="$PROJECT_DIR$/Rti.Common.Policy.Core/AspNetCore/ServiceCollectionExtensions.cs" />
+        <option value="$PROJECT_DIR$/Rti.Common.Policy.Core.UnitTests/PolicyTests.cs" />
+        <option value="$PROJECT_DIR$/Rti.Common.Policy.Core/Local/Role.cs" />
+        <option value="$PROJECT_DIR$/Rti.Common.Policy.Core/AspNetCore/AuthorizationPolicyProvider.cs" />
+        <option value="$PROJECT_DIR$/Rti.Common.Policy.Core.UnitTests/TestUser.cs" />
+        <option value="$PROJECT_DIR$/Rti.Common.Policy.AspNetCore/Class1.cs" />
+        <option value="$PROJECT_DIR$/Rti.Common.Policy.AspNetCore/ApplicationBuilderExtensions.cs" />
+        <option value="$PROJECT_DIR$/Rti.Common.Policy.AspNetCore/Rti.Common.Policy.AspNetCore.csproj" />
+        <option value="$PROJECT_DIR$/Rti.Common.Policy.AspNetCore/PolicyServerMiddleware.cs" />
+        <option value="$PROJECT_DIR$/Rti.Common.Policy.AspNetCore/ServiceCollectionExtensions.cs" />
+        <option value="$PROJECT_DIR$/Rti.Common.Policy.Core/Rti.Common.Policy.Core.csproj" />
+        <option value="$PROJECT_DIR$/Rti.Common.Policy.Core/Model/Permission.cs" />
+        <option value="$PROJECT_DIR$/Rti.Common.Policy.Core/Model/Policy.cs" />
+        <option value="$PROJECT_DIR$/Rti.Common.Policy.Core/Model/Role.cs" />
+        <option value="$PROJECT_DIR$/Rti.Common.Policy.AspNetCore/AuthorizationPolicyProvider.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1jBjXy6tQFJbmMpBJwQJKyq4Qse" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dcf54ff4-7c78-4ec1-ab8a-479f3d9648cc" name="Default Changelist" comment="" />
+      <created>1603284423307</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1603284423307</updated>
+      <workItem from="1603284432721" duration="13475000" />
+      <workItem from="1603823438737" duration="827000" />
+      <workItem from="1603920969426" duration="805000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnitTestsCoverage.Settings">
+    <option name="coveragePercentColumnWidth" value="82" />
+    <option name="sortOrder" value="DESCENDING" />
+    <option name="sortedColumn" value="1" />
+    <option name="symbolColumnWidth" value="315" />
+    <coverage-tree-state>
+      <expand>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 31% 82/119" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 31% 82/119" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Rti.Common.Policy.Core 69% 17/54" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 31% 82/119" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Rti.Common.Policy.Core 69% 17/54" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Rti.Common.Policy.Core 69% 17/54" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 31% 82/119" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Rti.Common.Policy.AspNetCore 0% 65/65" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 31% 82/119" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Rti.Common.Policy.AspNetCore 0% 65/65" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Rti.Common.Policy.AspNetCore 0% 65/65" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+      </expand>
+      <select />
+    </coverage-tree-state>
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2472" y="257" key="Rider.ProjectTemplateDialog.Size" timestamp="1603288067531">
+      <screen x="1920" y="0" width="1920" height="1050" />
+    </state>
+    <state x="2472" y="257" key="Rider.ProjectTemplateDialog.Size/0.0.1536.864/1920.0.1920.1050/3840.0.1920.1080@1920.0.1920.1050" timestamp="1603288067531" />
+    <state x="2506" y="37" width="747" height="975" key="find.popup" timestamp="1603286398666">
+      <screen x="1920" y="0" width="1920" height="1050" />
+    </state>
+    <state x="2506" y="37" width="747" height="975" key="find.popup/0.0.1536.864/1920.0.1920.1050/3840.0.1920.1080@1920.0.1920.1050" timestamp="1603286398666" />
+  </component>
+</project>

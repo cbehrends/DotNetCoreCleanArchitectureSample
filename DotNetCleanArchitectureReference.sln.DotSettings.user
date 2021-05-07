@@ -1,11 +1,8 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=480d42c2_002Dbc65_002D4895_002Da375_002D4b1f435abecb/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from &amp;lt;Payments&amp;gt;\&amp;lt;Tests&amp;gt;\&amp;lt;Payments.UnitTests&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;Solution /&gt;
+	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\cdb10633\AppData\Local\JetBrains\Rider2021.1\resharper-host\temp\Rider\vAny\CoverageData\_DotNetCleanArchitectureReference.-2039331617\Snapshot\snapshot.utdcvr</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=7d931952_002D4ad1_002D4a71_002Db30b_002D9402efa3dd3b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Solution /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e17bb7f6_002Dba65_002D4ba4_002Dab20_002Da084581a1cef/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Session" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;Or&gt;
-    &lt;Project Location="/Users/coreybehrends/Projects/DotNetCleanArchitectureReference/Payments.IntegrationTests" Presentation="&amp;lt;Payments&amp;gt;\&amp;lt;Tests&amp;gt;\&amp;lt;Payments.IntegrationTests&amp;gt;" /&gt;
-    &lt;Project Location="/Users/coreybehrends/Projects/DotNetCleanArchitectureReference/Payments.UnitTests" Presentation="&amp;lt;Payments&amp;gt;\&amp;lt;Tests&amp;gt;\&amp;lt;Payments.UnitTests&amp;gt;" /&gt;
-  &lt;/Or&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d5d7dd38_002D51fc_002D4e60_002Da709_002Dd8679d651944/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from Solution #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Solution /&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
