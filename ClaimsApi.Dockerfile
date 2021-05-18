@@ -5,28 +5,28 @@ WORKDIR /app
 #COPY *.sln .
 COPY Common.ApplicationCore/Common.ApplicationCore.csproj ./Common.ApplicationCore/
 COPY Common.Messaging/Common.Messaging.csproj ./Common.Messaging/
-COPY Claims.WebApi/*.csproj ./Claims.WebApi/
-COPY Claims.Application/*.csproj ./Claims.Application/
-COPY Claims.Domain/*.csproj ./Claims.Domain/
-COPY Claims.Infrastructure/*.csproj ./Claims.Infrastructure/
+COPY Orders.WebApi/*.csproj ./Orders.WebApi/
+COPY Orders.Application/*.csproj ./Orders.Application/
+COPY Orders.Domain/*.csproj ./Orders.Domain/
+COPY Orders.Infrastructure/*.csproj ./Orders.Infrastructure/
 
 #
-RUN dotnet restore Claims.WebApi/Claims.WebApi.csproj
+RUN dotnet restore Orders.WebApi/Orders.WebApi.csproj
 #
 # copy everything else and build app
 COPY Common.ApplicationCore/. ./Common.ApplicationCore/
 COPY Common.Messaging/. ./Common.Messaging/
-COPY Claims.WebApi/. ./Claims.WebApi/
-COPY Claims.Application/. ./Claims.Application/
-COPY Claims.Domain/. ./Claims.Domain/
-COPY Claims.Infrastructure/. ./Claims.Infrastructure/
+COPY Orders.WebApi/. ./Orders.WebApi/
+COPY Orders.Application/. ./Orders.Application/
+COPY Orders.Domain/. ./Orders.Domain/
+COPY Orders.Infrastructure/. ./Orders.Infrastructure/
 
 #
-WORKDIR /app/Claims.WebApi
+WORKDIR /app/Orders.WebApi
 RUN dotnet publish -c Release -o out 
 #
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS runtime
 WORKDIR /app 
 #
-COPY --from=build /app/Claims.WebApi/out ./
-ENTRYPOINT ["dotnet", "Claims.WebApi.dll"]
+COPY --from=build /app/Orders.WebApi/out ./
+ENTRYPOINT ["dotnet", "Orders.WebApi.dll"]

@@ -12,7 +12,7 @@ namespace Payments.Application.Features.Payments
 
         public class Command : IRequest<Payment>
         {
-            public int ClaimId { get; set; }
+            public int OrderId { get; set; }
             public decimal PaymentAmount { get; set; }
         }
         
@@ -28,7 +28,7 @@ namespace Payments.Application.Features.Payments
             {
                 var newPayment = new Payment
                 {
-                    ClaimId = request.ClaimId,
+                    OrderId = request.OrderId,
                     PaymentAmount = request.PaymentAmount,
                     PaymentDate = DateTimeOffset.Now
                 };

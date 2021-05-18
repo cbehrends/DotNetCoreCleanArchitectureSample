@@ -6,7 +6,7 @@ namespace Payments.Application.Features.Payments
     {
         public ApplyPaymentValidator()
         {
-            RuleFor(pay => pay.ClaimId).GreaterThan(0);
+            RuleFor(pay => pay.OrderId).GreaterThan(0);
             RuleFor(pay => pay.PaymentAmount).GreaterThan(0);
 
         }

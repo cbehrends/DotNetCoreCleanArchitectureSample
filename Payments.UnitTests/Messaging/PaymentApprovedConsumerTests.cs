@@ -43,15 +43,15 @@ namespace Payments.UnitTests.Messaging
             
             try
             {
-                var requestClient = await harness.ConnectRequestClient<IClaimPaymentApproved>();
+                var requestClient = await harness.ConnectRequestClient<IOrderPaymentApproved>();
 
                 var response =  await requestClient.GetResponse<IMessageAccepted>(new MessageAccepted{Accepted = true});
 
                 response.Message.Accepted.Should().BeTrue();
 
-                Assert.That(consumer.Consumed.Select<IClaimPaymentApproved>().Any(), Is.True);
+                Assert.That(consumer.Consumed.Select<IOrderPaymentApproved>().Any(), Is.True);
 
-                Assert.That(harness.Sent.Select<IClaimPaymentApproved>().Any(), Is.True);
+                Assert.That(harness.Sent.Select<IOrderPaymentApproved>().Any(), Is.True);
                 mockContext.Verify(mc => 
                     mc.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
             }
