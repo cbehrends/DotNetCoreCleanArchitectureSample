@@ -9,7 +9,7 @@ using Payments.Domain.Entities;
 
 namespace Payments.Application.Features.Messaging
 {
-    public class PaymentApprovedConsumer: IConsumer<IClaimPaymentApproved>
+    public class PaymentApprovedConsumer: IConsumer<IOrderPaymentApproved>
     {
         private readonly ILogger<PaymentApprovedConsumer> _logger;
         private readonly IApplicationDbContext _context;
@@ -21,12 +21,12 @@ namespace Payments.Application.Features.Messaging
             _publishEndpoint = publishEndpoint ?? throw new NullReferenceException(nameof(IPublishEndpoint));
         }
 
-        public async Task Consume(ConsumeContext<IClaimPaymentApproved> context)
+        public async Task Consume(ConsumeContext<IOrderPaymentApproved> context)
         {
             
             var newPayment = new Payment
             {
-                ClaimId = context.Message.ClaimId,
+                OrderId = context.Message.OrderId,
                 PaymentAmount = context.Message.PaymentAmount,
                 PaymentDate = DateTimeOffset.Now
             };
@@ -37,12 +37,12 @@ namespace Payments.Application.Features.Messaging
             
             await context.RespondAsync<IMessageAccepted>(new MessageAccepted {Accepted = true});
             
-            var claimPaid = new ClaimPaid
+            var claimPaid = new OrderPaid
             {
-                ClaimId = context.Message.ClaimId,
+                ClaimId = context.Message.OrderId,
                 AmountApplied = context.Message.PaymentAmount
             };
-            _logger.LogInformation($"Payment approved for claim {context.Message.ClaimId.ToString()}");
+            _logger.LogInformation($"Payment approved for claim {context.Message.OrderId.ToString()}");
             await _publishEndpoint.Publish(claimPaid);
         }
     }

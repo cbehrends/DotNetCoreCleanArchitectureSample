@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using FakeItEasy;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using NUnit.Framework;
 using Policy.AspNetCore.Middleware;
 using Policy.Core;
+using Policy.Core.Model;
 
 namespace Policy.AspNetCore.UnitTests.Middleware
 {
@@ -45,24 +47,11 @@ namespace Policy.AspNetCore.UnitTests.Middleware
                 ClaimsIdentity oClaimsIdentity = A.Fake<ClaimsIdentity>();
                 A.CallTo(() => oClaimsIdentity.IsAuthenticated).Returns(true);
 
-                IUserInformation oUserInformation = A.Fake<IUserInformation>();
-                List<string> colPermissions = new List<string> { "WorkQueueFull" };
-
-                A.CallTo(() => oUserInformation.Permissions)
-                 .Returns(new ReadOnlyCollection<string>(colPermissions));
-                
-                A.CallTo(() => oUserInformation.Site)
-                 .Returns(new Site{Id = 1, Name = "Hoth"});
-
-                A.CallTo(() => m_oUser.GetUserInfo(A<int>.Ignored, A<string>.Ignored, A<string>.Ignored, A<BusinessModule>.Ignored))
-                 .Returns(oUserInformation);
                 List<Claim> colClaims = new List<Claim>
                                         {
                                             new Claim("preferred_username", "Han_Solo"),
                                             new Claim("role", "WorkQueueFull"),
-                                            new Claim("iss", "Rebel_Alliance"),
-                                            new Claim(RtiClaimTypes.SITE_ID, "1")
-                                        };
+                                            new Claim("iss", "Rebel_Alliance")                                        };
                 A.CallTo(() => oClaimsPrincipal.Claims).Returns(colClaims);
                 A.CallTo(() => oClaimsPrincipal.Identity).Returns(oClaimsIdentity);
                 A.CallTo(() => oHttpContext.User).Returns(oClaimsPrincipal);
@@ -78,8 +67,6 @@ namespace Policy.AspNetCore.UnitTests.Middleware
 
                 await m_oPolicyMiddleware.InvokeAsync(oHttpContext, m_oPolicyRuntimeClient);
 
-                A.CallTo(() => m_oUser.GetUserInfo(A<int>.Ignored, A<string>.Ignored, A<string>.Ignored, A<BusinessModule>.Ignored))
-                 .MustHaveHappened();
             }
 
     }

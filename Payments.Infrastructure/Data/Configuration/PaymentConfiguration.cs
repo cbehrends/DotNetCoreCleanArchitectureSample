@@ -16,7 +16,7 @@ namespace Payments.Infrastructure.Data.Configuration
                 .HasColumnType("decimal(7, 2)");
             
             builder
-                .Property(payment => payment.ClaimId)
+                .Property(payment => payment.OrderId)
                 .IsRequired();
             
             builder

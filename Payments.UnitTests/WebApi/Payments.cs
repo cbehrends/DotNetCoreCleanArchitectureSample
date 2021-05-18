@@ -34,7 +34,7 @@ namespace Payments.UnitTests.WebApi
             
             sut.Post(new ApplyPayment.Command
             {
-                ClaimId = 1,
+                OrderId = 1,
                 PaymentAmount = 200
             });
             
@@ -48,7 +48,7 @@ namespace Payments.UnitTests.WebApi
             var payment = new Payment
             {
                 Id = 1,
-                ClaimId = 2,
+                OrderId = 2,
                 PaymentAmount = 200,
                 PaymentDate = DateTimeOffset.Now
             };

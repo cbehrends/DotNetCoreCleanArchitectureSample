@@ -25,13 +25,13 @@ namespace Payments.IntegrationTests.Features
         {
             var command = new ApplyPayment.Command
             {
-                ClaimId = 1,
+                OrderId = 1,
                 PaymentAmount = 200
             };
 
             var newPayment = await SendAsync(command);
             newPayment.Id.Should().BeGreaterThan(-1);
-            newPayment.ClaimId.Should().Be(command.ClaimId);
+            newPayment.OrderId.Should().Be(command.OrderId);
             newPayment.PaymentAmount.Should().Be(command.PaymentAmount);
             newPayment.PaymentDate.Should().BeBefore(DateTimeOffset.Now.AddMinutes(1));
 
@@ -42,7 +42,7 @@ namespace Payments.IntegrationTests.Features
         {
             var command = new ApplyPayment.Command
             {
-                ClaimId = 1,
+                OrderId = 1,
                 PaymentAmount = 200
             };
             
