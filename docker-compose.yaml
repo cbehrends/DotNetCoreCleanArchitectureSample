@@ -4,14 +4,14 @@ services:
     claims_api:
         build: 
             context: .
-            dockerfile: ClaimsApi.Dockerfile
+            dockerfile: OrdersApi.Dockerfile
         ports:
             - "5000:80"
         depends_on:
             - sqldata
             - rabbitmq
         environment:
-            - ConnectionString=Data Source=sqldata;Initial Catalog=Claims;Integrated Security=False;Encrypt=False;User ID=sa;Password=P@ssW0rdTr1ckz
+            - ConnectionString=Data Source=sqldata;Initial Catalog=Orders;Integrated Security=False;Encrypt=False;User ID=sa;Password=P@ssW0rdTr1ckz
             - RabbitConnectionString=rabbitmq://rabbitmq
     payments_api:
         build:
