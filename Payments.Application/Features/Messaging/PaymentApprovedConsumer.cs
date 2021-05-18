@@ -37,13 +37,13 @@ namespace Payments.Application.Features.Messaging
             
             await context.RespondAsync<IMessageAccepted>(new MessageAccepted {Accepted = true});
             
-            var claimPaid = new OrderPaid
+            var orderPaid = new OrderPaid
             {
-                ClaimId = context.Message.OrderId,
+                OrderId = context.Message.OrderId,
                 AmountApplied = context.Message.PaymentAmount
             };
-            _logger.LogInformation($"Payment approved for claim {context.Message.OrderId.ToString()}");
-            await _publishEndpoint.Publish(claimPaid);
+            _logger.LogInformation($"Payment approved for order {context.Message.OrderId.ToString()}");
+            await _publishEndpoint.Publish(orderPaid);
         }
     }
 }

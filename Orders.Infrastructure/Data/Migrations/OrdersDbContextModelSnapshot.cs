@@ -49,7 +49,7 @@ namespace Orders.Infrastructure.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("ClaimId")
+                    b.Property<int>("OrderId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Cost")

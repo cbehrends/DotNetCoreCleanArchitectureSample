@@ -18,7 +18,7 @@ namespace Orders.Application.Features.Messaging
         }
         public async Task Consume(ConsumeContext<OrderPaid> context)
         {
-            var claim = await _context.Orders.SingleAsync(c => c.Id == context.Message.ClaimId);
+            var claim = await _context.Orders.SingleAsync(c => c.Id == context.Message.OrderId);
 
             if (claim.AmountDue - context.Message.AmountApplied >= 0)
             {

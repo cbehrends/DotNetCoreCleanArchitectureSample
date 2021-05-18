@@ -7,7 +7,7 @@ namespace Payments.Infrastructure.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.RenameColumn(
-                name: "ClaimId",
+                name: "OrderId",
                 table: "Payments",
                 newName: "OrderId");
         }
@@ -17,7 +17,7 @@ namespace Payments.Infrastructure.Data.Migrations
             migrationBuilder.RenameColumn(
                 name: "OrderId",
                 table: "Payments",
-                newName: "ClaimId");
+                newName: "OrderId");
         }
     }
 }
