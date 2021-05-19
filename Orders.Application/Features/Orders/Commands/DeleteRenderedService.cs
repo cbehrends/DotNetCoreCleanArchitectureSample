@@ -10,7 +10,7 @@ namespace Orders.Application.Features.Orders.Commands
 {
     public static class DeleteRenderedService
     {
-        public class Command : IRequest
+        public record Command : IRequest
         {
             public int Id { get; init; }
         }

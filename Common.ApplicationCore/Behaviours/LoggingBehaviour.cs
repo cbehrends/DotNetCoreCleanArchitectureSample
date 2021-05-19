@@ -8,20 +8,20 @@ namespace Common.ApplicationCore.Behaviours
 {
     public class LoggingBehaviour<TRequest> : IRequestPreProcessor<TRequest>
     {
-        private readonly ICurrentUserService _currentUserService;
+        private readonly ICurrentUserAccessor _currentUserAccessor;
         private readonly ILogger<TRequest> _logger;
 
-        public LoggingBehaviour(ILogger<TRequest> logger, ICurrentUserService currentUserService)
+        public LoggingBehaviour(ILogger<TRequest> logger, ICurrentUserAccessor currentUserAccessor)
         {
             _logger = logger;
-            _currentUserService = currentUserService;
+            _currentUserAccessor = currentUserAccessor;
         }
 
         public async Task Process(TRequest request, CancellationToken cancellationToken)
         {
             var requestName = typeof(TRequest).Name;
-            var userId = _currentUserService.UserId ?? string.Empty;
-            var userName = _currentUserService.UserId;
+            var userId = _currentUserAccessor.UserId ?? string.Empty;
+            var userName = _currentUserAccessor.UserId;
 
 
             _logger.LogInformation($"Request: {requestName} {userId} {userName} {request}");

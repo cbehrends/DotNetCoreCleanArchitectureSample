@@ -27,7 +27,7 @@ namespace Payments.WebApi.Controllers
         {
             try
             {
-                var payment = await _mediator.Send(new GetPaymentById.Query {Id = id});
+                var payment = await _mediator.Send(new GetPaymentById.Query(id));
                 return Ok(payment);
             }
             catch (NotFoundException e)

@@ -9,18 +9,18 @@ namespace Common.ApplicationCore.Behaviours
 {
     public class PerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
-        private readonly ICurrentUserService _currentUserService;
+        private readonly ICurrentUserAccessor _currentUserAccessor;
         private readonly ILogger<TRequest> _logger;
         private readonly Stopwatch _timer;
 
         public PerformanceBehaviour(
             ILogger<TRequest> logger,
-            ICurrentUserService currentUserService)
+            ICurrentUserAccessor currentUserAccessor)
         {
             _timer = new Stopwatch();
 
             _logger = logger;
-            _currentUserService = currentUserService;
+            _currentUserAccessor = currentUserAccessor;
         }
 
         public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken,
@@ -37,8 +37,8 @@ namespace Common.ApplicationCore.Behaviours
             if (elapsedMilliseconds <= 500) return response;
 
             var requestName = typeof(TRequest).Name;
-            var userId = _currentUserService.UserId ?? string.Empty;
-            var userName = _currentUserService.UserId;
+            var userId = _currentUserAccessor.UserId ?? string.Empty;
+            var userName = _currentUserAccessor.UserId;
 
             _logger.LogWarning(
                 $"Long Running Request: {requestName} ({elapsedMilliseconds} milliseconds) {userId} {userName} {request}");

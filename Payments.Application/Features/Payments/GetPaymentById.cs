@@ -11,10 +11,7 @@ namespace Payments.Application.Features.Payments
 {
     public static class GetPaymentById
     {
-        public class Query : IRequest<Payment>
-        {
-            public int Id { get; set; }
-        }
+        public record Query(int Id) : IRequest<Payment>;
 
         public class Handler : IRequestHandler<Query, Payment>
         {

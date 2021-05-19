@@ -9,7 +9,7 @@ namespace Payments.Application.Features.Payments
 {
     public static class ApplyPayment
     {
-        public class Command : IRequest<Payment>
+        public record Command : IRequest<Payment>
         {
             public int OrderId { get; set; }
             public decimal PaymentAmount { get; set; }

@@ -1,6 +1,6 @@
 namespace Common.ApplicationCore.Interfaces
 {
-    public interface ICurrentUserService
+    public interface ICurrentUserAccessor
     {
         string UserId { get; }
     }
