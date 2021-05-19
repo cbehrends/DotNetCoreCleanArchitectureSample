@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Orders.Domain.Entities;
 using Common.ApplicationCore.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Orders.Application.Core;
+using Orders.Domain.Entities;
 
 namespace Orders.Application.Features.Services.Queries
 {

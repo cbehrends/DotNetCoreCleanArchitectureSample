@@ -5,13 +5,13 @@ using Payments.Domain.Entities;
 
 namespace Payments.Infrastructure.Data
 {
-    public class PaymentsDbContext: DbContext, IApplicationDbContext
+    public class PaymentsDbContext : DbContext, IApplicationDbContext
     {
-        public DbSet<Payment> Payments { get; set; }
-        
         public PaymentsDbContext(DbContextOptions options) : base(options)
         {
         }
+
+        public DbSet<Payment> Payments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -19,6 +19,5 @@ namespace Payments.Infrastructure.Data
 
             base.OnModelCreating(builder);
         }
-        
     }
 }

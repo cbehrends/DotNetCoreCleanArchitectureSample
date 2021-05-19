@@ -9,9 +9,9 @@ namespace Common.ApplicationCore.Behaviours
 {
     public class PerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
-        private readonly Stopwatch _timer;
-        private readonly ILogger<TRequest> _logger;
         private readonly ICurrentUserService _currentUserService;
+        private readonly ILogger<TRequest> _logger;
+        private readonly Stopwatch _timer;
 
         public PerformanceBehaviour(
             ILogger<TRequest> logger,
@@ -35,7 +35,7 @@ namespace Common.ApplicationCore.Behaviours
             var elapsedMilliseconds = _timer.ElapsedMilliseconds;
 
             if (elapsedMilliseconds <= 500) return response;
-            
+
             var requestName = typeof(TRequest).Name;
             var userId = _currentUserService.UserId ?? string.Empty;
             var userName = _currentUserService.UserId;

@@ -8,7 +8,7 @@ namespace Orders.Application
 {
     public static class InjectDependencies
     {
-        public static IServiceCollection AddClaimsApplication(this IServiceCollection services)
+        public static IServiceCollection AddOrdersApplication(this IServiceCollection services)
         {
             // services.AddAutoMapper(Assembly.GetExecutingAssembly()); //Moved to WebApi
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());

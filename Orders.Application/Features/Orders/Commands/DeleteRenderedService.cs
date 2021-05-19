@@ -12,7 +12,7 @@ namespace Orders.Application.Features.Orders.Commands
     {
         public class Command : IRequest
         {
-            public int Id { get; set; }
+            public int Id { get; init; }
         }
 
         public class Handler : IRequestHandler<Command>

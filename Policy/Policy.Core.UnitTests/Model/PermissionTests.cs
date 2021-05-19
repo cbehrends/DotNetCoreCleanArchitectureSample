@@ -24,7 +24,7 @@ namespace Policy.Core.UnitTests.Model
         [Test]
         public void Evaluate_Should_Fail_For_Invalid_Roles()
         {
-            bool result = _subject.Evaluate(new[] { "foo" });
+            var result = _subject.Evaluate(new[] {"foo"});
             result.ShouldBeFalse();
         }
 
@@ -32,7 +32,7 @@ namespace Policy.Core.UnitTests.Model
         public void Evaluate_Should_Succeed_For_Valid_Roles()
         {
             _subject.Roles.Add("foo");
-            bool result = _subject.Evaluate(new[] { "foo" });
+            var result = _subject.Evaluate(new[] {"foo"});
             result.ShouldBeTrue();
         }
     }

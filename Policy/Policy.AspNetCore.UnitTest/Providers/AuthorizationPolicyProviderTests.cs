@@ -14,24 +14,26 @@ namespace Policy.AspNetCore.UnitTests.Providers
         [Test]
         public async Task GetPolicyAsync_Should_Return_AuthorizationPolicy_If_Found()
         {
-            List<PermissionRequirement> colPermissionRequirements = new() {new PermissionRequirement("MY_PERMISSION_REQUIREMENT")};
+            List<PermissionRequirement> colPermissionRequirements =
+                new() {new PermissionRequirement("MY_PERMISSION_REQUIREMENT")};
             List<string> colAuthSchemes = new() {"Default"};
             AuthorizationPolicy policy = new(colPermissionRequirements, colAuthSchemes);
 
-            IOptionsFactory<AuthorizationOptions> oOptionsFactory = A.Fake<IOptionsFactory<AuthorizationOptions>>();
+            var oOptionsFactory = A.Fake<IOptionsFactory<AuthorizationOptions>>();
             AuthorizationOptions oOptions = new()
-                                            {
-                                                      DefaultPolicy = new AuthorizationPolicy(colPermissionRequirements, colAuthSchemes),
-                                                      FallbackPolicy = new AuthorizationPolicy(colPermissionRequirements, colAuthSchemes),
-                                                      InvokeHandlersAfterFailure = false
-                                                  };
+            {
+                DefaultPolicy = new AuthorizationPolicy(colPermissionRequirements, colAuthSchemes),
+                FallbackPolicy = new AuthorizationPolicy(colPermissionRequirements, colAuthSchemes),
+                InvokeHandlersAfterFailure = false
+            };
             oOptions.AddPolicy("TASKING", policy);
             A.CallTo(() => oOptionsFactory.Create(A<string>.Ignored))
-             .Returns(oOptions);
+                .Returns(oOptions);
 
-            AuthorizationPolicyProvider oSystemUnderTest = new(new OptionsManager<AuthorizationOptions>(oOptionsFactory));
+            AuthorizationPolicyProvider oSystemUnderTest =
+                new(new OptionsManager<AuthorizationOptions>(oOptionsFactory));
 
-            AuthorizationPolicy oAuthorizationPolicy = await oSystemUnderTest.GetPolicyAsync("TASKING");
+            var oAuthorizationPolicy = await oSystemUnderTest.GetPolicyAsync("TASKING");
 
             oAuthorizationPolicy.ShouldNotBeNull();
             ((PermissionRequirement) oAuthorizationPolicy.Requirements[0]).Name.ShouldBe("MY_PERMISSION_REQUIREMENT");
@@ -40,11 +42,11 @@ namespace Policy.AspNetCore.UnitTests.Providers
         [Test]
         public async Task Should_Create_New_DefaultPolicyProvider_With_Given_Options()
         {
-            IOptions<AuthorizationOptions> oOptions = A.Dummy<IOptions<AuthorizationOptions>>();
+            var oOptions = A.Dummy<IOptions<AuthorizationOptions>>();
 
             AuthorizationPolicyProvider oSystemUnderTest = new(oOptions);
             oSystemUnderTest.ShouldNotBeNull();
-            AuthorizationPolicy oPolicy = await oSystemUnderTest.GetDefaultPolicyAsync();
+            var oPolicy = await oSystemUnderTest.GetDefaultPolicyAsync();
             oPolicy.ShouldNotBeNull();
         }
     }

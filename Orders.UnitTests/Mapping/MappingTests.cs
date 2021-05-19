@@ -1,14 +1,12 @@
 using System;
-using System.Security.Claims;
 using AutoMapper;
-using Orders.Application.Features.Services;
-using Orders.Application.Features.Services.Commands;
-using Orders.WebApi.ViewModels;
 using NUnit.Framework;
 using Orders.Application.Features.Orders;
 using Orders.Application.Features.Orders.Commands;
+using Orders.Application.Features.Services;
+using Orders.Application.Features.Services.Commands;
 using Orders.Domain.Entities;
-
+using Orders.WebApi.ViewModels;
 
 namespace Orders.UnitTests.Mapping
 {

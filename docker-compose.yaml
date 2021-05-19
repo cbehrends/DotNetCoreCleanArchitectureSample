@@ -1,7 +1,11 @@
 version: '3.6'
 
+volumes:
+    postgres_data:
+        driver: local
+        
 services:
-    claims_api:
+    orders_api:
         build: 
             context: .
             dockerfile: OrdersApi.Dockerfile
@@ -10,6 +14,7 @@ services:
         depends_on:
             - sqldata
             - rabbitmq
+            - keycloak
         environment:
             - ConnectionString=Data Source=sqldata;Initial Catalog=Orders;Integrated Security=False;Encrypt=False;User ID=sa;Password=P@ssW0rdTr1ckz
             - RabbitConnectionString=rabbitmq://rabbitmq
@@ -22,6 +27,7 @@ services:
         depends_on:
             - sqldata
             - rabbitmq
+            - keycloak
         environment:
             - ConnectionString=Data Source=sqldata;Initial Catalog=Payments;Integrated Security=False;Encrypt=False;User ID=sa;Password=P@ssW0rdTr1ckz
             - RabbitConnectionString=rabbitmq://rabbitmq
@@ -32,6 +38,34 @@ services:
             ACCEPT_EULA: "Y"
         ports:
         - "1433:1433"   
+          
+    postgres:
+        image: postgres
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+        environment:
+            POSTGRES_DB: keycloak
+            POSTGRES_USER: keycloak
+            POSTGRES_PASSWORD: password
+            
+    keycloak:
+        image: quay.io/keycloak/keycloak:latest
+        environment:
+            DB_VENDOR: POSTGRES
+            DB_ADDR: postgres
+            DB_DATABASE: keycloak
+            DB_USER: keycloak
+            DB_SCHEMA: public
+            DB_PASSWORD: password
+            KEYCLOAK_USER: admin
+            KEYCLOAK_PASSWORD: Pa55w0rd
+            # Uncomment the line below if you want to specify JDBC parameters. The parameter below is just an example, and it shouldn't be used in production without knowledge. It is highly recommended that you read the PostgreSQL JDBC driver documentation in order to use it.
+            #JDBC_PARAMS: "ssl=true"
+        ports:
+            - 8080:8080
+        depends_on:
+            - postgres
+                
     rabbitmq:
         container_name: rabbitmq
         ports:

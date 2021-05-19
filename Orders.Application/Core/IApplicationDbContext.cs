@@ -1,7 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
-using Orders.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Orders.Domain.Entities;
 
 namespace Orders.Application.Core
 {

@@ -5,23 +5,23 @@ using System.Linq;
 namespace Policy.Core.Model
 {
     /// <summary>
-    /// Models a permission
+    ///     Models a permission
     /// </summary>
     public class Permission
     {
         /// <summary>
-        /// Gets the name.
+        ///     Gets the name.
         /// </summary>
         /// <value>
-        /// The name.
+        ///     The name.
         /// </value>
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets the roles.
+        ///     Gets the roles.
         /// </summary>
         /// <value>
-        /// The roles.
+        ///     The roles.
         /// </value>
         public List<string> Roles { get; } = new();
 

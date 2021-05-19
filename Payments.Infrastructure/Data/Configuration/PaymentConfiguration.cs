@@ -14,15 +14,14 @@ namespace Payments.Infrastructure.Data.Configuration
             builder
                 .Property(payment => payment.PaymentAmount)
                 .HasColumnType("decimal(7, 2)");
-            
+
             builder
                 .Property(payment => payment.OrderId)
                 .IsRequired();
-            
+
             builder
                 .Property(payment => payment.PaymentDate)
                 .IsRequired();
-
         }
     }
 }

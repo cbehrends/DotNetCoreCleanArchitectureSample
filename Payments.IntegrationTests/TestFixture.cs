@@ -25,7 +25,7 @@ namespace Payments.IntegrationTests
         private static string _currentUserId;
 
         [OneTimeSetUp]
-        public void RunBeforeAnyTests()
+        public async Task RunBeforeAnyTests()
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
@@ -65,16 +65,16 @@ namespace Payments.IntegrationTests
                 TablesToIgnore = new[] {"__EFMigrationsHistory"}
             };
 
-            EnsureDatabase();
+            await EnsureDatabase();
         }
 
-        private static void EnsureDatabase()
+        private static async Task EnsureDatabase()
         {
             using var scope = _scopeFactory.CreateScope();
 
             var context = scope.ServiceProvider.GetService<PaymentsDbContext>();
 
-            context.Database.Migrate();
+            await context.Database.MigrateAsync();
         }
 
         public static async Task<TResponse> SendAsync<TResponse>(IRequest<TResponse> request)

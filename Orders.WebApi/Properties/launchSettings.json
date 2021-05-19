@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Claims.WebApi": {
+    "Orders.WebApi": {
       "commandName": "Project",
       "launchBrowser": false,
       "launchUrl": "swagger",

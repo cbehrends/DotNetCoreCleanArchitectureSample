@@ -1,36 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 
 namespace Policy.Core.Model
 {
     /// <summary>
-    /// Models an application role
+    ///     Models an application role
     /// </summary>
     public class Role
     {
-        /// <summary>
-        /// Gets the Id.
-        /// </summary>
-        /// <value>
-        /// The Id.
-        /// </value>
-        public int Id { get; set; }
 
         /// <summary>
-        /// Gets the name.
+        ///     Gets the name.
         /// </summary>
         /// <value>
-        /// The name.
+        ///     The name.
         /// </value>
-        public string Name { get; set; }
+        public string Name { get; init; }
 
         /// <summary>
-        /// Gets the Description.
+        ///     Gets the Description.
         /// </summary>
         /// <value>
-        /// The description.
+        ///     The description.
         /// </value>
         public string Description { get; set; }
 
@@ -38,7 +30,7 @@ namespace Policy.Core.Model
         {
             if (user == null) throw new ArgumentNullException(nameof(user));
 
-            List<string> roles = user.FindAll("role").Select(x => x.Value).ToList();
+            var roles = user.FindAll("role").Select(x => x.Value).ToList();
             return roles.Contains(Name);
         }
     }

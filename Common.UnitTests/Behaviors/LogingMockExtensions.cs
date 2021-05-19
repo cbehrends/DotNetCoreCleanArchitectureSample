@@ -11,7 +11,8 @@ namespace Common.UnitTests.Behaviors
         {
             times ??= Times.Once();
 
-            Func<object, Type, bool> state = (v, t) => string.Compare(v.ToString(), expectedMessage, StringComparison.Ordinal) == 0;
+            Func<object, Type, bool> state = (v, t) =>
+                string.Compare(v.ToString(), expectedMessage, StringComparison.Ordinal) == 0;
 
             logger.Verify(
                 x => x.Log(

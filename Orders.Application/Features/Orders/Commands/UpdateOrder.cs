@@ -46,7 +46,7 @@ namespace Orders.Application.Features.Orders.Commands
                 //     updateClaim.ServicesRendered.Add(new RenderedService
                 //         {ServiceId = renderedServiceDto.ServiceId, Order = updateClaim, Cost = serviceCost});
                 // }
-                
+
                 updateClaim.FirstName = request.FirstName;
 
 
@@ -62,12 +62,12 @@ namespace Orders.Application.Features.Orders.Commands
                         new RenderedService {ClaimId = request.Id, ServiceId = renderedService.ServiceId});
 
                 updateClaim.ServicesRendered = newServiceList;
-                
+
                 foreach (var renderedService in updateClaim.ServicesRendered)
                 {
-                    var serviceCost = await _context.Services.SingleOrDefaultAsync(s => 
-                            s.Id == renderedService.ServiceId, cancellationToken: cancellationToken)
-                        .Select(svc =>svc.Cost);
+                    var serviceCost = await _context.Services.SingleOrDefaultAsync(s =>
+                            s.Id == renderedService.ServiceId, cancellationToken)
+                        .Select(svc => svc.Cost);
 
                     renderedService.Cost = serviceCost;
                 }
@@ -86,7 +86,7 @@ namespace Orders.Application.Features.Orders.Commands
                 await _context.SaveChangesAsync(cancellationToken);
                 return await _context.Orders
                     .Include(cl => cl.ServicesRendered)
-                    .ThenInclude(sr => sr.Service)
+                    .ThenInclude<Order, RenderedService, Service>(sr => sr.Service)
                     .SingleAsync(cl => cl.Id == request.Id, cancellationToken);
             }
         }

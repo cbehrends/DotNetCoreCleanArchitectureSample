@@ -6,7 +6,6 @@ using Common.ApplicationCore.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Orders.Application.Features.Orders.Commands;
 using Orders.Application.Features.Orders.Model;
 using Orders.Application.Features.Orders.Queries;
@@ -18,9 +17,9 @@ namespace Orders.WebApi.Controllers
     [Route("orders")]
     public class OrdersController : ControllerBase
     {
-        private readonly IMediator _mediator;
         private readonly ILogger<OrdersController> _logger;
         private readonly IMapper _mapper;
+        private readonly IMediator _mediator;
 
         public OrdersController(IMediator mediator, ILogger<OrdersController> logger, IMapper mapper)
         {
@@ -34,7 +33,7 @@ namespace Orders.WebApi.Controllers
         {
             try
             {
-                return Ok(await _mediator.Send(new GetClaims.Query()));
+                return Ok(await _mediator.Send(new GetOrders.Query()));
             }
             catch (NotFoundException e)
             {
@@ -48,8 +47,8 @@ namespace Orders.WebApi.Controllers
         {
             try
             {
-                var claim = await _mediator.Send(new GetClaim.Query {Id = id});
-                return Ok(_mapper.Map<OrderViewModel>(claim));
+                var order = await _mediator.Send(new GetOrder.Query {Id = id});
+                return Ok(_mapper.Map<OrderViewModel>(order));
             }
             catch (NotFoundException e)
             {
@@ -59,44 +58,41 @@ namespace Orders.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<OrderViewModel>> Post([FromBody] NewOrder.Command newClaimCommand)
+        public async Task<ActionResult<OrderViewModel>> Post([FromBody] NewOrder.Command newOrderCommand)
         {
             try
             {
-                var newClaim = await _mediator.Send(newClaimCommand);
+                var newOrder = await _mediator.Send(newOrderCommand);
 
-                return CreatedAtAction(nameof(GetById),new {id = newClaim.Id},_mapper.Map<OrderViewModel>(newClaim));
+                return CreatedAtAction(nameof(GetById), new {id = newOrder.Id}, _mapper.Map<OrderViewModel>(newOrder));
             }
             catch (ValidationException e)
             {
                 return BadRequest(e.Errors);
             }
-           
         }
-        
-        [HttpPost("approve_payment/{claimId}")]
-        public async Task<IActionResult> ApprovePayment(int claimId)
+
+        [HttpPost("approve_payment/{orderId}")]
+        public async Task<IActionResult> ApprovePayment(int orderId)
         {
-            await _mediator.Send(new ApprovePayment.Command(claimId));
+            await _mediator.Send(new ApprovePayment.Command(orderId));
 
             return Accepted();
-
         }
-        
+
         [HttpPut]
-        public async Task<ActionResult<OrderViewModel>> Put([FromBody] UpdateOrder.Command newClaimCommand)
+        public async Task<ActionResult<OrderViewModel>> Put([FromBody] UpdateOrder.Command newOrderCommand)
         {
             try
             {
-                var newClaim = await _mediator.Send(newClaimCommand);
+                var newOrder = await _mediator.Send(newOrderCommand);
 
-                return Ok(_mapper.Map<OrderViewModel>(newClaim));
+                return Ok(_mapper.Map<OrderViewModel>(newOrder));
             }
             catch (ValidationException e)
             {
                 return BadRequest(e.Errors);
             }
-           
         }
 
         [HttpDelete("{id}")]

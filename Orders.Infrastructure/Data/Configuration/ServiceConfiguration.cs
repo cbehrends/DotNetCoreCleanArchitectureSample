@@ -1,6 +1,6 @@
-using Orders.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Orders.Domain.Entities;
 
 namespace Orders.Infrastructure.Data.Configuration
 {
@@ -15,14 +15,13 @@ namespace Orders.Infrastructure.Data.Configuration
                 .Property(service => service.Description)
                 .IsRequired()
                 .HasMaxLength(50);
-            
+
             builder.Property(service => service.Cost)
                 .HasColumnType("decimal(7,2)");
 
             builder
                 .HasIndex(svc => svc.Description)
                 .IsUnique();
-
         }
     }
 }

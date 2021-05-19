@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Orders.Application.Features.Services.Commands;
-using Orders.Application.Features.Services.Queries;
-using Orders.Domain.Entities;
 using Common.ApplicationCore.Exceptions;
 using FluentAssertions;
 using NUnit.Framework;
 using Orders.Application.Features.Orders.Commands;
 using Orders.Application.Features.Orders.Model;
 using Orders.Application.Features.Orders.Queries;
+using Orders.Application.Features.Services.Commands;
+using Orders.Application.Features.Services.Queries;
+using Orders.Domain.Entities;
 
 namespace Orders.IntegrationTests.Features
 {
@@ -71,7 +71,7 @@ namespace Orders.IntegrationTests.Features
 
             var newClaim = await SendAsync(command);
 
-            var claim = await SendAsync(new GetClaim.Query {Id = newClaim.Id});
+            var claim = await SendAsync(new GetOrder.Query {Id = newClaim.Id});
 
             claim.Should().NotBeNull();
             claim.FirstName.Should().Be("Corey");
@@ -99,7 +99,7 @@ namespace Orders.IntegrationTests.Features
             await SendAsync(command);
             await SendAsync(command);
 
-            var claims = await SendAsync(new GetClaims.Query());
+            var claims = await SendAsync(new GetOrders.Query());
 
             claims.Should().NotBeNullOrEmpty();
             claims.Count.Should().Be(2);
@@ -108,7 +108,7 @@ namespace Orders.IntegrationTests.Features
         [Test]
         public void Should_Throw_Not_Found_Exception_When_Claim_Not_Found()
         {
-            var query = new GetClaim.Query {Id = -999999};
+            var query = new GetOrder.Query {Id = -999999};
 
             FluentActions.Invoking(() =>
                 SendAsync(query)).Should().Throw<NotFoundException>();
@@ -117,7 +117,7 @@ namespace Orders.IntegrationTests.Features
         [Test]
         public void Should_Throw_Not_Found_Exception_When_No_Claims_Found()
         {
-            var query = new GetClaims.Query();
+            var query = new GetOrders.Query();
 
             FluentActions.Invoking(() =>
                 SendAsync(query)).Should().Throw<NotFoundException>();
@@ -186,7 +186,7 @@ namespace Orders.IntegrationTests.Features
 
             await SendAsync(delRendSvcCmd);
 
-            var getClaimQuery = new GetClaim.Query {Id = newClaim.Id};
+            var getClaimQuery = new GetOrder.Query {Id = newClaim.Id};
             var servicesQuery = new GetServices.Query();
             var svcList = await SendAsync(servicesQuery);
 

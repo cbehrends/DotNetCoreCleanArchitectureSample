@@ -6,19 +6,19 @@ using Policy.Core.Model;
 namespace Policy.Core
 {
     /// <summary>
-    /// Interface for Policy client
+    ///     Interface for Policy client
     /// </summary>
     public interface IPolicyRuntimeClient
     {
         /// <summary>
-        /// Evaluates the policy for a given user.
+        ///     Evaluates the policy for a given user.
         /// </summary>
         /// <param name="user">The user.</param>
         /// <returns></returns>
         Task<PolicyResult> EvaluateAsync(ClaimsPrincipal user);
 
         /// <summary>
-        /// Determines whether the user has a permission.
+        ///     Determines whether the user has a permission.
         /// </summary>
         /// <param name="user">The user.</param>
         /// <param name="permission">The permission.</param>
@@ -26,7 +26,7 @@ namespace Policy.Core
         Task<bool> HasPermissionAsync(ClaimsPrincipal user, string permission);
 
         /// <summary>
-        /// Determines whether the user is in a role.
+        ///     Determines whether the user is in a role.
         /// </summary>
         /// <param name="user">The user.</param>
         /// <param name="role">The role.</param>
@@ -34,7 +34,7 @@ namespace Policy.Core
         Task<bool> IsInRoleAsync(ClaimsPrincipal user, string role);
 
         /// <summary>
-        /// Gets a IEnumerable of strings for all policies applied to the given ClaimsPrincipal
+        ///     Gets a IEnumerable of strings for all policies applied to the given ClaimsPrincipal
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
