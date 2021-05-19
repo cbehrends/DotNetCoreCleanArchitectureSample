@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using Policy.Core.Model;
@@ -9,12 +8,12 @@ namespace Policy.Core.UnitTests.Model
 {
     public class PolicyTests
     {
-        Policy.Core.Model.Policy _subject;
+        private Core.Model.Policy _subject;
 
         [SetUp]
         public void Setup()
         {
-            _subject = new Policy.Core.Model.Policy();
+            _subject = new Core.Model.Policy();
         }
 
         [Test]
@@ -28,91 +27,91 @@ namespace Policy.Core.UnitTests.Model
         public async Task Evaluate_Should_Return_Matched_Roles()
         {
             _subject.Roles.AddRange(new[]
-                                    {
-                                        new Role {Name = "c"},
-                                        new Role {Name = "a"},
-                                        new Role {Name = "b"}
-                                    });
+            {
+                new Role {Name = "c", Description = "C"},
+                new Role {Name = "a", Description = "A"},
+                new Role {Name = "b", Description =  "B"}
+            });
 
-            ClaimsPrincipal user = TestUser.CreateWithPrefUserName("1", new[] { "c", "a" });
+            var user = TestUser.CreateWithPrefUserName("1", new[] {"c", "a"});
 
-            PolicyResult policyResult = await _subject.EvaluateAsync(user);
+            var policyResult = await _subject.EvaluateAsync(user);
 
-            policyResult.Roles.ShouldBe(new[] { "a", "c" }, true);
+            policyResult.Roles.ShouldBe(new[] {"a", "c"}, true);
         }
 
         [Test]
         public async Task Evaluate_Should_Not_Return_Unmatched_Roles()
         {
             _subject.Roles.AddRange(new[]
-                                    {
-                                        new Role {Name = "c"},
-                                        new Role {Name = "a"},
-                                        new Role {Name = "b"}
-                                    });
+            {
+                new Role {Name = "c", Description = "C"},
+                new Role {Name = "a", Description = "A"},
+                new Role {Name = "b", Description =  "B"}
+            });
 
-            ClaimsPrincipal claimsPrincipal = TestUser.CreateWithPrefUserName("1", new[] { "foo" });
+            var claimsPrincipal = TestUser.CreateWithPrefUserName("1", new[] {"foo"});
 
-            PolicyResult policyResult = await _subject.EvaluateAsync(claimsPrincipal);
+            var policyResult = await _subject.EvaluateAsync(claimsPrincipal);
 
             policyResult.Roles.ShouldBeEmpty();
         }
 
         [Test]
-        public async Task Evaluate_Should_Return_Remove_Duplicate_Roles()
+        public async Task Evaluate_Should_Remove_Duplicate_Roles()
         {
             _subject.Roles.AddRange(new[]
-                                    {
-                                        new Role {Name = "a"},
-                                        new Role {Name = "a"}
-                                    });
+            {
+                new Role {Name = "a", Description = "A"},
+                new Role {Name = "a", Description = "A"}
+            });
 
-            ClaimsPrincipal claimsPrincipal = TestUser.CreateWithPrefUserName("1", new[] { "a" });
+            var claimsPrincipal = TestUser.CreateWithPrefUserName("1", new[] {"a"});
 
-            PolicyResult policyResult = await _subject.EvaluateAsync(claimsPrincipal);
+            var policyResult = await _subject.EvaluateAsync(claimsPrincipal);
 
-            policyResult.Roles.ShouldBe(new[] { "a" }, true);
+            policyResult.Roles.ShouldBe(new[] {"a"}, true);
         }
 
         [Test]
         public async Task Evaluate_Should_Return_Matched_Permissions()
         {
             _subject.Roles.AddRange(new[]
-                                    {
-                                        new Role {Name = "foo"},
-                                        new Role {Name = "xoxo"}
-                                    });
+            {
+                new Role {Name = "foo"},
+                new Role {Name = "xoxo"}
+            });
             _subject.Permissions.AddRange(new[]
-                                          {
-                                              new Permission {Name = "a", Roles = {"foo"}},
-                                              new Permission {Name = "c", Roles = {"foo"}},
-                                              new Permission {Name = "b", Roles = {"xoxo"}}
-                                          });
+            {
+                new Permission {Name = "a", Roles = {"foo"}},
+                new Permission {Name = "c", Roles = {"foo"}},
+                new Permission {Name = "b", Roles = {"xoxo"}}
+            });
 
-            ClaimsPrincipal claimsPrincipal = TestUser.CreateWithPrefUserName("1", new[] { "foo" });
+            var claimsPrincipal = TestUser.CreateWithPrefUserName("1", new[] {"foo"});
 
-            PolicyResult policyResult = await _subject.EvaluateAsync(claimsPrincipal);
+            var policyResult = await _subject.EvaluateAsync(claimsPrincipal);
 
-            policyResult.Permissions.ShouldBe(new[] { "a", "c" }, true);
+            policyResult.Permissions.ShouldBe(new[] {"a", "c"}, true);
         }
 
         [Test]
         public async Task Evaluate_Should_Not_Return_Unmatched_Permissions()
         {
             _subject.Roles.AddRange(new[]
-                                    {
-                                        new Role {Name = "role"}
-                                    });
+            {
+                new Role {Name = "role"}
+            });
             _subject.Permissions.AddRange(new[]
-                                          {
-                                              new Permission {Name = "a", Roles = {"xoxo"}},
-                                              new Permission {Name = "c", Roles = {"xoxo"}},
-                                              new Permission {Name = "b", Roles = {"xoxo"}}
-                                          });
+            {
+                new Permission {Name = "a", Roles = {"xoxo"}},
+                new Permission {Name = "c", Roles = {"xoxo"}},
+                new Permission {Name = "b", Roles = {"xoxo"}}
+            });
 
-            ClaimsPrincipal claimsPrincipal = TestUser.CreateWithPrefUserName("1", new[] { "foo" });
+            var claimsPrincipal = TestUser.CreateWithPrefUserName("1", new[] {"foo"});
 
-            PolicyResult policyResult = await _subject.EvaluateAsync(claimsPrincipal);
+            var policyResult = await _subject.EvaluateAsync(claimsPrincipal);
 
             policyResult.Permissions.ShouldBeEmpty();
         }
@@ -121,33 +120,33 @@ namespace Policy.Core.UnitTests.Model
         public async Task Evaluate_Should_Remove_Duplicate_Permissions()
         {
             _subject.Roles.AddRange(new[]
-                                    {
-                                        new Role {Name = "foo"}
-                                    });
+            {
+                new Role {Name = "foo"}
+            });
             _subject.Permissions.AddRange(new[]
-                                          {
-                                              new Permission {Name = "a", Roles = {"foo"}},
-                                              new Permission {Name = "a", Roles = {"foo"}}
-                                          });
+            {
+                new Permission {Name = "a", Roles = {"foo"}},
+                new Permission {Name = "a", Roles = {"foo"}}
+            });
 
-            ClaimsPrincipal claimsPrincipal = TestUser.CreateWithPrefUserName("1", new[] { "foo" });
+            var claimsPrincipal = TestUser.CreateWithPrefUserName("1", new[] {"foo"});
 
-            PolicyResult policyResult = await _subject.EvaluateAsync(claimsPrincipal);
+            var policyResult = await _subject.EvaluateAsync(claimsPrincipal);
 
-            policyResult.Permissions.ShouldBe(new[] { "a" });
+            policyResult.Permissions.ShouldBe(new[] {"a"});
         }
 
         [Test]
         public async Task Evaluate_Should_Not_Allow_Identity_Roles_To_Match_Permissions()
         {
             _subject.Permissions.AddRange(new[]
-                                          {
-                                              new Permission {Name = "perm", Roles = {"role"}}
-                                          });
+            {
+                new Permission {Name = "perm", Roles = {"role"}}
+            });
 
-            ClaimsPrincipal claimsPrincipal = TestUser.CreateWithPrefUserName("1", new[] { "role" });
+            var claimsPrincipal = TestUser.CreateWithPrefUserName("1", new[] {"role"});
 
-            PolicyResult policyResult = await _subject.EvaluateAsync(claimsPrincipal);
+            var policyResult = await _subject.EvaluateAsync(claimsPrincipal);
 
             policyResult.Permissions.ShouldBeEmpty();
         }

@@ -10,12 +10,12 @@ using Policy.Core;
 namespace Policy.AspNetCore
 {
     /// <summary>
-    /// Helper class to configure DI
+    ///     Helper class to configure DI
     /// </summary>
     public static class InjectDependencies
     {
         /// <summary>
-        /// Adds the policy server client.
+        ///     Adds the policy server client.
         /// </summary>
         /// <param name="services">The services.</param>
         /// <param name="configuration">The configuration.</param>

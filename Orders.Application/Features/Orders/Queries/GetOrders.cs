@@ -11,7 +11,7 @@ using Orders.Application.Features.Orders.Model;
 
 namespace Orders.Application.Features.Orders.Queries
 {
-    public static class GetClaims
+    public static class GetOrders
     {
         public class Query : IRequest<List<OrderReadOnlyDto>>
         {
@@ -24,7 +24,7 @@ namespace Orders.Application.Features.Orders.Queries
             public Handler(IApplicationDbContext context)
             {
                 _context = context ?? throw new NullReferenceException(
-                    "GetClaims Handler requires a non null IApplicationDbContext");
+                    "GetOrders Handler requires a non null IApplicationDbContext");
             }
 
             public async Task<List<OrderReadOnlyDto>> Handle(Query request, CancellationToken cancellationToken)

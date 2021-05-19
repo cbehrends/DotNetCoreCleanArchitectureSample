@@ -1,22 +1,20 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Policy.Core;
-using Policy.Core.Model;
 
 namespace Policy.AspNetCore.Middleware
 {
     /// <summary>
-    /// Middleware to automatically turn application roles and permissions into claims
+    ///     Middleware to automatically turn application roles and permissions into claims
     /// </summary>
     public class PolicyMiddleware
     {
         private readonly RequestDelegate _next;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PolicyMiddleware"/> class.
+        ///     Initializes a new instance of the <see cref="PolicyMiddleware" /> class.
         /// </summary>
         /// <param name="next">The next.</param>
         public PolicyMiddleware(RequestDelegate next)
@@ -25,7 +23,7 @@ namespace Policy.AspNetCore.Middleware
         }
 
         /// <summary>
-        /// InvokeAsync
+        ///     InvokeAsync
         /// </summary>
         /// <param name="context">The context.</param>
         /// <param name="client">The client.</param>
@@ -34,12 +32,12 @@ namespace Policy.AspNetCore.Middleware
         {
             if (context.User.Identity.IsAuthenticated)
             {
-                PolicyResult policy = await client.EvaluateAsync(context.User);
+                var policy = await client.EvaluateAsync(context.User);
 
-                IEnumerable<Claim> roleClaims = policy.Roles.Select(x => new Claim("role", x));
-                IEnumerable<Claim> permissionClaims = policy.Permissions.Select(x => new Claim("permission", x));
+                var roleClaims = policy.Roles.Select(x => new Claim("role", x));
+                var permissionClaims = policy.Permissions.Select(x => new Claim("permission", x));
 
-                ClaimsIdentity id = new ClaimsIdentity("PolicyMiddleware", "name", "role");
+                var id = new ClaimsIdentity("PolicyMiddleware", "name", "role");
                 id.AddClaims(roleClaims);
                 id.AddClaims(permissionClaims);
 

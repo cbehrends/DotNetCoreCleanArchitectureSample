@@ -9,11 +9,11 @@ using Orders.Domain.Entities;
 
 namespace Orders.Application.Features.Orders.Queries
 {
-    public static class GetClaim
+    public static class GetOrder
     {
         public class Query : IRequest<Order>
         {
-            public int Id { get; set; }
+            public int Id { get; init; }
         }
 
         public class Handler : IRequestHandler<Query, Order>
@@ -23,7 +23,7 @@ namespace Orders.Application.Features.Orders.Queries
             public Handler(IApplicationDbContext context)
             {
                 _context = context ?? throw new NullReferenceException(
-                    "GetClaim Handler requires a non null IApplicationDbContext");
+                    "GetOrder Handler requires a non null IApplicationDbContext");
             }
 
             public async Task<Order> Handle(Query request, CancellationToken cancellationToken)
@@ -31,7 +31,7 @@ namespace Orders.Application.Features.Orders.Queries
                 var retVal = await _context
                     .Orders
                     .Include(claim => claim.ServicesRendered)
-                    .ThenInclude(sr => sr.Service)
+                    .ThenInclude<Order, RenderedService, Service>(sr => sr.Service)
                     .SingleOrDefaultAsync(claim => claim.Id == request.Id, cancellationToken);
 
                 if (retVal == null) throw new NotFoundException("Order", request.Id);

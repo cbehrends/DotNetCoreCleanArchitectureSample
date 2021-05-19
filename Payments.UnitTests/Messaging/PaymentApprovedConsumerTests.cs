@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Common.Messaging;
 using Common.Messaging.Payments;
 using FluentAssertions;
 using MassTransit;
@@ -17,21 +16,19 @@ using Payments.Domain.Entities;
 
 namespace Payments.UnitTests.Messaging
 {
-    
     public class PaymentApprovedConsumerTests
     {
-
         [Test]
         public async Task Should_Respond_To_IClaimPaymentApproved_Event()
         {
-            
             var harness = new InMemoryTestHarness();
             var mockContext = new Mock<IApplicationDbContext>();
             var mockLogger = new Mock<ILogger<PaymentApprovedConsumer>>();
             var mockEndpoint = new Mock<IPublishEndpoint>();
-            var consumer = harness.Consumer(() => new PaymentApprovedConsumer(mockLogger.Object, mockContext.Object, mockEndpoint.Object));
+            var consumer = harness.Consumer(() =>
+                new PaymentApprovedConsumer(mockLogger.Object, mockContext.Object, mockEndpoint.Object));
             var payments = new List<Payment>().AsQueryable();
-            
+
             var paymentsMock = new Mock<DbSet<Payment>>();
             paymentsMock.As<IQueryable<Payment>>().Setup(m => m.Provider).Returns(payments.Provider);
             paymentsMock.As<IQueryable<Payment>>().Setup(m => m.Expression).Returns(payments.Expression);
@@ -40,26 +37,25 @@ namespace Payments.UnitTests.Messaging
 
             mockContext.Setup(mc => mc.Payments).Returns(paymentsMock.Object);
             await harness.Start();
-            
+
             try
             {
                 var requestClient = await harness.ConnectRequestClient<IOrderPaymentApproved>();
 
-                var response =  await requestClient.GetResponse<IMessageAccepted>(new MessageAccepted{Accepted = true});
+                var response = await requestClient.GetResponse<IMessageAccepted>(new MessageAccepted {Accepted = true});
 
                 response.Message.Accepted.Should().BeTrue();
 
                 Assert.That(consumer.Consumed.Select<IOrderPaymentApproved>().Any(), Is.True);
 
                 Assert.That(harness.Sent.Select<IOrderPaymentApproved>().Any(), Is.True);
-                mockContext.Verify(mc => 
+                mockContext.Verify(mc =>
                     mc.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
             }
             finally
             {
                 await harness.Stop();
             }
-            
         }
     }
 }

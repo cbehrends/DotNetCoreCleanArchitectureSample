@@ -24,16 +24,14 @@ namespace Payments.Application.Features.Payments
             {
                 _context = context ?? throw new NullReferenceException(nameof(IApplicationDbContext));
             }
+
             public async Task<Payment> Handle(Query request, CancellationToken cancellationToken)
             {
                 var retVal = await _context
                     .Payments
                     .SingleOrDefaultAsync(p => p.Id == request.Id, cancellationToken);
 
-                if (retVal == null)
-                {
-                    throw new NotFoundException($"Payment with Id {request.Id} not found");
-                }
+                if (retVal == null) throw new NotFoundException($"Payment with Id {request.Id} not found");
 
                 return retVal;
             }

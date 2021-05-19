@@ -4,12 +4,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
-using ValidationContext = System.ComponentModel.DataAnnotations.ValidationContext;
 using ValidationException = Common.ApplicationCore.Exceptions.ValidationException;
 
 namespace Common.ApplicationCore.Behaviours
 {
-    public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
+    public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+        where TRequest : IRequest<TResponse>
     {
         private readonly IEnumerable<IValidator<TRequest>> _validators;
 
@@ -25,7 +25,7 @@ namespace Common.ApplicationCore.Behaviours
 
             var validationResults =
                 await Task.WhenAll(_validators.Select(v => v.ValidateAsync(request, cancellationToken)));
-            
+
             var failures = validationResults.SelectMany(r => r.Errors).Where(f => f != null).ToList();
 
             if (failures.Count != 0)

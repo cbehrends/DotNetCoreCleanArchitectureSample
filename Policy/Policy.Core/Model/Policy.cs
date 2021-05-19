@@ -7,24 +7,23 @@ using System.Threading.Tasks;
 namespace Policy.Core.Model
 {
     /// <summary>
-    /// Models a policy
+    ///     Models a policy
     /// </summary>
     public class Policy
     {
-
         /// <summary>
-        /// Gets the roles.
+        ///     Gets the roles.
         /// </summary>
         /// <value>
-        /// The roles.
+        ///     The roles.
         /// </value>
         public List<Role> Roles { get; } = new();
 
         /// <summary>
-        /// Gets the permissions.
+        ///     Gets the permissions.
         /// </summary>
         /// <value>
-        /// The permissions.
+        ///     The permissions.
         /// </value>
         public List<Permission> Permissions { get; } = new();
 
@@ -32,14 +31,15 @@ namespace Policy.Core.Model
         {
             if (user == null) throw new ArgumentNullException(nameof(user));
 
-            string[] roles = Roles.Where(role => role.Evaluate(user)).Select(role => role.Name).ToArray();
-            string[] permissions = Permissions.Where(permission => permission.Evaluate(roles)).Select(permission => permission.Name).ToArray();
+            var roles = Roles.Where(role => role.Evaluate(user)).Select(role => role.Name).ToArray();
+            var permissions = Permissions.Where(permission => permission.Evaluate(roles))
+                .Select(permission => permission.Name).ToArray();
 
             PolicyResult policyResult = new()
-                                         {
-                                                   Roles = roles.Distinct(),
-                                                   Permissions = permissions.Distinct()
-                                               };
+            {
+                Roles = roles.Distinct(),
+                Permissions = permissions.Distinct()
+            };
 
             return Task.FromResult(policyResult);
         }

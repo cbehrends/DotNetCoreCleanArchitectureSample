@@ -13,7 +13,7 @@ namespace Payments.Infrastructure.Data.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ClaimId = table.Column<int>(nullable: false),
+                    OrderId = table.Column<int>(nullable: false),
                     PaymentAmount = table.Column<decimal>(type: "decimal(7, 2)", nullable: false),
                     PaymentDate = table.Column<DateTimeOffset>(nullable: false)
                 },

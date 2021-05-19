@@ -11,8 +11,8 @@ namespace Common.UnitTests.Behaviors
 {
     public class LoggingTests
     {
-        private Mock<ILogger<MockRequest>> _loggingMock = new Mock<ILogger<MockRequest>>();
-        private Mock<ICurrentUserService> _currentUserServiceMock = new Mock<ICurrentUserService>();
+        private readonly Mock<ICurrentUserService> _currentUserServiceMock = new();
+        private Mock<ILogger<MockRequest>> _loggingMock = new();
 
         [Test]
         public async Task Should_Log_All_Requests_At_Info_Level()
@@ -44,7 +44,7 @@ namespace Common.UnitTests.Behaviors
 
             _loggingMock.VerifyLogging(LogLevel.Warning);
         }
-        
+
         [Test]
         public async Task Should_Not_Log_A_Warning_For_Fast_Requests()
         {
@@ -52,10 +52,7 @@ namespace Common.UnitTests.Behaviors
             _currentUserServiceMock.Setup(cus => cus.UserId).Returns("corey");
 
             var sut = new PerformanceBehaviour<MockRequest, bool>(_loggingMock.Object, _currentUserServiceMock.Object);
-            await sut.Handle(mockReq, CancellationToken.None, async () =>
-            {
-                return true;
-            });
+            await sut.Handle(mockReq, CancellationToken.None, async () => { return true; });
 
             _loggingMock.VerifyLogging(LogLevel.Warning, Times.Never());
         }

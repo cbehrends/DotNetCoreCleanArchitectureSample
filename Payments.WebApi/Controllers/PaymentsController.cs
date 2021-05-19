@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
 using System.Threading.Tasks;
 using Common.ApplicationCore.Exceptions;
 using MediatR;
@@ -16,9 +13,9 @@ namespace Payments.WebApi.Controllers
     [Route("payments")]
     public class PaymentsController : ControllerBase
     {
-
         private readonly ILogger<PaymentsController> _logger;
         private readonly IMediator _mediator;
+
         public PaymentsController(ILogger<PaymentsController> logger, IMediator mediator)
         {
             _logger = logger ?? throw new NullReferenceException(nameof(ILogger<PaymentsController>));
@@ -38,15 +35,14 @@ namespace Payments.WebApi.Controllers
                 _logger.LogInformation(e.Message, e);
                 return NotFound(e.Message);
             }
-            
         }
-        
+
         [HttpPost]
         public async Task<ActionResult<Payment>> Post(ApplyPayment.Command applyPaymentCommand)
         {
             var newPayment = await _mediator.Send(applyPaymentCommand);
-            
-            return CreatedAtAction(nameof(GetById),new {id = newPayment.Id},newPayment);
+
+            return CreatedAtAction(nameof(GetById), new {id = newPayment.Id}, newPayment);
         }
     }
 }

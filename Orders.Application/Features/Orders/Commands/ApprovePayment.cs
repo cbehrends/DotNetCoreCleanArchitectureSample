@@ -13,34 +13,35 @@ namespace Orders.Application.Features.Orders.Commands
     {
         public class Command : IRequest
         {
-            public int OrderId { get;}
-
             public Command(int orderId)
             {
                 OrderId = orderId;
             }
+
+            public int OrderId { get; }
         }
 
         public class Handler : IRequestHandler<Command>
         {
+            private readonly IApplicationDbContext _context;
             private readonly IMessagePublisher _publisher;
-            public readonly IApplicationDbContext _context;
+
             public Handler(IMessagePublisher publisher, IApplicationDbContext context)
             {
-                _context = context ?? throw new ArgumentNullException(nameof(IApplicationDbContext)); 
-                _publisher = publisher ?? throw new ArgumentNullException(nameof(IMessagePublisher));
+                _context = context ?? throw new ArgumentNullException(nameof(context));
+                _publisher = publisher ?? throw new ArgumentNullException(nameof(publisher));
             }
+
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
                 var paymentAmount = await _context
                     .Orders
-                    .SingleAsync(c => c.Id == request.OrderId, cancellationToken: cancellationToken)
+                    .SingleAsync(c => c.Id == request.OrderId, cancellationToken)
                     .Select(c => c.AmountDue);
-                
+
                 await _publisher.SendClaimPaymentApproved(new OrderPaymentApproved(request.OrderId, paymentAmount));
                 return Unit.Value;
             }
         }
-        
     }
 }

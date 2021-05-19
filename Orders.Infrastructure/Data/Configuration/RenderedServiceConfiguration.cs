@@ -1,6 +1,6 @@
-using Orders.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Orders.Domain.Entities;
 
 namespace Orders.Infrastructure.Data.Configuration
 {

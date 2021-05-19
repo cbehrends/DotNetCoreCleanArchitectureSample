@@ -9,16 +9,15 @@ namespace Policy.AspNetCore.UnitTests.Extensions
 {
     public class ApplicationBuilderExtensionsTests
     {
-
-        public class LoadMiddlewareTests: ApplicationBuilderExtensionsTests
+        public class LoadMiddlewareTests : ApplicationBuilderExtensionsTests
         {
             [Test]
             public void Should_Load_PolicyMiddleware()
             {
-                IApplicationBuilder oApplicationBuilderFake = A.Fake<IApplicationBuilder>();
+                var oApplicationBuilderFake = A.Fake<IApplicationBuilder>();
                 ApplicationBuilderExtensions.UsePolicyClaims(oApplicationBuilderFake);
                 A.CallTo(() => oApplicationBuilderFake.Use(A<Func<RequestDelegate, RequestDelegate>>.Ignored))
-                 .MustHaveHappened();
+                    .MustHaveHappened();
             }
         }
     }

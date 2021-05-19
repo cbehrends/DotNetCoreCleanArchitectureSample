@@ -7,9 +7,9 @@ namespace Policy.Core.UnitTests
     public static class TestUser
     {
         public static ClaimsPrincipal CreateWithPrefUserName(string preferedUserName,
-                                                    IEnumerable<string> roles = null, IEnumerable<Claim> claims = null)
+            IEnumerable<string> roles = null, IEnumerable<Claim> claims = null)
         {
-            List<Claim> list = new() { new Claim("prefered_username", preferedUserName) };
+            List<Claim> list = new() {new Claim("prefered_username", preferedUserName)};
 
             if (roles != null) list.AddRange(roles.Select(x => new Claim("role", x)));
 

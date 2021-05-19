@@ -1,14 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Common.ApplicationCore.Exceptions;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Orders.Application.Features.Services.Commands;
 using Orders.Application.Features.Services.Queries;
 using Orders.Domain.Entities;
-using Common.ApplicationCore.Exceptions;
-using MediatR;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace Orders.WebApi.Controllers
 {
@@ -16,8 +15,8 @@ namespace Orders.WebApi.Controllers
     [Route("services")]
     public class ServicesController : ControllerBase
     {
-        private readonly IMediator _mediator;
         private readonly ILogger<ServicesController> _logger;
+        private readonly IMediator _mediator;
 
         public ServicesController(IMediator mediator, ILogger<ServicesController> logger)
         {
@@ -62,15 +61,14 @@ namespace Orders.WebApi.Controllers
             {
                 var newService = await _mediator.Send(command);
 
-                return CreatedAtAction(nameof(Get),new {id = newService.Id},newService);
+                return CreatedAtAction(nameof(Get), new {id = newService.Id}, newService);
             }
             catch (ValidationException e)
             {
                 return BadRequest(e.Errors);
             }
-            
         }
-        
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {

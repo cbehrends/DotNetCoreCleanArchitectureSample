@@ -1,11 +1,11 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Orders.Domain.Entities;
 using Common.ApplicationCore.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Orders.Application.Core;
+using Orders.Domain.Entities;
 
 namespace Orders.Application.Features.Services.Queries
 {
@@ -13,7 +13,7 @@ namespace Orders.Application.Features.Services.Queries
     {
         public class Query : IRequest<Service>
         {
-            public int Id { get; set; }
+            public int Id { get; init; }
         }
 
         public class Handler : IRequestHandler<Query, Service>
@@ -23,7 +23,7 @@ namespace Orders.Application.Features.Services.Queries
             public Handler(IApplicationDbContext context)
             {
                 _context = context ?? throw new NullReferenceException(
-                    "GetClaim Handler requires a non null IApplicationDbContext");
+                    "GetOrder Handler requires a non null IApplicationDbContext");
             }
 
             public async Task<Service> Handle(Query request, CancellationToken cancellationToken)

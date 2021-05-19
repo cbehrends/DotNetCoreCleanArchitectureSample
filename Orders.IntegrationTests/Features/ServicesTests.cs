@@ -1,14 +1,13 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Orders.Application.Features.Services.Commands;
-using Orders.Application.Features.Services.Queries;
-using Orders.Domain.Entities;
 using Common.ApplicationCore.Exceptions;
 using FluentAssertions;
 using NUnit.Framework;
 using Orders.Application.Features.Orders.Commands;
 using Orders.Application.Features.Orders.Model;
-
+using Orders.Application.Features.Services.Commands;
+using Orders.Application.Features.Services.Queries;
+using Orders.Domain.Entities;
 
 namespace Orders.IntegrationTests.Features
 {
@@ -65,7 +64,7 @@ namespace Orders.IntegrationTests.Features
             {
                 Description = "test"
             };
-            
+
             var command2 = new NewService.Command
             {
                 Description = "test2"
@@ -145,7 +144,7 @@ namespace Orders.IntegrationTests.Features
 
             newClaimCmd.ServicesRendered.Add(new RenderedServiceDto {ServiceId = svc.Id});
 
-           await SendAsync(newClaimCmd);
+            await SendAsync(newClaimCmd);
 
             var deleteService = new DeleteService.Command {Id = svc.Id};
 

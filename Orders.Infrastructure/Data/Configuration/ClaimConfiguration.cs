@@ -1,6 +1,6 @@
-using Orders.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Orders.Domain.Entities;
 
 namespace Orders.Infrastructure.Data.Configuration
 {
@@ -18,7 +18,7 @@ namespace Orders.Infrastructure.Data.Configuration
 
             builder.Property(claim => claim.AmountDue)
                 .HasColumnType("decimal(8,2)");
-            
+
             builder.Property(claim => claim.TotalAmount)
                 .HasColumnType("decimal(8,2)");
 

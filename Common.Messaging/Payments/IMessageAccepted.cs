@@ -2,7 +2,7 @@ namespace Common.Messaging.Payments
 {
     public interface IMessageAccepted
     {
-       bool Accepted { get; set; }
+        bool Accepted { get; set; }
     }
 
     public class MessageAccepted : IMessageAccepted

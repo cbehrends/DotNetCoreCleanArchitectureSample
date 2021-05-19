@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace Common.UnitTests.Behaviors
 {
-    public class MockRequestValidator: AbstractValidator<MockRequest>
+    public class MockRequestValidator : AbstractValidator<MockRequest>
     {
         public MockRequestValidator()
         {

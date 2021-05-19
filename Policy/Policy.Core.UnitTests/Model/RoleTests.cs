@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Security.Claims;
 using NUnit.Framework;
 using Policy.Core.Model;
 using Shouldly;
@@ -14,7 +13,6 @@ namespace Policy.Core.UnitTests.Model
         {
             m_oRole = new Role
             {
-                Id = 1,
                 Name = "foo",
                 Description = "Foo"
             };
@@ -33,8 +31,8 @@ namespace Policy.Core.UnitTests.Model
             [Test]
             public void Evaluate_Should_Fail_For_Invalid_Role()
             {
-                ClaimsPrincipal claimsPrincipal = TestUser.CreateWithPrefUserName("hank_hill");
-                bool result = m_oRole.Evaluate(claimsPrincipal);
+                var claimsPrincipal = TestUser.CreateWithPrefUserName("hank_hill");
+                var result = m_oRole.Evaluate(claimsPrincipal);
 
                 result.ShouldBeFalse();
             }
@@ -42,8 +40,8 @@ namespace Policy.Core.UnitTests.Model
             [Test]
             public void Evaluate_Should_Succeed_For_Valid_Role()
             {
-                ClaimsPrincipal claimsPrincipal = TestUser.CreateWithPrefUserName("1", new[] { "foo" });
-                bool result = m_oRole.Evaluate(claimsPrincipal);
+                var claimsPrincipal = TestUser.CreateWithPrefUserName("1", new[] {"foo"});
+                var result = m_oRole.Evaluate(claimsPrincipal);
                 result.ShouldBeTrue();
             }
         }

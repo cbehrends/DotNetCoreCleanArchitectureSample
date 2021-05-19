@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper;
 using MassTransit.Initializers;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -26,7 +25,7 @@ namespace Orders.Application.Features.Orders.Commands
         {
             private readonly IApplicationDbContext _context;
 
-            public Handler(IApplicationDbContext context, IMapper mapper)
+            public Handler(IApplicationDbContext context)
             {
                 _context = context ?? throw new NullReferenceException(
                     "NewOrder Handler requires a non null IApplicationDbContext");
@@ -37,15 +36,15 @@ namespace Orders.Application.Features.Orders.Commands
                 var newClaim = new Order
                 {
                     FirstName = request.FirstName,
-                    ServicesRendered = new List<RenderedService>(),
+                    ServicesRendered = new List<RenderedService>()
                 };
 
                 foreach (var renderedServiceDto in request.ServicesRendered)
                 {
-                    var serviceCost = await _context.Services.SingleOrDefaultAsync(s => 
-                        s.Id == renderedServiceDto.ServiceId, cancellationToken: cancellationToken)
-                        .Select(svc =>svc.Cost);
-                    
+                    var serviceCost = await _context.Services.SingleOrDefaultAsync(s =>
+                            s.Id == renderedServiceDto.ServiceId, cancellationToken)
+                        .Select(svc => svc.Cost);
+
                     newClaim.ServicesRendered.Add(new RenderedService
                         {ServiceId = renderedServiceDto.ServiceId, Order = newClaim, Cost = serviceCost});
                 }
@@ -60,7 +59,7 @@ namespace Orders.Application.Features.Orders.Commands
                 return await _context
                     .Orders
                     .Include(c => c.ServicesRendered)
-                    .ThenInclude(sr => sr.Service)
+                    .ThenInclude<Order, RenderedService, Service>(sr => sr.Service)
                     .SingleAsync(c => c.Id == newClaim.Id, cancellationToken);
             }
         }

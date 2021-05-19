@@ -8,8 +8,8 @@ namespace Common.ApplicationCore.Behaviours
 {
     public class LoggingBehaviour<TRequest> : IRequestPreProcessor<TRequest>
     {
-        private readonly ILogger<TRequest> _logger;
         private readonly ICurrentUserService _currentUserService;
+        private readonly ILogger<TRequest> _logger;
 
         public LoggingBehaviour(ILogger<TRequest> logger, ICurrentUserService currentUserService)
         {
