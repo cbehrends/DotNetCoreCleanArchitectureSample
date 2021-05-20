@@ -11,29 +11,29 @@ namespace Policy.Core.UnitTests
 {
     public class PolicyServerRuntimeClientTests
     {
-        private IPolicyRuntimeClient m_oPolicyClient;
-        private ClaimsPrincipal m_oValidClaimsPrincipal;
+        private IPolicyRuntimeClient _policyClient;
+        private ClaimsPrincipal _validClaimsPrincipal;
 
         [SetUp]
         public void Setup()
         {
-            List<Claim> colClaims = new();
-            Claim oClaim = new("role", "Nerf_Herders");
-            colClaims.Add(oClaim);
-            ClaimsIdentity oClaimsIdentity = new(colClaims);
+            List<Claim> claims = new();
+            Claim claim = new("role", "Nerf_Herders");
+            claims.Add(claim);
+            ClaimsIdentity oClaimsIdentity = new(claims);
             Core.Model.Policy oNerfHerders = new();
             oNerfHerders.Roles.Add(new Role {Name = "Nerf_Herders"});
-            Permission oSoloHerder = new() {Name = "SoloNerfHerder"};
-            Permission oNewbHerder = new() {Name = "NoobNerfHerder"};
+            Permission soloHerder = new() {Name = "SoloNerfHerder"};
+            Permission newbHerder = new() {Name = "NoobNerfHerder"};
 
-            oSoloHerder.Roles.AddRange(oNerfHerders.Roles.Select(role => role.Name));
-            oNewbHerder.Roles.AddRange(oNerfHerders.Roles.Select(role => role.Name));
+            soloHerder.Roles.AddRange(oNerfHerders.Roles.Select(role => role.Name));
+            newbHerder.Roles.AddRange(oNerfHerders.Roles.Select(role => role.Name));
 
-            oNerfHerders.Permissions.Add(oSoloHerder);
-            oNerfHerders.Permissions.Add(oNewbHerder);
+            oNerfHerders.Permissions.Add(soloHerder);
+            oNerfHerders.Permissions.Add(newbHerder);
 
-            m_oValidClaimsPrincipal = new ClaimsPrincipal(oClaimsIdentity);
-            m_oPolicyClient = new PolicyRuntimeClient(oNerfHerders);
+            _validClaimsPrincipal = new ClaimsPrincipal(oClaimsIdentity);
+            _policyClient = new PolicyRuntimeClient(oNerfHerders);
         }
 
         [TestFixture]
@@ -42,21 +42,21 @@ namespace Policy.Core.UnitTests
             [Test]
             public async Task Should_Return_True_If_User_In_Given_Role()
             {
-                var bResult = await m_oPolicyClient.IsInRoleAsync(m_oValidClaimsPrincipal, "Nerf_Herders");
+                var bResult = await _policyClient.IsInRoleAsync(_validClaimsPrincipal, "Nerf_Herders");
                 bResult.ShouldBeTrue();
             }
 
             [Test]
             public async Task Should_Return_False_If_User_Is_Not_In_Given_Role()
             {
-                var bResult = await m_oPolicyClient.IsInRoleAsync(m_oValidClaimsPrincipal, "Bounty_Hunters");
+                var bResult = await _policyClient.IsInRoleAsync(_validClaimsPrincipal, "Bounty_Hunters");
                 bResult.ShouldBeFalse();
             }
 
             [Test]
             public async Task Should_Throw_ArgumentNullException_If_User_Is_Null()
             {
-                await m_oPolicyClient.IsInRoleAsync(null, "Don't Matter").ShouldThrowAsync<ArgumentNullException>();
+                await _policyClient.IsInRoleAsync(null, "Don't Matter").ShouldThrowAsync<ArgumentNullException>();
             }
         }
 
@@ -66,16 +66,16 @@ namespace Policy.Core.UnitTests
             [Test]
             public async Task Should_Return_True_If_User_Has_Permission()
             {
-                var bHasPermission =
-                    await m_oPolicyClient.HasPermissionAsync(m_oValidClaimsPrincipal, "SoloNerfHerder");
-                bHasPermission.ShouldBeTrue();
+                var hasPermission =
+                    await _policyClient.HasPermissionAsync(_validClaimsPrincipal, "SoloNerfHerder");
+                hasPermission.ShouldBeTrue();
             }
 
             [Test]
             public async Task Should_Return_False_If_User_Does_Not_Have_Permission()
             {
-                var bHasPermission = await m_oPolicyClient.HasPermissionAsync(m_oValidClaimsPrincipal, "BanthaRider");
-                bHasPermission.ShouldBeFalse();
+                var hasPermission = await _policyClient.HasPermissionAsync(_validClaimsPrincipal, "BanthaRider");
+                hasPermission.ShouldBeFalse();
             }
         }
 
@@ -85,7 +85,7 @@ namespace Policy.Core.UnitTests
             [Test]
             public async Task Should_Return_Applied_Policies()
             {
-                var colAppliedPolicy = await m_oPolicyClient.GetAppliedPolicyAsync(m_oValidClaimsPrincipal);
+                var colAppliedPolicy = await _policyClient.GetAppliedPolicyAsync(_validClaimsPrincipal);
                 colAppliedPolicy.ShouldNotBeEmpty();
             }
         }

@@ -1,0 +1,32 @@
+<section fxLayout="column" fxFlexAlign="stretch">
+  <div fxFlexAlign="center">
+    <h2>Purchase Orders</h2>
+  </div>
+  <div class="form">
+    <div class="add-button-container" >
+      <button class="add-button" mat-button  matTooltip="New PO" (click)="newOrder()">
+        <mat-icon class="material-icons-outlined edit-button">add</mat-icon>
+        <span>
+          New PO
+        </span>
+       </button>
+    </div>
+    <mat-list>
+      <mat-list-item *ngFor="let order of orders">
+        <div class="list-item-container">
+          <div>
+            {{order.firstName}} ({{order.servicesRenderedCount}} Services Rendered)
+          </div>
+          <div class="tool-box">
+            <button mat-icon-button matTooltip="Edit details" (click)="editDialog(order.id)">
+              <mat-icon class="material-icons-outlined edit-button">edit</mat-icon>
+            </button>
+            <button class="delete-button" mat-icon-button matTooltip="Delete order">
+              <mat-icon class="material-icons-outlined edit-button">delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</section>

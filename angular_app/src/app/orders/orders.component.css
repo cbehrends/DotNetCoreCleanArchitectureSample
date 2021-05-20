@@ -1,0 +1,69 @@
+
+section {
+  width: 100%;
+}
+section div p{
+  font-size: 30px;
+  margin: 30px 0;
+}
+
+.service-list-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.tool-box {
+  display: none;
+
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+}
+
+.list-item-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.add-button{
+  color: green;
+}
+
+.add-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  /*align-items: baseline;*/
+  /*align-content: center;*/
+}
+
+
+.edit-button{
+
+}
+
+.delete-button{
+  color: red;
+}
+
+button {
+  margin: 10px;
+}
+mat-list{
+  width: 33%;
+}
+
+mat-list-item:hover .tool-box {
+  display: flex;
+}
+
+

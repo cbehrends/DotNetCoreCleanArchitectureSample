@@ -22,8 +22,8 @@ namespace Payments.WebApi.Controllers
             _mediator = mediator ?? throw new NullReferenceException(nameof(IMediator));
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Payment>> GetById([FromRoute] int id)
+        [HttpGet("/{id:int}")]
+        public async Task<ActionResult<Payment>> GetById(int id)
         {
             try
             {

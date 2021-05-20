@@ -1,0 +1,13 @@
+.app-viewport {
+  height: 100vh;
+  width: 100vw;
+}
+.no-scroll {
+  overflow: hidden;
+}
+
+.flex-wrapper{
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}

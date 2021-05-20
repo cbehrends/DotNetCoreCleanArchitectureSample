@@ -1,0 +1,20 @@
+<div
+  class="app-viewport no-scroll"
+>
+  <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
+  <mat-sidenav-container
+    class="flex-wrapper"
+  >
+    <mat-sidenav #sidenav role="navigation" mode="side">
+      <mat-nav-list>
+        <app-sidenav-list></app-sidenav-list>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <main>
+        <router-outlet></router-outlet>
+      </main>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+

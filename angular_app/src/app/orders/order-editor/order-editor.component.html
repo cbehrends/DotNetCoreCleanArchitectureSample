@@ -1,0 +1,70 @@
+<h1 mat-dialog-title>
+  {{title}} {{order.firstName}}
+</h1>
+<div class="service-content">
+  <div class="service-content">
+    <span>Amount Due: ${{ order.amountDue | number:'.2' }}</span>
+    <span>Total Amount: ${{ order.totalAmount | number:'.2' }}</span>
+  </div>
+  <button
+    class="approve_payment_button"
+    mat-icon-button
+    matTooltip="Approve Payment"
+    [disabled]="order.amountDue <= 0"
+    (click)="approvePayment()">
+    <mat-icon>attach_money</mat-icon>
+  </button>
+</div>
+<div class="mat-dialog-content"  mat-dialog-content>
+  <form [formGroup]="editForm">
+    <mat-form-field floatLabel="always">
+      <mat-label>First Name</mat-label>
+      <input
+        formControlName="firstName"
+        matInput
+        autocomplete="off"
+      >
+    </mat-form-field>
+    <div class="service-content">
+      <div>
+        <div>
+          Services Rendered
+        </div>
+        <mat-list>
+          <mat-list-item id='renderedServices' *ngFor="let service of order.servicesRendered">
+            <button mat-icon-button matTooltip="Remove Rendered Service" (click)="removeRenderedService(service.id)">
+              <mat-icon class="material-icons-outlined">add</mat-icon>
+            </button>
+            {{service.description}}
+          </mat-list-item>
+        </mat-list>
+      </div>
+      <div>
+        <h5>
+          Available Services
+        </h5>
+        <mat-list>
+          <mat-list-item id='serviceList' *ngFor="let service of serviceList">
+            <div class="list-item-container">
+              <div class="list-item-container">
+                <span>{{service.description}}</span>
+                <span>Cost: ${{ service.cost | number:'.2' }}</span>
+              </div>
+              <div class="tool-box">
+                <button mat-icon-button matTooltip="Add to rendered services" (click)="addRenderedService(service)">
+                  <mat-icon class="material-icons-outlined">add</mat-icon>
+                </button>
+              </div>
+            </div>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </div>
+  </form>
+
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onDismiss()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="saveForm()">Save</button>
+</div>

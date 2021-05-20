@@ -1,0 +1,36 @@
+.service-list-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.tool-box {
+  display: none;
+}
+.list-item-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.delete-button{
+  color: red;
+}
+
+mat-form-field {
+  margin: 10px;
+}
+
+button {
+  margin: 10px;
+}
+mat-list{
+  width: 33%;
+}
+
+mat-list-item:hover .tool-box {
+  display: flex;
+}
+
+

@@ -1,0 +1,30 @@
+.mat-dialog-actions {
+  justify-content: flex-end;
+}
+
+.approve_payment_button {
+  color: green;
+}
+
+.mat-dialog-content{
+  margin-top: 20px;
+}
+
+.service-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.tool-box {
+  display: flex;
+  flex-direction: row;
+}
+
+.list-item-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
