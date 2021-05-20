@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { OrderEditorComponent } from './order-editor.component';
 import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import {FormBuilder} from '@angular/forms';
-import {IOrder} from '../IOrder';
+import {Order} from '../Order';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('OrderEditorComponent', () => {
@@ -30,7 +30,7 @@ describe('OrderEditorComponent', () => {
     component.editForm = formBuilder.group({
       firstName: ''
     });
-    component.order = {firstName: 'foo'} as IOrder;
+    component.order = {firstName: 'foo'} as Order;
     fixture.detectChanges();
   });
 

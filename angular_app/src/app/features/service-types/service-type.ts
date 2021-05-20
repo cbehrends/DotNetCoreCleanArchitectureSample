@@ -1,5 +1,5 @@
 
-export interface IServiceType {
+export interface ServiceType {
   id: number;
   description: string;
   cost: number;

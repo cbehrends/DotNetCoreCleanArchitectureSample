@@ -1,6 +1,6 @@
 import {Inject, Injectable} from '@angular/core';
 import {Observable, throwError} from 'rxjs';
-import {IServiceType} from './service-type';
+import {ServiceType} from './service-type';
 import {catchError, map, tap} from 'rxjs/operators';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 
@@ -12,11 +12,11 @@ export class ServicesTypesService {
   private serviceTypeUrl = 'http://localhost:5000';
   constructor(private http: HttpClient) { }
 
-  getServices(): Observable<IServiceType[]> {
+  getServices(): Observable<ServiceType[]> {
     const url = this.serviceTypeUrl + '/services';
 
     return this.http
-      .get<IServiceType[]>(url)
+      .get<ServiceType[]>(url)
       .pipe(
         catchError(this.handleError)
       );

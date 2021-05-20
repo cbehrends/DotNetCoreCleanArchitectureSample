@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from '../home/home.component';
-import { OrdersComponent } from '../orders/orders.component';
-import { ServiceTypesComponent } from '../service-types/service-types.component';
+import { HomeComponent } from '../features/home/home.component';
+import { OrdersComponent } from '../features/orders/orders.component';
+import { ServiceTypesComponent } from '../features/service-types/service-types.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: HomeComponent},

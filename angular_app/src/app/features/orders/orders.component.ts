@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {OrdersService} from './orders.service';
-import {IOrder} from './IOrder';
+import {Order} from './Order';
 import {throwError} from 'rxjs';
 import {MatDialog} from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {catchError} from 'rxjs/operators';
 import {Title} from '@angular/platform-browser';
 import {ServicesTypesService} from '../service-types/services-types.service';
-import {IServiceType} from '../service-types/service-type';
-import {IOrderReadDto} from './IOrderReadDto';
+import {ServiceType} from '../service-types/service-type';
+import {OrderReadDto} from './OrderReadDto';
 import {OrderEditDialogModel, OrderEditorComponent} from './order-editor/order-editor.component';
 
 @Component({
@@ -17,8 +17,8 @@ import {OrderEditDialogModel, OrderEditorComponent} from './order-editor/order-e
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
-  orders: IOrderReadDto[];
-  servicesList: IServiceType[];
+  orders: OrderReadDto[];
+  servicesList: ServiceType[];
   errorReceived: boolean;
   addingNew: boolean;
   constructor(private ordersService: OrdersService,
@@ -56,10 +56,10 @@ export class OrdersComponent implements OnInit {
 
   newOrder(){
     this.addingNew = true;
-    this.newDialog({firstName: '', totalAmount: 0, amountDue: 0} as IOrder);
+    this.newDialog({firstName: '', totalAmount: 0, amountDue: 0} as Order);
   }
 
-  saveOrder(order: IOrder){
+  saveOrder(order: Order){
     if (this.addingNew === true){
       return;
     }
@@ -68,18 +68,18 @@ export class OrdersComponent implements OnInit {
       .pipe(
         catchError(this.handleError),
         )
-      .subscribe((updatedOrder: IOrder) => {
+      .subscribe((updatedOrder: Order) => {
         this.orders.push( {
           id: updatedOrder.id,
           firstName: updatedOrder.firstName,
           servicesRenderedCount: updatedOrder.servicesRendered.length
-        } as IOrderReadDto);
+        } as OrderReadDto);
         this.addingNew = false;
         this.errorReceived = false;
       });
   }
 
-  newDialog(order: IOrder){
+  newDialog(order: Order){
 
     const dialogData = new OrderEditDialogModel('New Order', order, this.servicesList);
     const dialogRef = this.dialog.open(OrderEditorComponent, {
@@ -92,20 +92,20 @@ export class OrdersComponent implements OnInit {
       if (dialogResult){
         this.ordersService.createOrder(dialogResult)
           .pipe(catchError((err) => this.handleError(err)))
-          .subscribe((updatedOrder: IOrder) => {
+          .subscribe((updatedOrder: Order) => {
             this.orders.push( {
               id: updatedOrder.id,
               firstName: updatedOrder.firstName,
               amountDue: updatedOrder.amountDue,
               servicesRenderedCount: updatedOrder.servicesRendered.length
-            } as IOrderReadDto);
+            } as OrderReadDto);
           });
       }
     });
   }
 
   editDialog(orderId: number): void {
-    let editOrder: IOrder;
+    let editOrder: Order;
     this.ordersService.getOrder(orderId)
       .subscribe(
         order => {
@@ -121,13 +121,13 @@ export class OrdersComponent implements OnInit {
             if (dialogResult){
               this.ordersService.saveOrder(dialogResult)
                 .pipe(catchError((err) => this.handleError(err)))
-                .subscribe((updatedOrder: IOrder) => {
+                .subscribe((updatedOrder: Order) => {
                   this.orders[(this.orders.indexOf(this.orders.find(s => s.id === updatedOrder.id)))] =  {
                     id: updatedOrder.id,
                     firstName: updatedOrder.firstName,
                     amountDue: updatedOrder.amountDue,
                     servicesRenderedCount: updatedOrder.servicesRendered.length
-                  } as IOrderReadDto;
+                  } as OrderReadDto;
                 });
             }
           });

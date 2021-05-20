@@ -1,20 +1,20 @@
 import {inject, TestBed} from '@angular/core/testing';
 import { OrdersService } from './orders.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
-import {IOrder} from './IOrder';
-import {IOrderReadDto} from './IOrderReadDto';
+import {Order} from './Order';
+import {OrderReadDto} from './OrderReadDto';
 
 describe('OrdersService', () => {
   let service: OrdersService;
   let httpMock: HttpTestingController;
   const fakeOrders = [
-    { firstName: 'Corey' } as IOrder,
-    { firstName: 'Hank' } as IOrder
+    { firstName: 'Corey' } as Order,
+    { firstName: 'Hank' } as Order
   ];
 
   const fakeReadOnlyOrders = [
-    { firstName: 'Corey' } as IOrderReadDto,
-    { firstName: 'Hank' } as IOrderReadDto
+    { firstName: 'Corey' } as OrderReadDto,
+    { firstName: 'Hank' } as OrderReadDto
   ];
 
   beforeEach(() => {
@@ -58,7 +58,7 @@ describe('OrdersService', () => {
 
   it('should update order ', () => {
 
-    service.saveOrder({id: 1, firstName: 'FOO'} as IOrder).subscribe(order => {
+    service.saveOrder({id: 1, firstName: 'FOO'} as Order).subscribe(order => {
       console.log(order);
     });
 
@@ -68,7 +68,7 @@ describe('OrdersService', () => {
 
   it('should create new order ', () => {
 
-    service.createOrder({id: 1, firstName: 'FOO'} as IOrder).subscribe(order => {
+    service.createOrder({id: 1, firstName: 'FOO'} as Order).subscribe(order => {
       console.log(order);
     });
 

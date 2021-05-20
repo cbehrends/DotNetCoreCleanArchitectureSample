@@ -1,9 +1,9 @@
 import {Component, Inject, OnInit, Output} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {IOrder} from '../IOrder';
+import {Order} from '../Order';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {IServiceType} from '../../service-types/service-type';
-import {IRenderedService} from '../IRenderedService';
+import {ServiceType} from '../../service-types/service-type';
+import {RenderedService} from '../RenderedService';
 import {OrdersService} from '../orders.service';
 
 @Component({
@@ -14,8 +14,8 @@ import {OrdersService} from '../orders.service';
 export class OrderEditorComponent implements OnInit {
   public editForm: FormGroup;
   title: string;
-  order: IOrder;
-  serviceList: IServiceType[];
+  order: Order;
+  serviceList: ServiceType[];
 
   constructor(public dialogRef: MatDialogRef<OrderEditorComponent>,
               private formBuilder: FormBuilder,
@@ -32,15 +32,15 @@ export class OrderEditorComponent implements OnInit {
     });
   }
 
-  addRenderedService(service: IServiceType): void {
+  addRenderedService(service: ServiceType): void {
     if (this.order.servicesRendered === undefined){
-      this.order.servicesRendered = new Array<IRenderedService>(0);
+      this.order.servicesRendered = new Array<RenderedService>(0);
     }
     this.order.servicesRendered.push({
       id: -1,
       serviceId: service.id,
       cost: service.cost,
-      description: service.description} as IRenderedService);
+      description: service.description} as RenderedService);
     this.reCalculateCost();
   }
 
@@ -89,7 +89,7 @@ export class OrderEditDialogModel {
 
   constructor(
     public title: string,
-    public order: IOrder,
-    public serviceList: IServiceType[]) {
+    public order: Order,
+    public serviceList: ServiceType[]) {
   }
 }

@@ -5,7 +5,7 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogModule} from '@angular/material/dia
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {Observable, of, throwError} from 'rxjs';
 
-import {IServiceType} from './service-type';
+import {ServiceType} from './service-type';
 import {HttpResponse} from '@angular/common/http';
 import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
 
@@ -15,7 +15,7 @@ describe('ServiceTypesComponent', () => {
   let component: ServiceTypesComponent;
   let fixture: ComponentFixture<ServiceTypesComponent>;
 
-  const testVal = new Observable<IServiceType>();
+  const testVal = new Observable<ServiceType>();
   const testSuccessResponse  = new Observable<HttpResponse<any>>();
   let getServicesSpy: any;
 
@@ -60,7 +60,7 @@ describe('ServiceTypesComponent', () => {
   });
 
   it('should call ServicesTypesService.addService on add new service', async () => {
-    const newService = {id: 1, description: 'FOO'} as IServiceType;
+    const newService = {id: 1, description: 'FOO'} as ServiceType;
     component.services = new Array(newService);
     getServicesSpy.addService.and.returnValue(of(newService));
     component.addService();
@@ -84,7 +84,7 @@ describe('ServiceTypesComponent', () => {
   });
 
   it('should call ServicesTypesService.deleteService', async () => {
-    component.services = new Array({id: 1, description: 'FOOO'} as IServiceType);
+    component.services = new Array({id: 1, description: 'FOOO'} as ServiceType);
     component.deleteService(1);
     // expect(component.deleteService(1)).toBeTruthy();
     expect(getServicesSpy.deleteService).toHaveBeenCalled();

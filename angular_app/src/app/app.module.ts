@@ -7,14 +7,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutComponent } from './layout/layout.component';
-import { HomeComponent } from './home/home.component';
-import { HeaderComponent } from './navigation/header/header.component';
-import { ServiceTypesComponent } from './service-types/service-types.component';
+import { HomeComponent } from './features/home/home.component';
+import { HeaderComponent } from './layout/navigation/header/header.component';
+import { ServiceTypesComponent } from './features/service-types/service-types.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {SidenavListComponent} from './navigation/sidenav-list/sidenav-list.component';
-import {OrdersComponent} from './orders/orders.component';
-import {OrderEditorComponent} from './orders/order-editor/order-editor.component';
+import {SidenavListComponent} from './layout/navigation/sidenav-list/sidenav-list.component';
+import {OrdersComponent} from './features/orders/orders.component';
+import {OrderEditorComponent} from './features/orders/order-editor/order-editor.component';
 
 @NgModule({
   declarations: [

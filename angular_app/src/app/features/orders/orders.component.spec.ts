@@ -5,14 +5,14 @@ import {OverlayModule} from '@angular/cdk/overlay';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {OrdersService} from './orders.service';
 import {of} from 'rxjs';
-import {IOrder} from './IOrder';
+import {Order} from './Order';
 import {Title} from '@angular/platform-browser';
 import {ServicesTypesService} from '../service-types/services-types.service';
 
 let orderServiceSpy: any;
 let titleServiceSpy: any;
 let serviceTypesServiceSpy: any;
-const testData = [{id: 1, firstName: 'Foo'} as IOrder, {id: 2, firstName: 'Bar'} as IOrder];
+const testData = [{id: 1, firstName: 'Foo'} as Order, {id: 2, firstName: 'Bar'} as Order];
 
 const testVal = of(testData[0]);
 const test = of(testData);
@@ -69,12 +69,12 @@ describe('OrdersComponent', () => {
   });
 
   it('should call saveOrder on order service', () => {
-    ordersComponent.saveOrder({id: 1, firstName: 'Foo'} as IOrder);
+    ordersComponent.saveOrder({id: 1, firstName: 'Foo'} as Order);
     expect(orderServiceSpy.saveOrder).toHaveBeenCalled();
   });
 
   it('should call createOrder on order service', () => {
-    ordersComponent.saveOrder({id: 1, firstName: 'Foo'} as IOrder);
+    ordersComponent.saveOrder({id: 1, firstName: 'Foo'} as Order);
     expect(orderServiceSpy.saveOrder).toHaveBeenCalled();
   });
 

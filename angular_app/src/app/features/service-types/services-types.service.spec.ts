@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { ServicesTypesService } from './services-types.service';
 import {MatDialog} from '@angular/material/dialog';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
-import {IServiceType} from './service-type';
+import {ServiceType} from './service-type';
 import {Observable} from 'rxjs';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 const testUrl = 'http://localhost:5000/services';
@@ -12,8 +12,8 @@ describe('ServicesTypesService', () => {
   let service: ServicesTypesService;
   let httpMock: HttpTestingController;
   const fakeServices = [
-    {id: 1, description: 'Test'} as IServiceType,
-    {id: 2, description: 'Test 2'} as IServiceType
+    {id: 1, description: 'Test'} as ServiceType,
+    {id: 2, description: 'Test 2'} as ServiceType
   ];
 
   beforeEach(() => {
@@ -68,7 +68,7 @@ describe('ServicesTypesService', () => {
       id: 1,
       description: 'foo',
       cost: 100
-    } as IServiceType;
+    } as ServiceType;
 
     service.addService('FOO', 100).subscribe(retVal => {
       expect(retVal).toBe(dummyService);

@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {IServiceType} from './service-type';
+import {ServiceType} from './service-type';
 import {ServicesTypesService} from './services-types.service';
 import {catchError, map, tap} from 'rxjs/operators';
 import {throwError} from 'rxjs';
 import {MatDialog} from '@angular/material/dialog';
-import {ConfirmDialogComponent, ConfirmDialogModel} from '../confirm-dialog/confirm-dialog.component';
+import {ConfirmDialogComponent, ConfirmDialogModel} from '../../confirm-dialog/confirm-dialog.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Title} from '@angular/platform-browser';
 
@@ -16,7 +16,7 @@ import {Title} from '@angular/platform-browser';
 export class ServiceTypesComponent implements OnInit {
   newServiceName: string;
   newServiceCost: number;
-  services: IServiceType[];
+  services: ServiceType[];
   errorReceived: boolean;
   dialogResult: boolean;
 

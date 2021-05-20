@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {IOrder} from './IOrder';
+import {Order} from './Order';
 import {HttpClient} from '@angular/common/http';
-import {IOrderReadDto} from './IOrderReadDto';
+import {OrderReadDto} from './OrderReadDto';
 
 @Injectable({
   providedIn: 'root'
@@ -17,18 +17,18 @@ export class OrdersService {
     return this.http.get(url);
   }
 
-  getOrders(): Observable<IOrderReadDto[]> {
+  getOrders(): Observable<OrderReadDto[]> {
     const url = this.ordersUrl + '/orders';
 
-    return this.http.get<IOrderReadDto[]>(url);
+    return this.http.get<OrderReadDto[]>(url);
   }
 
-  createOrder(order: IOrder){
+  createOrder(order: Order){
     const url = this.ordersUrl + '/orders';
     return this.http.post(url, order);
   }
 
-  saveOrder(order: IOrder): Observable<any>{
+  saveOrder(order: Order): Observable<any>{
     const url = this.ordersUrl + '/orders';
     return this.http.put(url, order);
   }
