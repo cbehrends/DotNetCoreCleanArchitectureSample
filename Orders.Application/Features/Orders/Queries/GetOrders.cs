@@ -13,7 +13,7 @@ namespace Orders.Application.Features.Orders.Queries
 {
     public static class GetOrders
     {
-        public class Query : IRequest<List<OrderReadOnlyDto>>
+        public record Query : IRequest<List<OrderReadOnlyDto>>
         {
         }
 

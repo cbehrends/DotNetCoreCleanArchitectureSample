@@ -48,7 +48,7 @@ namespace Payments.IntegrationTests.Features
 
             var newPayment = await SendAsync(command);
 
-            var payment = await SendAsync(new GetPaymentById.Query {Id = newPayment.Id});
+            var payment = await SendAsync(new GetPaymentById.Query (newPayment.Id));
 
             payment.Should().NotBeNull();
         }
@@ -56,7 +56,7 @@ namespace Payments.IntegrationTests.Features
         [Test]
         public void Should_Throw_NotFoundException_On_Get_Payment_By_Id()
         {
-            var query = new GetPaymentById.Query {Id = -9999};
+            var query = new GetPaymentById.Query (-9999);
 
             FluentActions.Invoking(() =>
                 SendAsync(query)).Should().Throw<NotFoundException>();

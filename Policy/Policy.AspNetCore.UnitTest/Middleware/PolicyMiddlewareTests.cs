@@ -13,20 +13,20 @@ namespace Policy.AspNetCore.UnitTests.Middleware
 {
     public class PolicyMiddlewareTests
     {
-        private PolicyMiddleware m_oPolicyMiddleware;
-        private IPolicyRuntimeClient m_oPolicyRuntimeClient;
-        private RequestDelegate m_oRequestDelegate;
+        private PolicyMiddleware _policyMiddleware;
+        private IPolicyRuntimeClient _policyRuntimeClient;
+        private RequestDelegate _requestDelegate;
 
         [SetUp]
         public void Setup()
         {
-            m_oPolicyRuntimeClient = A.Fake<IPolicyRuntimeClient>();
-            m_oRequestDelegate = delegate(HttpContext context)
+            _policyRuntimeClient = A.Fake<IPolicyRuntimeClient>();
+            _requestDelegate = delegate(HttpContext context)
             {
                 Console.WriteLine(context.Connection.Id);
                 return Task.CompletedTask;
             };
-            m_oPolicyMiddleware = new PolicyMiddleware(m_oRequestDelegate);
+            _policyMiddleware = new PolicyMiddleware(_requestDelegate);
         }
 
         [Test]
@@ -34,8 +34,8 @@ namespace Policy.AspNetCore.UnitTests.Middleware
         {
             var oContext = new DefaultHttpContext();
 
-            await m_oPolicyMiddleware.InvokeAsync(oContext, m_oPolicyRuntimeClient);
-            A.CallTo(() => m_oPolicyRuntimeClient.EvaluateAsync(A<ClaimsPrincipal>.Ignored))
+            await _policyMiddleware.InvokeAsync(oContext, _policyRuntimeClient);
+            A.CallTo(() => _policyRuntimeClient.EvaluateAsync(A<ClaimsPrincipal>.Ignored))
                 .MustNotHaveHappened();
         }
 
@@ -59,14 +59,14 @@ namespace Policy.AspNetCore.UnitTests.Middleware
             var oRequest = A.Fake<HttpRequest>();
             A.CallTo(() => oRequest.Path).Returns(new PathString("/api/site/42/bla/bla"));
             A.CallTo(() => oHttpContext.Request).Returns(oRequest);
-            A.CallTo(() => m_oPolicyRuntimeClient.EvaluateAsync(A<ClaimsPrincipal>.Ignored))
+            A.CallTo(() => _policyRuntimeClient.EvaluateAsync(A<ClaimsPrincipal>.Ignored))
                 .Returns(new PolicyResult
                 {
                     Roles = new[] {"WorkQueueFull"},
                     Permissions = new[] {"Ride_Solo"}
                 });
 
-            await m_oPolicyMiddleware.InvokeAsync(oHttpContext, m_oPolicyRuntimeClient);
+            await _policyMiddleware.InvokeAsync(oHttpContext, _policyRuntimeClient);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Orders.Application.Features.Orders.Commands
 {
     public static class ApprovePayment
     {
-        public class Command : IRequest
+        public record Command : IRequest
         {
             public Command(int orderId)
             {

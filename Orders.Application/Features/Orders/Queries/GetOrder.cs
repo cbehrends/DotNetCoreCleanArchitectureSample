@@ -11,7 +11,7 @@ namespace Orders.Application.Features.Orders.Queries
 {
     public static class GetOrder
     {
-        public class Query : IRequest<Order>
+        public record Query : IRequest<Order>
         {
             public int Id { get; init; }
         }

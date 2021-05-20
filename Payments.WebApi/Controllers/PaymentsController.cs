@@ -22,12 +22,12 @@ namespace Payments.WebApi.Controllers
             _mediator = mediator ?? throw new NullReferenceException(nameof(IMediator));
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Payment>> GetById([FromRoute] int id)
+        [HttpGet("/{id:int}")]
+        public async Task<ActionResult<Payment>> GetById(int id)
         {
             try
             {
-                var payment = await _mediator.Send(new GetPaymentById.Query {Id = id});
+                var payment = await _mediator.Send(new GetPaymentById.Query(id));
                 return Ok(payment);
             }
             catch (NotFoundException e)

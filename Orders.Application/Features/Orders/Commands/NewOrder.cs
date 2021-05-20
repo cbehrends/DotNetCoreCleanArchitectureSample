@@ -14,7 +14,7 @@ namespace Orders.Application.Features.Orders.Commands
 {
     public static class NewOrder
     {
-        public class Command : IRequest<Order>
+        public record Command : IRequest<Order>
         {
             public string FirstName { get; set; }
             public decimal TotalAmount { get; set; }

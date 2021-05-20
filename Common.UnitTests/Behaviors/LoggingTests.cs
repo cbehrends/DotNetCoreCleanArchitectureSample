@@ -11,7 +11,7 @@ namespace Common.UnitTests.Behaviors
 {
     public class LoggingTests
     {
-        private readonly Mock<ICurrentUserService> _currentUserServiceMock = new();
+        private readonly Mock<ICurrentUserAccessor> _currentUserServiceMock = new();
         private Mock<ILogger<MockRequest>> _loggingMock = new();
 
         [Test]

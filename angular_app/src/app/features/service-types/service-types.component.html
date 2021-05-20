@@ -1,0 +1,51 @@
+<section fxLayout="column" fxFlexAlign="stretch">
+  <div class="service-list-container">
+    <h3>
+      Services Offered
+    </h3>
+    <div>
+      <mat-form-field floatLabel="always">
+        <mat-label>New Service name</mat-label>
+        <input
+          id="newServiceName"
+          matInput
+          [(ngModel)]="newServiceName"
+          autocomplete="off"
+        >
+      </mat-form-field>
+      <mat-form-field floatLabel="always">
+        <mat-label>Service Cost</mat-label>
+        <input
+          id="newServiceCost"
+          matInput
+          [(ngModel)]="newServiceCost"
+          autocomplete="off"
+        >
+      </mat-form-field>
+      <button
+        id='addNewService'
+        matTooltip="Add a new service"
+        mat-stroked-button
+        (click)="addService()"
+        [disabled]="newServiceName.length === 0"
+      >
+        Add Service
+      </button>
+    </div>
+    <mat-list>
+      <mat-list-item id='serviceList' *ngFor="let service of services">
+        <div class="list-item-container">
+          <div class="list-item-container">
+            <span>{{service.description}}</span>
+            <span>Cost: ${{ service.cost | number:'.2' }}</span>
+          </div>
+          <div class="tool-box">
+            <button mat-icon-button matTooltip="Delete" (click)="confirmDialog(service.id)">
+              <mat-icon class="material-icons-outlined delete-button">delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</section>

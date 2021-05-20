@@ -1,8 +1,8 @@
 namespace Common.Messaging.Payments
 {
-    public class IOrderPaid
+    public interface IOrderPaid
     {
-        private int ClaimId { get; set; }
-        private decimal AmountApplied { get; set; }
+        int OrderId { get; set; }
+        decimal AmountApplied { get; set; }
     }
 }

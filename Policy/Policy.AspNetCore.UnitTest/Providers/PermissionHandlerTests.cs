@@ -13,33 +13,33 @@ namespace Policy.AspNetCore.UnitTests.Providers
         [Test]
         public void Succeed_Should_Get_Called_If_User_Has_Permission()
         {
-            var oFakePolicyClient = A.Fake<IPolicyRuntimeClient>();
-            A.CallTo(() => oFakePolicyClient.HasPermissionAsync(A<ClaimsPrincipal>.Ignored, A<string>.Ignored))
+            var fakePolicyClient = A.Fake<IPolicyRuntimeClient>();
+            A.CallTo(() => fakePolicyClient.HasPermissionAsync(A<ClaimsPrincipal>.Ignored, A<string>.Ignored))
                 .Returns(true);
 
-            var oFakeContext = A.Fake<AuthorizationHandlerContext>();
-            List<PermissionRequirement> colPermissionRequirements =
+            var fakeContext = A.Fake<AuthorizationHandlerContext>();
+            List<PermissionRequirement> requirements =
                 new() {new PermissionRequirement("MY_PERMISSION_REQUIREMENT")};
-            A.CallTo(() => oFakeContext.Requirements).Returns(colPermissionRequirements);
-            PermissionHandler oSystemUnderTest = new(oFakePolicyClient);
+            A.CallTo(() => fakeContext.Requirements).Returns(requirements);
+            PermissionHandler systemUnderTest = new(fakePolicyClient);
 
-            oSystemUnderTest.HandleAsync(oFakeContext);
+            systemUnderTest.HandleAsync(fakeContext);
 
-            A.CallTo(() => oFakeContext.Succeed(A<PermissionRequirement>.Ignored))
+            A.CallTo(() => fakeContext.Succeed(A<PermissionRequirement>.Ignored))
                 .MustHaveHappened();
         }
 
         [Test]
         public void Succeed_Should_Not_Get_Called_If_User_Has_No_Permission()
         {
-            var oFakePolicyClient = A.Dummy<IPolicyRuntimeClient>();
-            var oFakeContext = A.Fake<AuthorizationHandlerContext>();
-            PermissionHandler oSystemUnderTest = new(oFakePolicyClient);
+            var fakePolicyClient = A.Dummy<IPolicyRuntimeClient>();
+            var fakeContext = A.Fake<AuthorizationHandlerContext>();
+            PermissionHandler systemUnderTest = new(fakePolicyClient);
 
-            oSystemUnderTest.HandleAsync(new AuthorizationHandlerContext(new List<PermissionRequirement>(), null,
+            systemUnderTest.HandleAsync(new AuthorizationHandlerContext(new List<PermissionRequirement>(), null,
                 null));
 
-            A.CallTo(() => oFakeContext.Succeed(A<IAuthorizationRequirement>.Ignored))
+            A.CallTo(() => fakeContext.Succeed(A<IAuthorizationRequirement>.Ignored))
                 .MustNotHaveHappened();
         }
     }

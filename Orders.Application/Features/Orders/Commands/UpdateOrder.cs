@@ -14,7 +14,7 @@ namespace Orders.Application.Features.Orders.Commands
 {
     public static class UpdateOrder
     {
-        public class Command : IRequest<Order>
+        public record Command : IRequest<Order>
         {
             public int Id { get; set; }
             public string FirstName { get; set; }

@@ -48,7 +48,7 @@ namespace Orders.WebApi
 
             services.AddAutoMapper(typeof(Startup), typeof(InjectDependencies));
 
-            services.AddTransient<ICurrentUserService, MockCurrentUserService>();
+            services.AddTransient<ICurrentUserAccessor, MockCurrentUserAccessor>();
 
             services.AddSwaggerGen(c =>
             {

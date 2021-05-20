@@ -14,9 +14,9 @@ namespace Policy.AspNetCore.UnitTests.Extensions
             [Test]
             public void Should_Load_PolicyMiddleware()
             {
-                var oApplicationBuilderFake = A.Fake<IApplicationBuilder>();
-                ApplicationBuilderExtensions.UsePolicyClaims(oApplicationBuilderFake);
-                A.CallTo(() => oApplicationBuilderFake.Use(A<Func<RequestDelegate, RequestDelegate>>.Ignored))
+                var applicationBuilderFake = A.Fake<IApplicationBuilder>();
+                ApplicationBuilderExtensions.UsePolicyClaims(applicationBuilderFake);
+                A.CallTo(() => applicationBuilderFake.Use(A<Func<RequestDelegate, RequestDelegate>>.Ignored))
                     .MustHaveHappened();
             }
         }
