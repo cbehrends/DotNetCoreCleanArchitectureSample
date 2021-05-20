@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RoutingModule } from './routing/routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +15,26 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {SidenavListComponent} from './layout/navigation/sidenav-list/sidenav-list.component';
 import {OrdersComponent} from './features/orders/orders.component';
 import {OrderEditorComponent} from './features/orders/order-editor/order-editor.component';
+import {EventTypes, OidcConfigService, PublicEventsService} from 'angular-auth-oidc-client';
+import {environment} from '../environments/environment';
+import {LogLevel} from 'codelyzer';
+import {filter} from "rxjs/operators";
+
+export function configureAuth(oidcConfigService: OidcConfigService) {
+  return () =>
+    oidcConfigService.withConfig({
+      stsServer: 'http://localhost:8080/auth/realms/dev',
+      redirectUrl: window.location.origin,
+      postLogoutRedirectUri: window.location.origin,
+      clientId: 'angularClient',
+      scope: 'openid profile email',
+      responseType: 'code',
+      silentRenew: true,
+      silentRenewUrl: `${window.location.origin}/silent-renew.html`,
+      renewTimeBeforeTokenExpiresInSeconds: 10,
+      logLevel: environment.production ? LogLevel.None : LogLevel.Debug,
+  });
+}
 
 @NgModule({
   declarations: [
@@ -37,7 +57,22 @@ import {OrderEditorComponent} from './features/orders/order-editor/order-editor.
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    OidcConfigService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: configureAuth,
+      deps: [OidcConfigService],
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private readonly eventService: PublicEventsService) {
+    this.eventService
+      .registerForEvents()
+      .pipe(filter((notification) => notification.type === EventTypes.ConfigLoaded))
+      .subscribe((config) => console.log('ConfigLoaded', config));
+  }
+}
