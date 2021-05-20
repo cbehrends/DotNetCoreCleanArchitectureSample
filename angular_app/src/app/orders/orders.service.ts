@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {IOrder} from './IOrder';
-import {tap} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 import {IOrderReadDto} from './IOrderReadDto';
 
