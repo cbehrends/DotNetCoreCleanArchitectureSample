@@ -15,7 +15,7 @@ namespace Payments.Infrastructure
                 options.UseSqlServer(configuration["ConnectionString"],
                     b => b.MigrationsAssembly(typeof(PaymentsDbContext).Assembly.FullName)));
 
-            services.AddScoped<IApplicationDbContext>(provider => provider.GetService<PaymentsDbContext>());
+            services.AddScoped<IApplicationDbContext, PaymentsDbContext>();
 
             return services;
         }

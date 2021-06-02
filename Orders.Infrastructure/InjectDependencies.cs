@@ -15,7 +15,7 @@ namespace Orders.Infrastructure
                 options.UseSqlServer(configuration["ConnectionString"],
                     b => b.MigrationsAssembly(typeof(OrdersDbContext).Assembly.FullName)));
 
-            services.AddScoped<IApplicationDbContext>(provider => provider.GetService<OrdersDbContext>());
+            services.AddScoped<IApplicationDbContext, OrdersDbContext>();
 
             return services;
         }
